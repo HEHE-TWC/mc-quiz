@@ -149,13 +149,19 @@
       </select>
     </label>
     <div class="count">Answered <b id="answered">0</b> · Correct <b id="correct">0</b></div>
-    <label class="toggle"><input type="checkbox" id="midOnly"> Midterm mode: Lecture 1–4 plus tutorials only</label>
+    <label class="toggle">Practice set
+      <select id="scope">
+        <option value="mid" selected>Midterm (default): Lectures 1–4 through respiratory drugs</option>
+        <option value="extra">Beyond midterm only (CNS / psychiatric)</option>
+        <option value="all">All questions</option>
+      </select>
+    </label>
   </div>
   <div class="card" id="stage"></div>
   <footer id="foot"></footer>
 </div>
 <script>
-/* NUR2047 MC bank. Facts only from course notes, TS/Tut, revision exercise, and paraphrased past-paper items. */
+/* NUR2047 MC bank. English stems. Explanations: English, then Traditional Chinese. Midterm = Lectures 1-4 through respiratory drugs, non-CNS tutorials, and Revision ex1. */
 const QUESTIONS = [
   {
     "id": "past-generic",
@@ -463,7 +469,7 @@ const QUESTIONS = [
     "answer": 1,
     "explain": "The opioid toxidrome triad is reduced consciousness, respiratory depression, and pinpoint pupils. The antidote is intravenous naloxone, a pure opioid antagonist with high affinity for the mu receptor. Flumazenil is the benzodiazepine antidote.\nOpioid toxidrome 三聯徵：意識下降、呼吸抑制、針尖瞳孔。解藥係靜脈 naloxone（純 opioid 拮抗劑，對 mu 受體親和力高）。Flumazenil 係 benzodiazepine 解藥。",
     "source": "tutorial",
-    "mid": true
+    "mid": false
   },
   {
     "id": "tut-fluclox",
@@ -519,7 +525,7 @@ const QUESTIONS = [
     "answer": 2,
     "explain": "The lecture SSRI examples are paroxetine, sertraline, citalopram, escitalopram, and fluoxetine. They selectively block presynaptic serotonin reuptake. Amitriptyline is a TCA, venlafaxine is an SNRI, and zolpidem is a Z-drug. The tutorial has seven blanks, but the lecture lists only five drugs. For the exam, follow the lecture.\n講義 SSRI：paroxetine、sertraline、citalopram、escitalopram、fluoxetine，選擇性阻斷突觸前血清素再攝取。Amitriptyline 係 TCA；venlafaxine 係 SNRI；zolpidem 係 Z-drug。Tutorial 有 7 個空，但講義只列咗 5 隻，考試以講義為準。",
     "source": "tutorial",
-    "mid": true
+    "mid": false
   },
   {
     "id": "orig-ivba",
@@ -1220,6 +1226,328 @@ const QUESTIONS = [
     "explain": "Adverse effects can appear in the first two weeks, but a full improvement in mood and function takes about 6–12 weeks. It is usually taken in the morning and may be taken with food to reduce stomach upset. Do not stop it suddenly, because withdrawal can occur. Reduce it gradually. Avoid grapefruit juice.\n副作用頭兩星期就可以出現，但完整情緒同功能改善約 6–12 星期。通常朝早服，可配食物減胃不適。唔好突然停（會戒斷），要逐步減。避免西柚汁。",
     "source": "rewritten",
     "mid": false
+  },
+  {
+    "id": "rev-hl-40",
+    "stem": "A drug's half-life is 8 hours. About what percentage of the original amount remains after 40 hours?",
+    "options": [
+      "50%",
+      "12.5%",
+      "6.25%",
+      "3.125%"
+    ],
+    "answer": 3,
+    "explain": "Each half-life of 8 hours halves what remains: 8 h 50%, 16 h 25%, 24 h 12.5%, 32 h 6.25%, 40 h 3.125%. Forty hours is the fifth half-life in the revision table.\n每 8 小時減半：8 小時 50%、16 小時 25%、24 小時 12.5%、32 小時 6.25%、40 小時 3.125%。40 小時就係表入面第 5 個半衰期。",
+    "source": "revision",
+    "mid": true
+  },
+  {
+    "id": "rev-met-purpose",
+    "stem": "In the revision notes, what is the purpose of drug metabolism (biotransformation)?",
+    "options": [
+      "To make every drug more lipid-soluble so it stays in tissue",
+      "To make the drug less harmful, more water-soluble, and easier to excrete",
+      "To bind the drug permanently to its receptor",
+      "To stop all excretion by the kidney"
+    ],
+    "answer": 1,
+    "explain": "Metabolism changes the drug chemically. The notes list three purposes: detoxify, increase water solubility, and make excretion easier. It can also activate a prodrug.\n代謝係身體改藥物嘅化學結構。練習列出三個目的：解毒、變得更溶於水、更容易排泄。亦可以激活前藥。",
+    "source": "revision",
+    "mid": true
+  },
+  {
+    "id": "rev-prodrug-acy",
+    "stem": "Why do the revision notes mention acyclovir when they explain a prodrug?",
+    "options": [
+      "It is given as an inactive form that becomes active after the body processes it, to improve absorption from the stomach",
+      "It is already fully active and is used only to block first-pass metabolism",
+      "It is an angiotensin-receptor blocker",
+      "It replaces vitamin K clotting factors"
+    ],
+    "answer": 0,
+    "explain": "A prodrug is inactive until the body processes it (for example by first-pass metabolism in the liver). The notes say this can improve bioavailability, and they give acyclovir as an example used to improve absorption from the stomach.\n前藥一開始冇活性，身體處理之後（例如肝 first-pass）先變活性，用嚟改善生物利用度。練習用 acyclovir 做例子，改善由胃吸收。",
+    "source": "revision",
+    "mid": true
+  },
+  {
+    "id": "rev-ach-se",
+    "stem": "Which cluster matches the anticholinergic adverse effects in the revision notes?",
+    "options": [
+      "Dry cough, angioedema, and fetal toxicity",
+      "Drowsiness, blurred vision, dry mouth, tachycardia, constipation, and urinary retention",
+      "Hand tremor only, with no heart effect",
+      "Bleeding and a raised INR"
+    ],
+    "answer": 1,
+    "explain": "The revision list is drowsiness, blurred vision, dry mouth, tachycardia or palpitation, constipation, and urinary retention. The respiratory table also includes arrhythmia. Dry cough belongs with ACE inhibitors, and bleeding belongs with warfarin.\n練習列出：嗜睡、視力模糊、口乾、心跳快或心悸、便秘、尿瀦留。呼吸表亦有心律不整。乾咳係 ACEI；出血係 warfarin。",
+    "source": "revision",
+    "mid": true
+  },
+  {
+    "id": "rev-sama-lama",
+    "stem": "Which pairing of inhaled anticholinergics matches the revision notes?",
+    "options": [
+      "Salbutamol is a SAMA and salmeterol is a LAMA",
+      "Ipratropium is a short-acting antimuscarinic; tiotropium is a long-acting antimuscarinic",
+      "Formoterol is a SAMA and budesonide is a LAMA",
+      "Codeine is a SAMA and guaifenesin is a LAMA"
+    ],
+    "answer": 1,
+    "explain": "SAMA example: ipratropium bromide (Atrovent). LAMA example: tiotropium (Spiriva Handihaler or Spiriva Respimat). Salbutamol and salmeterol are beta-2 agonists. Formoterol plus budesonide is the Symbicort combination.\nSAMA 例子係 ipratropium bromide (Atrovent)。LAMA 例子係 tiotropium（Spiriva）。Salbutamol、salmeterol 係 β2 激動劑。Formoterol 加 budesonide 先係 Symbicort。",
+    "source": "revision",
+    "mid": true
+  },
+  {
+    "id": "rev-bb-b1",
+    "stem": "Which drugs are the cardiovascular (beta-1) selective blockers in the revision list?",
+    "options": [
+      "Propranolol and sotalol",
+      "Atenolol, metoprolol, and bisoprolol",
+      "Carvedilol and labetalol only",
+      "Salbutamol and terbutaline"
+    ],
+    "answer": 1,
+    "explain": "Beta-1 selective: atenolol (Tenormin), metoprolol (Betaloc), and bisoprolol. Non-selective beta-1 plus beta-2: propranolol (Inderal) and sotalol. Carvedilol and labetalol also block alpha-1. Salbutamol and terbutaline are beta-2 agonists.\nβ1 選擇性：atenolol (Tenormin)、metoprolol (Betaloc)、bisoprolol。非選擇性 β1＋β2：propranolol (Inderal)、sotalol。Carvedilol、labetalol 仲阻 α1。Salbutamol、terbutaline 係 β2 激動劑。",
+    "source": "revision",
+    "mid": true
+  },
+  {
+    "id": "rev-arb-azil",
+    "stem": "Which drug is listed with losartan and valsartan as an angiotensin-receptor blocker?",
+    "options": [
+      "Azilsartan (Edarbi)",
+      "Atorvastatin (Lipitor)",
+      "Ambroxol (Mucosolvan)",
+      "Atenolol (Tenormin)"
+    ],
+    "answer": 0,
+    "explain": "ARB examples in the revision table are losartan, valsartan (Diovan), and azilsartan (Edarbi). They block angiotensin II at its receptor and lower blood pressure. Atorvastatin is a statin, ambroxol is a mucolytic, and atenolol is a beta-1 blocker.\nARB 例子：losartan、valsartan (Diovan)、azilsartan (Edarbi)。佢哋阻斷 angiotensin II 作用喺受體，並且降血壓。Atorvastatin 係 statin；ambroxol 係化痰藥；atenolol 係 β1 阻斷劑。",
+    "source": "revision",
+    "mid": true
+  },
+  {
+    "id": "rev-ace-cough",
+    "stem": "Which adverse effects does the revision table list for ACE inhibitors such as captopril and lisinopril?",
+    "options": [
+      "Hypotension, hyperkalaemia, toxicity to the fetus, and dry cough or hypersensitivity including angioedema",
+      "Only reflex tachycardia and ankle oedema",
+      "Pinpoint pupils and respiratory arrest",
+      "A rotten-egg smell"
+    ],
+    "answer": 0,
+    "explain": "ACE inhibitors block the enzyme that converts angiotensin I to angiotensin II and lower blood pressure. The table lists hypotension, hyperkalaemia, toxicity to the fetus, and hypersensitivity with dry cough and angioedema. They are used for hypertension and heart failure.\nACEI 阻斷將 angiotensin I 轉成 angiotensin II 嘅酶，並且降血壓。表列低血壓、高血鉀、對胎兒有毒，以及過敏、乾咳、血管性水腫。用嚟治高血壓同心衰。",
+    "source": "revision",
+    "mid": true
+  },
+  {
+    "id": "rev-nondhp",
+    "stem": "Where do non-dihydropyridine calcium-channel blockers act, according to the revision table?",
+    "options": [
+      "On peripheral vessels only, with no effect on heart rate",
+      "On the heart and the periphery, lowering contractility and heart rate",
+      "Only on beta-2 receptors in the bronchi",
+      "Only on vitamin K-dependent clotting factors"
+    ],
+    "answer": 1,
+    "explain": "Non-dihydropyridines (diltiazem and verapamil) act on the heart and the periphery. They lower contraction force, heart rate, and peripheral vasoconstriction. Dihydropyridines (amlodipine, nifedipine) act mainly on the periphery.\nNon-DHP（diltiazem、verapamil）作用喺心臟同外周，降低收縮力、心率同外周血管收縮。DHP（amlodipine、nifedipine）主要作用外周。",
+    "source": "revision",
+    "mid": true
+  },
+  {
+    "id": "rev-unstable",
+    "stem": "Why do the revision notes say dihydropyridines are not used for unstable angina?",
+    "options": [
+      "They block vitamin K and cause bleeding",
+      "A fall in blood pressure that is too fast can reflexively raise contractility and heart rate and trigger myocardial and cerebral ischaemia",
+      "They are long-acting beta-2 agonists and must not be used alone",
+      "They inhibit the sodium-potassium pump"
+    ],
+    "answer": 1,
+    "explain": "The special-points cell says a fall in blood pressure that is too fast stimulates the sympathetic pathway, causing a reflex increase in contractility and tachycardia, which can induce myocardial ischaemia and cerebral ischaemia. Slow-onset drugs reduce that reflex tachycardia.\n特別欄寫：降血壓太快會刺激交感，反射性增加收縮力同心跳，容易誘發心肌缺血同腦缺血。起效慢嘅藥可以減少呢個反射性心跳加快。",
+    "source": "revision",
+    "mid": true
+  },
+  {
+    "id": "rev-elantan",
+    "stem": "In the revision examples, Elantan is which nitrate?",
+    "options": [
+      "Isosorbide mononitrate",
+      "Salbutamol",
+      "Ipratropium",
+      "Atorvastatin"
+    ],
+    "answer": 0,
+    "explain": "Isosorbide mononitrate is Elantan. Isosorbide dinitrate examples are Isordil and Isoket. Glyceryl trinitrate is also called nitroglycerin. Nitrates have a strong first-pass effect, so they are given sublingually, and the half-life is about 1 to 4 minutes.\nElantan 係 isosorbide mononitrate。Isosorbide dinitrate 例子係 Isordil 同 Isoket。Glyceryl trinitrate 亦叫 nitroglycerin。硝酸鹽 first-pass 好強，所以舌下用，半衰期約 1–4 分鐘。",
+    "source": "revision",
+    "mid": true
+  },
+  {
+    "id": "rev-tadalafil",
+    "stem": "Besides sildenafil, which erectile-dysfunction drug do the revision notes name as a dangerous nitrate interaction?",
+    "options": [
+      "Tadalafil (Cialis)",
+      "Terbutaline (Bricanyl)",
+      "Tiotropium (Spiriva)",
+      "Tranexamic acid"
+    ],
+    "answer": 0,
+    "explain": "Nitrates can interact with alcohol and with sildenafil (Viagra) or tadalafil (Cialis). Vessels dilate, blood pressure can fall seriously, and the notes say this may lead to cardiovascular collapse and possibly death.\n硝酸鹽可同酒精，以及 sildenafil (Viagra) 或 tadalafil (Cialis) 交互。血管擴張，血壓可以嚴重下降，練習寫可以導致心血管衰竭，甚至死亡。",
+    "source": "revision",
+    "mid": true
+  },
+  {
+    "id": "rev-dig-pump",
+    "stem": "Which description of digoxin matches the revision notes?",
+    "options": [
+      "It blocks HMG-CoA reductase and lowers cholesterol",
+      "It inhibits the sodium-potassium pump, increases contraction force, and slows the heart rate",
+      "It is a short-acting beta-2 agonist for acute asthma",
+      "It dissolves an already formed clot"
+    ],
+    "answer": 1,
+    "explain": "Digoxin competes with potassium at the sodium-potassium pump. Intracellular sodium rises, then the sodium-calcium exchanger brings calcium in, so contraction force rises (positive inotropic effect). It also slows atrioventricular conduction and heart rate (negative chronotropic effect). Adverse effects listed are hyperkalaemia and bradycardia.\nDigoxin 同鉀競爭鈉鉀泵。細胞內鈉上升，鈉鈣交換把鈣泵入，收縮力增加（正肌力）。同時減慢房室結傳導同心率（負變時）。副作用欄係高血鉀同心跳慢。",
+    "source": "revision",
+    "mid": true
+  },
+  {
+    "id": "rev-dig-hold",
+    "stem": "Before giving digoxin, which check do the revision notes require?",
+    "options": [
+      "A random finger-prick glucose, and withhold if it is below 4 mmol/L",
+      "An apical pulse for 1 minute, and withhold if the heart rate is below 60 per minute",
+      "An international normalised ratio, and withhold if it is below 2",
+      "A peak-flow rate, and withhold if tremor is present"
+    ],
+    "answer": 1,
+    "explain": "Count the apical pulse for 1 minute. If the heart rate is below 60 per minute, withhold the dose and tell the doctor, and check the ECG regularly. Also monitor electrolytes and renal function, and replace potassium if it is low. The therapeutic range is narrow.\n心尖脈搏數 1 分鐘。心率低過 60 次／分鐘就暫停並通知醫生，並且定期查心電圖。亦要監察電解質同腎功能；低血鉀要補鉀。治療窗窄。",
+    "source": "revision",
+    "mid": true
+  },
+  {
+    "id": "rev-statin-avoid",
+    "stem": "Which monitoring and food points for a statin are in the revision notes?",
+    "options": [
+      "Check only the INR, and avoid green leafy vegetables",
+      "Monitor liver function and creatine kinase, and avoid grapefruit and red yeast rice",
+      "Give it only by nasal spray",
+      "Withhold it when the apical pulse is below 60"
+    ],
+    "answer": 1,
+    "explain": "Statins inhibit HMG-CoA reductase so less cholesterol is made. Monitor liver function tests and creatine kinase. Avoid grapefruit and red yeast rice. With warfarin they may increase bleeding. Rare effects include muscle pain, myopathy, and rhabdomyolysis.\nStatin 抑制 HMG-CoA reductase，減少製造膽固醇。要監察肝功能同 creatine kinase。避免西柚同紅麴。同 warfarin 一齊可能增加出血。罕見有肌痛、肌病、橫紋肌溶解。",
+    "source": "revision",
+    "mid": true
+  },
+  {
+    "id": "rev-saba-time",
+    "stem": "Which timing matches a short-acting beta-2 agonist for acute bronchospasm?",
+    "options": [
+      "Onset under 5 minutes and effect about 3 to 6 hours; these are first-line for an acute asthma attack",
+      "Onset after 12 hours, used alone for chronic asthma",
+      "Effect lasting only 1 to 4 minutes, given only under the tongue",
+      "Onset after the drug is converted to nitric oxide"
+    ],
+    "answer": 0,
+    "explain": "The revision sheet says beta-adrenergic agonists are the most effective drugs for relieving acute bronchospasm and are first-line for an acute asthma attack. Onset is under 5 minutes and the effect lasts about 3 to 6 hours. Examples are salbutamol (albuterol, Ventolin) and terbutaline (Bricanyl).\n練習寫 β 激動劑係緩解急性支氣管痙攣最有效，亦係急性哮喘一線。起效少過 5 分鐘，效果約 3–6 小時。例子係 salbutamol（albuterol，Ventolin）同 terbutaline（Bricanyl）。",
+    "source": "revision",
+    "mid": true
+  },
+  {
+    "id": "rev-laba-rule",
+    "stem": "Which statement about a long-acting beta-2 agonist matches the revision notes?",
+    "options": [
+      "Use it alone as the only treatment for chronic asthma",
+      "It may dilate the airway for up to about 12 hours and should be combined with a corticosteroid, not used as monotherapy",
+      "It is the antidote for heparin",
+      "It blocks histamine-1 receptors in the brain and causes sleepiness"
+    ],
+    "answer": 1,
+    "explain": "A LABA is combined with a corticosteroid to prevent bronchial inflammation in chronic asthma and should never be used alone. Duration is up to about 12 hours, usually with an inhaled corticosteroid. Salmeterol, formoterol, indacaterol, and olodaterol are examples. Symbicort already contains formoterol plus budesonide.\nLABA 要配類固醇，預防慢性哮喘嘅支氣管發炎，唔可以單獨用。作用可達約 12 小時。例子有 salmeterol、formoterol、indacaterol、olodaterol。Symbicort 已經有 formoterol 加 budesonide。",
+    "source": "revision",
+    "mid": true
+  },
+  {
+    "id": "rev-tremor",
+    "stem": "Hand tremor and muscle cramps from a beta-2 agonist are linked in the notes to an effect on which tissue?",
+    "options": [
+      "Skeletal muscle",
+      "The cough centre in the medulla",
+      "Vitamin K-dependent clotting factors",
+      "Only the nasal blood vessels"
+    ],
+    "answer": 0,
+    "explain": "Beta-2 receptors are also in skeletal muscle, so cramps and hand tremor can occur. An effect on beta-1 can cause tachycardia and palpitations. Nervousness, headache, and hyperactivity fit the fight-or-flight response.\nβ2 受體亦喺骨骼肌，所以可以抽筋同手震。影響 β1 可以心跳快、心悸。緊張、頭痛、過度活躍屬於 fight-or-flight。",
+    "source": "revision",
+    "mid": true
+  },
+  {
+    "id": "rev-h1-gen",
+    "stem": "Which antihistamine pair is second-generation and described as not causing sleepiness?",
+    "options": [
+      "Chlorpheniramine and promethazine",
+      "Loratadine and cetirizine",
+      "Diphenhydramine and hydroxyzine",
+      "Codeine and pholcodine"
+    ],
+    "answer": 1,
+    "explain": "Second-generation drugs block peripheral H1 receptors. Loratadine (Claritin) and cetirizine (Zyrtec) are listed as not sleepy. First-generation drugs block H1 receptors in the central nervous system and can cause drowsiness: chlorpheniramine, diphenhydramine, hydroxyzine, and promethazine.\n第二代阻外周 H1。Loratadine (Claritin) 同 cetirizine (Zyrtec) 寫明唔瞌睡。第一代阻中樞 H1，可以瞌睡：chlorpheniramine、diphenhydramine、hydroxyzine、promethazine。",
+    "source": "revision",
+    "mid": true
+  },
+  {
+    "id": "rev-cough-split",
+    "stem": "Which matching of cough medicines agrees with the revision table?",
+    "options": [
+      "Guaifenesin is a narcotic antitussive for a dry cough, and codeine is an expectorant",
+      "Codeine and dextromethorphan are used for a dry cough; guaifenesin lowers the viscosity of secretions in a productive cough",
+      "Bromhexine is a beta-1 selective blocker",
+      "Oxymetazoline is a mucolytic that breaks mucous plugs"
+    ],
+    "answer": 1,
+    "explain": "Codeine and pholcodine act on the cough centre in the medulla for a dry cough. Dextromethorphan is also for a dry cough. Guaifenesin is an expectorant that reduces the viscosity of bronchial secretions. Bromhexine, ambroxol, and acetylcysteine are mucolytics. Oxymetazoline is an alpha-1 nasal spray.\nCodeine、pholcodine 作用喺延髓咳嗽中樞，用喺乾咳。Dextromethorphan 亦用喺乾咳。Guaifenesin 係袪痰藥，降低支氣管分泌物黏度。Bromhexine、ambroxol、acetylcysteine 係化痰藥。Oxymetazoline 係 α1 噴鼻藥。",
+    "source": "revision",
+    "mid": true
+  },
+  {
+    "id": "rev-muco",
+    "stem": "Which drugs are listed as mucolytics that liquefy secretions and break up mucous plugs?",
+    "options": [
+      "Bromhexine, ambroxol, and acetylcysteine",
+      "Losartan, valsartan, and azilsartan",
+      "Atenolol, metoprolol, and bisoprolol",
+      "Salbutamol and terbutaline only"
+    ],
+    "answer": 0,
+    "explain": "Mucolytics in the table are bromhexine (Bisolvon), ambroxol (Mucosolvan), and acetylcysteine (Fluimucil). They are for a productive cough. Listed adverse effects include dizziness, drowsiness, nausea, and vomiting.\n化痰藥：bromhexine (Bisolvon)、ambroxol (Mucosolvan)、acetylcysteine (Fluimucil)。用喺有痰咳。副作用包括頭暈、瞌睡、噁心、嘔吐。",
+    "source": "revision",
+    "mid": true
+  },
+  {
+    "id": "rev-alpha-oral",
+    "stem": "Pseudoephedrine and phenylephrine, taken by mouth for a blocked nose, belong to which class?",
+    "options": [
+      "Alpha-1 agonists that constrict nasal vessels",
+      "Beta-1 selective blockers",
+      "Vitamin K antagonists",
+      "Mucolytics"
+    ],
+    "answer": 0,
+    "explain": "Oral alpha-1 agonists in the notes include ephedrine, pseudoephedrine (Sudafed), and phenylephrine (Neo-Synephrine). Nasal sprays include oxymetazoline (Afrin) and xylometazoline (Otrivin). They stimulate nasal vasoconstriction. Adverse effects include tachycardia, arrhythmias, dilated pupils, and dry mouth.\n口服 α1 激動劑包括 ephedrine、pseudoephedrine (Sudafed)、phenylephrine。噴鼻有 oxymetazoline (Afrin)、xylometazoline (Otrivin)。佢哋令鼻血管收縮。副作用包括心跳快、心律不整、瞳孔放大、口乾。",
+    "source": "revision",
+    "mid": true
+  },
+  {
+    "id": "rev-bph",
+    "stem": "Terazosin and prazosin appear in the autonomic-nervous-system table as treatment for what?",
+    "options": [
+      "Benign prostatic hyperplasia, as alpha-1 blockers",
+      "Acute asthma, as short-acting beta-2 agonists",
+      "Atrial fibrillation, as vitamin K antagonists",
+      "Insomnia, as Z-drugs"
+    ],
+    "answer": 0,
+    "explain": "Alpha-1 adrenergic blockers used for benign prostatic hyperplasia are terazosin (Hytrin) and prazosin (Minipress). They sit on the 'block sympathetic' side of the table, with beta blockers such as atenolol and metoprolol on the cardiac side.\nα1 阻斷劑 terazosin (Hytrin)、prazosin (Minipress) 用嚟治良性前列腺增生。佢哋喺表入面「阻斷交感」嗰邊；心臟例子係 atenolol、metoprolol 呢類 β 阻斷劑。",
+    "source": "revision",
+    "mid": true
   }
 ];
 
@@ -1231,7 +1559,7 @@ const BANKS = { NUR2047: QUESTIONS };
   const answeredEl = document.getElementById("answered");
   const correctEl = document.getElementById("correct");
   const foot = document.getElementById("foot");
-  const midOnly = document.getElementById("midOnly");
+  const scopeEl = document.getElementById("scope");
   const subjectEl = document.getElementById("subject");
   const letters = ["A", "B", "C", "D"];
   let answered = 0, correct = 0;
@@ -1243,7 +1571,11 @@ const BANKS = { NUR2047: QUESTIONS };
     return BANKS[subjectEl.value] || [];
   }
   function pool() {
-    return bank().filter(q => !midOnly.checked || q.mid);
+    const mode = scopeEl.value;
+    const items = bank();
+    if (mode === "extra") return items.filter(q => !q.mid);
+    if (mode === "all") return items.slice();
+    return items.filter(q => q.mid);
   }
   function shuffle(arr) {
     const a = arr.slice();
@@ -1263,12 +1595,16 @@ const BANKS = { NUR2047: QUESTIONS };
   function updateFoot() {
     const all = bank().length;
     const mid = bank().filter(q => q.mid).length;
+    const extra = all - mid;
     const counts = {};
     bank().forEach(q => { counts[q.source] = (counts[q.source] || 0) + 1; });
-    foot.textContent = "Bank of " + all + " questions (midterm pool " + mid + "). Sources: past paper " + (counts["past paper"] || 0)
+    foot.textContent = "Default Start is the midterm pool (" + mid + "). Beyond midterm: " + extra
+      + " (Lecture 5 CNS / psychiatric, including the SSRI and opioid tutorial items). Full bank " + all
+      + ". Sources: past paper " + (counts["past paper"] || 0)
       + " · tutorial " + (counts["tutorial"] || 0)
+      + " · revision exercise " + (counts["revision"] || 0)
       + " · rewritten " + (counts["rewritten"] || 0)
-      + ". Midterm covers Lecture 1–4 plus tutorials. Lecture 5 items are included unless midterm mode is on. Stems are paraphrased, not copied word for word from papers. Facts come only from course notes and practice items. This is not an official paper. Each explanation is English, then Traditional Chinese.";
+      + ". Midterm is Lectures 1–4 through respiratory drugs, non-CNS tutorials, and Revision Exercise 1. Stems are paraphrased. Each explanation is English, then Traditional Chinese. This is not an official paper.";
   }
   function drawNext() {
     if (!deck.length) refill();
@@ -1287,7 +1623,7 @@ const BANKS = { NUR2047: QUESTIONS };
     const box = document.createElement("div");
     box.className = "idle";
     const p = document.createElement("p");
-    p.textContent = "One question at a time. The next question appears only after you answer, so you can read the explanation.";
+    p.textContent = "Start uses the midterm set: Lectures 1–4 through respiratory drugs, plus Revision Exercise 1. Change the practice set if you want CNS / psychiatric items only.";
     const btn = document.createElement("button");
     btn.className = "start";
     btn.type = "button";
@@ -1356,7 +1692,7 @@ const BANKS = { NUR2047: QUESTIONS };
     stage.appendChild(fb);
     stage.appendChild(row);
   }
-  midOnly.addEventListener("change", () => { deck = []; });
+  scopeEl.addEventListener("change", () => { deck = []; });
   subjectEl.addEventListener("change", () => {
     deck = [];
     lastId = null;
