@@ -167,10 +167,10 @@ const QUESTIONS = [
     "id": "past-generic",
     "stem": "Which description best matches a generic name?",
     "options": [
-      "A trademark name used by a manufacturer and protected by patent",
-      "A name that only describes the chemical structure and is rarely used clinically",
-      "An official name approved by a regulatory system, usually one per active ingredient",
-      "A proprietary name (patent name / brand name)"
+      "A trademark name used by one manufacturer and protected by patent",
+      "A name that only describes chemical structure and is rarely used clinically",
+      "An official regulatory name, usually one per active ingredient",
+      "A proprietary name (patent name / brand name) chosen by a company"
     ],
     "answer": 2,
     "explain": "A generic name is the official, internationally used name. There is usually only one per drug (for example through systems such as USAN, INN, or BAN). The chemical name is the one that describes structure. Brand, trade, and proprietary names can differ between manufacturers.\n通用名係官方、國際通用嘅名，通常一隻藥只有一個（例如經 USAN、INN、BAN 呢類制度）。化學名先至描述結構；brand／trade／proprietary 可以由唔同藥廠起好多個。",
@@ -181,10 +181,10 @@ const QUESTIONS = [
     "id": "past-pd",
     "stem": "What does pharmacodynamics mainly describe?",
     "options": [
-      "What the body does to the drug",
+      "What the body does to the drug through ADME processes",
       "Absorption, distribution, biotransformation, and excretion",
       "Biotransformation, absorption, distribution, and excretion",
-      "The drug's mechanism of action (what the drug does to the body)"
+      "What the drug does to the body (mechanism / PD effect)"
     ],
     "answer": 3,
     "explain": "What the drug does to the body is pharmacodynamics (mechanism of action and interaction with receptors). What the body does to the drug is pharmacokinetics, that is ADME. The first three options are pharmacokinetics.\n藥對身體＝藥效學（MOA、同受體嘅互動）。身體對藥＝藥代動力學，即 ADME。前兩個「身體對藥」同 ADME 選項都係 PK。",
@@ -195,10 +195,10 @@ const QUESTIONS = [
     "id": "past-idio",
     "stem": "Which statement best describes an idiosyncratic effect?",
     "options": [
-      "A drug given by mistake because of negligence",
-      "A form of psychological dependence",
-      "An unexpected reaction in an individual patient, often related to genetic factors",
-      "Withdrawal after a dependent person stops the drug"
+      "A medication error caused by negligence when the wrong drug is administered",
+      "A form of psychological dependence that develops after long-term drug use",
+      "An unexpected reaction in one patient, often linked to genetic factors",
+      "Withdrawal signs that appear after a dependent person suddenly stops the drug"
     ],
     "answer": 2,
     "explain": "An idiosyncratic effect is uncommon and hard to predict from known pharmacology. It is not necessarily dose-related and may have a genetic background (for example SJS/TEN or G6PD haemolysis). Withdrawal is dependence. A predictable, dose-related effect is a side effect (Type A).\nIdiosyncratic 係罕見、難用已知藥理去預測，唔一定跟劑量，可以有基因背景（例如 SJS／TEN、G6PD 溶血）。戒斷係 dependence；可預測、跟劑量嘅係 side effect（Type A）。",
@@ -223,10 +223,10 @@ const QUESTIONS = [
     "id": "past-broncho",
     "stem": "Bronchoconstriction is a major adverse effect of which drug?",
     "options": [
-      "Atropine",
-      "Ipratropium",
-      "Salbutamol",
-      "Propranolol"
+      "Atropine sulfate",
+      "Ipratropium (Atrovent)",
+      "Salbutamol (Ventolin)",
+      "Propranolol (Inderal)"
     ],
     "answer": 3,
     "explain": "Propranolol is a non-selective beta blocker (beta-1 and beta-2). Blocking beta-2 narrows the airway, so use it cautiously in asthma. Salbutamol is a beta-2 agonist used to dilate bronchi. Atropine and ipratropium block acetylcholine and also move in the direction of airway dilation.\nPropranolol 係非選擇性 β 阻斷劑（β1＋β2），阻 β2 會收窄氣道，哮喘要小心。Salbutamol 係 β2 激動劑，用來擴張支氣管；Atropine、Ipratropium 阻乙酰膽鹼，亦係擴張氣道方向。",
@@ -251,10 +251,10 @@ const QUESTIONS = [
     "id": "ts1-pk",
     "stem": "Which statement best describes pharmacokinetics?",
     "options": [
-      "The study of how a drug reaches its site of action and which factors affect the amount of drug in the blood",
+      "How a drug reaches its site of action and what affects blood drug levels",
       "Designing new drugs with molecular models according to a pharmacophore",
-      "The study of how a drug and its binding site interact at the molecular level",
-      "The study of which functional groups matter for binding, in order to find the pharmacophore"
+      "How a drug and its binding site interact at the molecular receptor level",
+      "Which functional groups matter for binding, to find the pharmacophore"
     ],
     "answer": 0,
     "explain": "Pharmacokinetics is what the body does to the drug (ADME): absorption, distribution, metabolism, and excretion. These processes affect the amount of drug in the blood. Molecular binding and the pharmacophore are not this definition.\nPK 即身體對藥（ADME）：吸收、分佈、代謝、排泄，會影響血中藥量。分子結合同 pharmacophore 唔係呢個定義。",
@@ -265,10 +265,10 @@ const QUESTIONS = [
     "id": "ts1-ba",
     "stem": "Measuring bioavailability is mainly done to estimate what?",
     "options": [
-      "Rheological parameters of the blood",
-      "The amount of food taken by mouth",
+      "Rheological parameters that describe how blood flows in vessels",
+      "The total amount of food taken by mouth during absorption studies",
       "The extent of absorption and the hepatic first-pass effect",
-      "Glomerular filtration rate"
+      "Glomerular filtration rate as the main measure of kidney clearance"
     ],
     "answer": 2,
     "explain": "Bioavailability is the percentage of drug that enters the systemic circulation and reaches the site of action. It is part of absorption. An oral drug travels through the portal vein into the liver and is metabolised there, which lowers bioavailability, so both the extent of absorption and first-pass metabolism are estimated together.\nBA 係進入體循環、去到作用位嘅藥物百分比，屬吸收嘅一部分。口服藥經肝門靜脈入肝，被代謝之後 BA 會下降，所以要一齊估計吸收程度同 first-pass。",
@@ -279,10 +279,10 @@ const QUESTIONS = [
     "id": "ts1-thalf",
     "stem": "The half-life (t½) is which period of time?",
     "options": [
-      "During elimination, the time for the amount of drug in the body or plasma to fall by half",
-      "The time needed to metabolise half the drug into an active metabolite",
-      "The time needed to absorb half the dose",
-      "The time needed for half the drug to bind to plasma protein"
+      "Time for drug in the body or plasma to fall by half during elimination",
+      "Time needed to metabolise half the drug into an active metabolite form",
+      "Time needed to absorb half the administered dose from the gut lumen",
+      "Time needed for half the drug to bind tightly to circulating plasma protein"
     ],
     "answer": 0,
     "explain": "t½ is the time needed to eliminate half the drug from the body. It is affected by the rates of absorption, metabolism, and excretion, and it helps decide how often to give the drug. It is not the time to absorb half the dose or to bind half of it to protein.\nt½ 係消除體內一半藥物所需時間，受吸收、代謝、排泄速率影響，亦幫決定幾耐畀一次。唔係「吸收一半」或者「蛋白結合一半」。",
@@ -294,9 +294,9 @@ const QUESTIONS = [
     "stem": "Pharmacodynamics includes study of all of the following EXCEPT:",
     "options": [
       "The biological and therapeutic effects of a drug",
-      "Absorption and distribution of a drug",
-      "The mechanism of drug action",
-      "Drug interactions"
+      "Absorption and distribution of a drug (ADME steps)",
+      "The mechanism of drug action at its target",
+      "Drug–drug interactions that alter clinical response"
     ],
     "answer": 1,
     "explain": "Absorption and distribution are pharmacokinetics (ADME). Pharmacodynamics is what the drug does to the body: therapeutic effect, mechanism of action, and, in these notes, drug interactions.\n吸收同分佈係 PK（ADME）。PD 先至係藥對身體：治療效果、MOA、藥物交互（講義將交互歸入 PD）。",
@@ -309,7 +309,7 @@ const QUESTIONS = [
     "options": [
       "0.125 mL/h",
       "12.5 mL/h",
-      "4 mL/h",
+      "4.0 mL/h",
       "7.5 mL/h"
     ],
     "answer": 3,
@@ -335,8 +335,8 @@ const QUESTIONS = [
     "id": "ts2-hl-table",
     "stem": "Drug A has a half-life of 8 hours and a single 20 mg dose is given. About how much remains in the body after 16 hours?",
     "options": [
-      "10 mg",
-      "5 mg",
+      "10.0 mg",
+      "5.0 mg",
       "2.5 mg",
       "1.25 mg"
     ],
@@ -350,9 +350,9 @@ const QUESTIONS = [
     "stem": "A patient weighs 50 lb. About how many kilograms is that?",
     "options": [
       "22.7 kg",
-      "50 kg",
+      "50.0 kg",
       "110 kg",
-      "25 kg"
+      "25.0 kg"
     ],
     "answer": 0,
     "explain": "1 kg = 2.2 lb, so 50 ÷ 2.2 ≈ 22.7 kg. Do not treat pounds as kilograms, and do not multiply by 2.2 (that would give about 110).\n1 kg＝2.2 lb，所以 50÷2.2≈22.7 kg。唔好將磅直接當公斤，亦唔好乘 2.2（咁會變成約 110）。",
@@ -366,7 +366,7 @@ const QUESTIONS = [
       "Drops in both eyes, four times a day",
       "Drops in both ears, twice a day",
       "Drops in one ear, once every night",
-      "Oral drops, when required"
+      "Oral drops, when required (prn)"
     ],
     "answer": 1,
     "explain": "gtts = drops; a.u. = both ears; b.i.d. = twice a day.\ngtts＝drops；a.u.＝both ears（兩耳）；b.i.d.＝twice a day（每日兩次）。",
@@ -377,10 +377,10 @@ const QUESTIONS = [
     "id": "ts2-stat-q6h",
     "stem": "Augmentin po caps stat, then q6h. What do stat and q6h mean?",
     "options": [
-      "Take at bedtime, then every other day",
+      "Take at bedtime, then every other day thereafter",
       "Take by mouth immediately, then every 6 hours",
-      "Take after meals, three times a day",
-      "Give rectally, every 6 hours when required"
+      "Take after meals, three times a day with food",
+      "Give rectally, every 6 hours when required only"
     ],
     "answer": 1,
     "explain": "po = by mouth; stat = immediately; q6h = every 6 hours. Give the capsule now, then every 6 hours.\npo＝口服；stat＝立即；q6h＝每 6 小時。即係即刻食膠囊，之後每 6 小時再食。",
@@ -391,10 +391,10 @@ const QUESTIONS = [
     "id": "ts2-pr",
     "stem": "Panadol supp p.r. q6h prn × fever. What is the correct way to give it?",
     "options": [
-      "Oral tablet every 6 hours, only if there is fever",
+      "Oral tablet every 6 hours, only if there is fever present",
       "Rectal suppository every 6 hours, only if there is fever",
-      "IV push, one immediate dose",
-      "Sublingual tablet, twice a day"
+      "IV push as one immediate dose, with no fever link required",
+      "Sublingual tablet twice a day, regardless of whether fever is present"
     ],
     "answer": 1,
     "explain": "supp = suppository; p.r. = per rectum; q6h = every 6 hours; prn = when required. The indication is fever.\nsupp＝栓劑；p.r.＝per rectum 塞肛；q6h＝每 6 小時；prn＝需要時。用途係發燒。",
@@ -406,9 +406,9 @@ const QUESTIONS = [
     "stem": "Gelusil Tab t.d.s., ½ hr a.c. means which instruction?",
     "options": [
       "Three times a day, half an hour before meals",
-      "Twice a day, after meals",
-      "One tablet every night at bedtime",
-      "Every other day, on an empty stomach"
+      "Twice a day, after meals with a full glass of water",
+      "One tablet every night at bedtime for sleep only",
+      "Every other day, on an empty stomach in the morning"
     ],
     "answer": 0,
     "explain": "t.d.s. / t.i.d. / TDS = three times a day; a.c. = before meals. ½ hr a.c. means half an hour before meals.\nt.d.s.／t.i.d.／TDS＝每日三次；a.c.＝before meals 餐前。½ hr a.c. 即餐前半小時。",
@@ -433,10 +433,10 @@ const QUESTIONS = [
     "id": "tut-vitk",
     "stem": "Why should a person taking warfarin avoid liver, green tea, and large amounts of green leafy vegetables?",
     "options": [
-      "These foods strengthen warfarin's anticoagulant effect and make major bleeding likely",
-      "These are high-vitamin-K foods and reduce the effect of warfarin",
-      "They block ACE and cause a dry cough",
-      "Like statins, they cause rhabdomyolysis"
+      "These foods strengthen warfarin's anticoagulant effect and raise bleeding risk sharply",
+      "These are high-vitamin-K foods and can reduce the anticoagulant effect of warfarin",
+      "These foods block ACE enzymes and typically cause a persistent dry cough symptom",
+      "These foods, like high-dose statins, commonly trigger acute rhabdomyolysis episodes"
     ],
     "answer": 1,
     "explain": "Vitamin K is a raw material for clotting factors. A high-vitamin-K diet weakens warfarin. Teach the person to keep the diet as steady as possible and to have INR checked regularly. Do not tell them never to eat any vegetables.\n維他命 K 係凝血因子原料。高維他命 K 飲食會削弱 warfarin。要教病人飲食盡量穩定，並定期驗 INR，而唔係叫佢完全唔食任何蔬菜。",
@@ -447,10 +447,10 @@ const QUESTIONS = [
     "id": "tut-inr",
     "stem": "Which test is checked regularly on warfarin to see whether the effect is in the therapeutic range?",
     "options": [
-      "CK (creatine kinase)",
-      "INR",
-      "Fasting blood glucose",
-      "Blood ammonia"
+      "Serum CK (creatine kinase) activity",
+      "INR (international normalised ratio)",
+      "Fasting plasma glucose concentration",
+      "Plasma ammonia concentration level"
     ],
     "answer": 1,
     "explain": "The monitoring test for warfarin is the INR. CK is used more for statin-related muscle injury. Blood ammonia and liver problems are associated with sodium valproate, not routine warfarin monitoring.\nWarfarin 監察係 INR。CK 多用喺 statin 肌損；血氨同肝問題見於 sodium valproate，唔係 warfarin 常規監察。",
@@ -462,9 +462,9 @@ const QUESTIONS = [
     "stem": "After surgery a person on morphine has a respiratory rate of 8/min, reduced consciousness, and pinpoint pupils. Which drug is the priority?",
     "options": [
       "Flumazenil (Anexate)",
-      "Intravenous naloxone",
-      "Vitamin K",
-      "Digoxin immune Fab"
+      "Intravenous naloxone (Narcan)",
+      "Vitamin K (phytomenadione)",
+      "Digoxin immune Fab (Digibind)"
     ],
     "answer": 1,
     "explain": "The opioid toxidrome triad is reduced consciousness, respiratory depression, and pinpoint pupils. The antidote is intravenous naloxone, a pure opioid antagonist with high affinity for the mu receptor. Flumazenil is the benzodiazepine antidote.\nOpioid toxidrome 三聯徵：意識下降、呼吸抑制、針尖瞳孔。解藥係靜脈 naloxone（純 opioid 拮抗劑，對 mu 受體親和力高）。Flumazenil 係 benzodiazepine 解藥。",
@@ -475,10 +475,10 @@ const QUESTIONS = [
     "id": "tut-fluclox",
     "stem": "Flucloxacillin 1000 mg Q6H IVI is ordered. Which reading is correct?",
     "options": [
-      "1000 mg by mouth, once every night",
+      "1000 mg by mouth once every night at bedtime only",
       "1000 mg by intravenous infusion every 6 hours (four times a day)",
-      "100 mg by intramuscular injection every 6 hours",
-      "1000 mg as a single IV push only when required"
+      "100 mg by intramuscular injection every 6 hours through the day",
+      "1000 mg as a single IV push only when required for breakthrough pain"
     ],
     "answer": 1,
     "explain": "Q6H = every 6 hours (four times a day); IVI = intravenous infusion. It is a penicillin, so ask about penicillin allergy before giving it. 1 g may be added to about 100 mL of infusion fluid and run over about 20–30 minutes. Do not give it as a rapid push.\nQ6H＝每 6 小時（一日 4 次）；IVI＝靜脈輸注。屬 penicillin 類，給藥前要問清 penicillin 過敏。1 g 可加入約 100 mL 輸液，約 20–30 分鐘滴完，唔好當快速推注。",
@@ -489,10 +489,10 @@ const QUESTIONS = [
     "id": "tut-vanco",
     "stem": "How should intravenous vancomycin be infused safely?",
     "options": [
-      "Rapid IV push within 2 minutes",
-      "Inject the undiluted solution directly",
-      "Infuse slowly, no faster than 10 mg/min, and do not exceed a concentration of 5 mg/mL",
-      "Withhold every dose until the trough result is available"
+      "Give as a rapid IV push completed within about 2 minutes at the bedside",
+      "Inject the undiluted stock solution directly into a peripheral vein quickly",
+      "Infuse slowly (≤10 mg/min) and keep concentration at or below 5 mg/mL",
+      "Withhold every scheduled dose until the trough level result is back from lab"
     ],
     "answer": 2,
     "explain": "Infusing too fast can cause hypotension, even shock, and an infusion reaction. A concentration above 5 mg/mL makes thrombophlebitis more likely. 500 mg needs at least about 100 mL and at least about 50 minutes (pump rate about 120 mL/h). Do not withhold every dose simply because a report is pending.\n輸得太快可以低血壓甚至休克，以及 infusion reaction。濃度高過 5 mg/mL 易血栓靜脈炎。500 mg 最少約 100 mL、至少約 50 分鐘（泵速約 120 mL/h）。唔好因為等報告就隨便停每一劑。",
@@ -503,10 +503,10 @@ const QUESTIONS = [
     "id": "tut-alen",
     "stem": "Alendronate (Fosamax) 70 mg is taken once a week. How should it be taken?",
     "options": [
-      "At bedtime with milk",
-      "In the morning on an empty stomach, swallowed with a large glass of water, then stay upright or seated upright for at least 30 minutes",
-      "Together with a calcium tablet, because that improves absorption",
-      "If a dose is missed, take an extra tablet the same day to catch up"
+      "Take at bedtime with a glass of milk to protect the stomach lining",
+      "Morning, empty stomach, large glass of water; stay upright ≥30 minutes",
+      "Take together with a calcium tablet because that improves alendronate absorption",
+      "If a dose is missed, take an extra tablet the same day to catch up the schedule"
     ],
     "answer": 1,
     "explain": "Take it in the morning before any food, swallow the whole tablet with about 180–240 mL of water, then take nothing else by mouth and no other medicines for at least 30 minutes, and stay upright to reduce oesophageal irritation. If a dose is missed, take it the next morning. Do not double it on the same day. Separate it from calcium tablets and antacids.\n朝早起身、未食嘢前，用約 180–240 mL 清水整粒吞，至少 30 分鐘唔食唔飲、唔服其他藥，並保持上身直立，減少刺激食道。漏藥：記起就翌日早上補，唔好同日雙倍。鈣片同 antacid 要隔開。",
@@ -531,10 +531,10 @@ const QUESTIONS = [
     "id": "orig-ivba",
     "stem": "What is the usual bioavailability of an intravenous injection?",
     "options": [
-      "About 30%",
-      "About 50%",
-      "About 70%",
-      "100%"
+      "Systemic availability after an IV dose ≈ 30%",
+      "Systemic availability after an IV dose ≈ 50%",
+      "Systemic availability after an IV dose ≈ 70%",
+      "Systemic availability after an IV dose ≈100%"
     ],
     "answer": 3,
     "explain": "The drug enters the bloodstream directly, so bioavailability is maximal: IV = 100%. An oral dose must be absorbed and may undergo first-pass metabolism, so its bioavailability is often lower than IV.\n藥直接入血管，BA 最大，IV＝100%。口服要經吸收同可能嘅 first-pass，BA 往往低過 IV。",
@@ -560,9 +560,9 @@ const QUESTIONS = [
     "stem": "What is a prodrug?",
     "options": [
       "A form that is already at peak activity as soon as it enters the body",
-      "A form that is not yet active and becomes active only after the body processes it, for example in the liver",
-      "A drug that can only be given intravenously and cannot be taken by mouth",
-      "Another name that is identical to the brand name"
+      "A form that is inactive until the body (e.g. the liver) converts it",
+      "A drug that can only be given intravenously and never by mouth",
+      "Another official name that is identical to the manufacturer's brand"
     ],
     "answer": 1,
     "explain": "A prodrug is an inactive form that becomes active after the body processes it, for example during hepatic first-pass metabolism. This is used to improve bioavailability. The lecture example is some acyclovir-class prodrugs, used to improve absorption from the stomach.\n前藥係非活性形式，經身體加工（例如肝臟 first-pass）先變活性，用嚟改善生物利用度。講義例子：部分 acyclovir 類前藥，用嚟改善胃部吸收。",
@@ -573,10 +573,10 @@ const QUESTIONS = [
     "id": "orig-age-met",
     "stem": "What do the notes say about drug metabolism in infants and older adults?",
     "options": [
-      "Both groups metabolise especially fast, so the dose should be increased",
-      "Liver function is immature or reduced, metabolism is slower, drug can accumulate, and toxicity needs careful watching",
-      "Age has no effect on metabolism",
-      "Age affects only absorption, not metabolism"
+      "Both groups metabolise especially fast, so maintenance doses should be increased",
+      "Immature or reduced liver function slows metabolism; watch for toxicity",
+      "Age has no meaningful effect on how the liver metabolises most drugs in practice",
+      "Age changes absorption only and leaves hepatic metabolism essentially unchanged"
     ],
     "answer": 1,
     "explain": "Metabolism (biotransformation) makes a drug less toxic, more water-soluble, and easier to excrete. In infants the liver is not fully developed, and in older adults liver function declines. In both, metabolism slows, drug accumulates, and close monitoring is needed.\n代謝（biotransformation）令藥較少毒、較溶於水、較易排泄。嬰兒肝未發育完成、長者肝功能下降，都會代謝變慢，藥積聚，要密切監察。",
@@ -587,10 +587,10 @@ const QUESTIONS = [
     "id": "orig-5hl",
     "stem": "After a single dose, about how many half-lives does it take before the drug is nearly cleared from the body?",
     "options": [
-      "1",
-      "2",
-      "About 5",
-      "About 20"
+      "About 1 half-life",
+      "About 2 half-lives",
+      "About 5 half-lives",
+      "About 20 half-lives"
     ],
     "answer": 2,
     "explain": "After each half-life, half remains. After about 4–5 half-lives, about 94–97% has been cleared. The notes say that after a single dose the drug is almost completely cleared in about 5 half-lives. Steady state also takes about 4–5 half-lives.\n每過一個 t½ 剩一半。約 4–5 個半衰期後，大約 94–97% 已被清除；講義話單次給藥約 5 個半衰期幾乎完全清走。穩態亦大約要 4–5 個半衰期。",
@@ -601,10 +601,10 @@ const QUESTIONS = [
     "id": "orig-agonist",
     "stem": "Which statement correctly distinguishes an agonist from an antagonist?",
     "options": [
-      "Both produce the same therapeutic effect",
-      "An agonist activates the receptor and produces a response; an antagonist occupies the receptor and blocks the normal response",
-      "Only an antagonist has efficacy",
-      "Naloxone is an opioid agonist"
+      "Both agonist and antagonist produce the same therapeutic effect at the receptor",
+      "Agonist activates the receptor; antagonist occupies it and blocks the response",
+      "Only an antagonist has efficacy; an agonist merely occupies the receptor site",
+      "Naloxone is classified as an opioid agonist that stimulates mu receptors"
     ],
     "answer": 1,
     "explain": "Both can have affinity, but efficacy, the ability to produce an effect, belongs mainly to the agonist. For example, adrenaline stimulates receptors and speeds the heart. Naloxone occupies opioid receptors and reverses respiratory depression, so it is an antagonist.\n兩者都可以有親和力（affinity），但 efficacy 主要係 agonist 先產生效應。例子：adrenaline 激受體令心跳加快；naloxone 搶 opioid 受體，逆轉呼吸抑制，所以係拮抗劑。",
@@ -615,10 +615,10 @@ const QUESTIONS = [
     "id": "orig-sl",
     "stem": "What is one important advantage of sublingual administration?",
     "options": [
-      "It is always slower than oral administration",
-      "It can bypass hepatic first-pass metabolism",
-      "Bioavailability is always 0",
-      "It is only for local skin effect and does not enter the blood"
+      "It is always slower than oral administration for systemic effect",
+      "It can bypass hepatic first-pass metabolism into the portal circulation",
+      "Bioavailability after this route is always essentially zero in practice",
+      "It is only for local skin effect and does not enter the systemic blood"
     ],
     "answer": 1,
     "explain": "A sublingual or buccal dose enters the blood through the mucosa and bypasses first-pass metabolism in the portal circulation. Glyceryl trinitrate has a very strong first-pass effect, so it is given sublingually or intravenously, not by ordinary oral dosing.\nSL／頰含藥由黏膜入血，避開肝門靜脈嘅 first-pass。硝酸甘油首過效應好強，所以用舌下或靜脈，唔靠普通口服。",
@@ -629,10 +629,10 @@ const QUESTIONS = [
     "id": "orig-adr-cpr",
     "stem": "During adult CPR, what is the standard intravenous dose of adrenaline?",
     "options": [
-      "0.1 mg/kg by weight, once every minute",
-      "1 mg (10 mL of 1:10,000 solution) every 3–5 minutes, not calculated by body weight",
-      "One intramuscular injection into the deltoid only",
-      "The intraosseous route is forbidden"
+      "0.1 mg/kg by body weight, repeated once every minute without limit",
+      "1 mg (10 mL of 1:10,000) every 3–5 min; not weight-based in adults",
+      "One intramuscular injection into the deltoid muscle as the only route",
+      "The intraosseous route is forbidden during adult cardiac arrest care"
     ],
     "answer": 1,
     "explain": "The adult IV starting dose is 1 mg. It may be repeated every 3–5 minutes during resuscitation, followed by a flush of about 20 mL. The standard 1 mg is not calculated by weight. The intraosseous dose is also 1 mg. The endotracheal dose is about 2–2.5 mg.\nIV 成人初劑 1 mg，復甦期間每 3–5 分鐘可重複，之後沖約 20 mL 液體。標準 1 mg 唔按體重。骨內（IO）同樣 1 mg。氣管內先至大約 2–2.5 mg。",
@@ -643,8 +643,8 @@ const QUESTIONS = [
     "id": "orig-adr-et",
     "stem": "In cardiac arrest, which comparison of endotracheal and intravenous adrenaline is correct?",
     "options": [
-      "Both routes use 0.1 mg",
-      "The endotracheal dose is about 2–2.5 mg; the IV dose is 1 mg",
+      "Both the endotracheal and IV routes use 0.1 mg only",
+      "Endotracheal dose about 2–2.5 mg; the IV dose is 1 mg",
       "The endotracheal dose is always smaller than the IV dose",
       "IV uses 2–2.5 mg, and the endotracheal route uses 1 mg"
     ],
@@ -659,8 +659,8 @@ const QUESTIONS = [
     "options": [
       "Atenolol (Tenormin)",
       "Metoprolol (Betaloc)",
-      "Bisoprolol",
-      "Propranolol (Inderal)"
+      "Bisoprolol (Concor)",
+      "Propranolol"
     ],
     "answer": 3,
     "explain": "Non-selective: propranolol and sotalol. Beta-1 selective: atenolol, metoprolol, and bisoprolol. Carvedilol and labetalol are alpha-1 plus beta blockers.\n非選擇性：propranolol、sotalol。β1 選擇性：atenolol、metoprolol、bisoprolol。Carvedilol、labetalol 係 α1 加 β。",
@@ -671,10 +671,10 @@ const QUESTIONS = [
     "id": "orig-bb-hold",
     "stem": "Which action is correct before giving a beta blocker?",
     "options": [
-      "If the heart rate is below 60 or systolic blood pressure is below 90 mmHg, withhold the dose and tell the doctor",
-      "Count the radial pulse for 15 seconds only, and give the dose if the heart rate is above 50",
+      "If HR <60 or SBP <90 mmHg, withhold the dose and tell the doctor",
+      "Count the radial pulse for 15 seconds only; give if HR is above 50",
       "In asthma, prefer propranolol because it dilates the bronchi",
-      "Blood pressure does not need to be measured"
+      "Blood pressure does not need to be measured before each dose"
     ],
     "answer": 0,
     "explain": "Monitor heart rate and blood pressure. If HR is below 60 or SBP is below 90, withhold the dose and tell the doctor. A non-selective drug also narrows the bronchi, so be careful in asthma and watch breathing and oxygen saturation.\n要監察心率同血壓。HR＜60 或 SBP＜90：withhold 再通知醫生。非選擇性藥亦會收窄支氣管，哮喘要小心，並睇呼吸同血氧。",
@@ -685,10 +685,10 @@ const QUESTIONS = [
     "id": "orig-hstix",
     "stem": "What do the notes say about non-selective beta blockers and blood glucose?",
     "options": [
-      "They make the warning signs of hypoglycaemia especially obvious, so glucose does not need to be checked",
-      "They can mask warning signs such as palpitations and tremor; if a random glucose is below 4 mmol/L, withhold the dose and tell the doctor",
-      "They affect only blood pressure and have nothing to do with glucose",
-      "Stop the drug only when glucose is above 4 mmol/L"
+      "They make hypoglycaemia warning signs obvious, so glucose need not be checked",
+      "They can mask palpitations/tremor; if glucose <4 mmol/L, withhold and tell MD",
+      "They affect only blood pressure and have no interaction with blood glucose",
+      "Stop the beta blocker only when the random glucose is above 4 mmol/L"
     ],
     "answer": 1,
     "explain": "Non-selective beta blockade can mask the warning signs of hypoglycaemia. Check blood glucose regularly. The notes say: random H'stix below 4 mmol/L means withhold the dose and tell the doctor.\n非選擇性 β 阻斷會掩蓋低血糖警號。要定期測血糖；講義：隨機 H’stix＜4 mmol/L → withhold 並通知醫生。",
@@ -699,8 +699,8 @@ const QUESTIONS = [
     "id": "orig-ace-arb",
     "stem": "Which comparison of an ACE inhibitor and an ARB is correct?",
     "options": [
-      "Only an ARB causes a dry cough",
-      "Both can cause hyperkalaemia; a dry cough is more typical of an ACE inhibitor",
+      "Only an ARB commonly causes a dry cough in treated patients",
+      "Both can cause hyperkalaemia; dry cough is more typical of ACEI",
       "An ARB blocks conversion of angiotensin I to angiotensin II",
       "ACE inhibitors have no teratogenic risk and are safe in pregnancy"
     ],
@@ -713,10 +713,10 @@ const QUESTIONS = [
     "id": "orig-raas",
     "stem": "Which statement correctly describes the mechanisms of an ACE inhibitor and an ARB?",
     "options": [
-      "An ACE inhibitor blocks angiotensin II receptors; an ARB blocks conversion of angiotensin I to angiotensin II",
-      "An ACE inhibitor blocks conversion of angiotensin I to angiotensin II; an ARB blocks angiotensin II at its receptor",
-      "Both block HMG-CoA reductase",
-      "Both dissolve a clot that has already formed"
+      "ACEI blocks ATII receptors; ARB blocks conversion of AI to ATII",
+      "ACEI blocks AI→ATII conversion; ARB blocks ATII at its receptor",
+      "Both block HMG-CoA reductase and lower cholesterol synthesis",
+      "Both dissolve a clot that has already formed in a coronary artery"
     ],
     "answer": 1,
     "explain": "Renin converts angiotensinogen to angiotensin I. ACE converts angiotensin I to angiotensin II. An ACE inhibitor blocks that conversion. An ARB does not block the conversion, but it stops angiotensin II from acting on its receptor. Thrombolytics and statins are different drug classes.\nRenin 將 angiotensinogen 轉成 Ang I；ACE 將 Ang I 轉成 Ang II。ACEI 阻呢步轉換。ARB 唔阻轉換，但令 Ang II 唔可以作用喺受體。溶栓同 statin 係另一類藥。",
@@ -727,10 +727,10 @@ const QUESTIONS = [
     "id": "orig-dhp-se",
     "stem": "Which statement about adverse effects of dihydropyridine and non-dihydropyridine calcium-channel blockers is correct?",
     "options": [
-      "Dihydropyridines typically cause bradycardia; non-dihydropyridines typically cause reflex tachycardia",
-      "Non-dihydropyridines are more likely to cause bradycardia; dihydropyridines are more likely to cause reflex tachycardia",
-      "Both classes only dilate bronchi and do not affect heart rate",
-      "Neither class can cause hypotension"
+      "DHPs typically cause bradycardia; non-DHPs typically cause reflex tachycardia",
+      "Non-DHPs more often cause bradycardia; DHPs more often cause reflex tachycardia",
+      "Both classes only dilate bronchi and do not meaningfully affect heart rate at all",
+      "Neither class can cause clinically important hypotension in ordinary practice"
     ],
     "answer": 1,
     "explain": "Non-dihydropyridines act on the heart, and adverse effects include bradycardia. Dihydropyridines act mainly on peripheral vessels. If blood pressure falls too fast, reflex tachycardia can occur. Both can cause hypotension, ankle oedema, and constipation.\nNon-DHP 作用心臟，副作用包括心跳過慢。DHP 主要外周血管，降壓太快可反射性心跳加快。兩者都可以低血壓、足踝水腫、便秘。",
@@ -741,10 +741,10 @@ const QUESTIONS = [
     "id": "orig-unstable",
     "stem": "Why do the notes say dihydropyridine calcium-channel blockers are not used for unstable angina?",
     "options": [
-      "Because they do not lower blood pressure at all",
-      "A fall in blood pressure that is too fast reflexively increases contractility and heart rate and can trigger myocardial ischaemia",
-      "Because they are thrombolytic drugs",
-      "Because they always cause a dry cough"
+      "Because they do not lower blood pressure at all in patients who have angina",
+      "Too-rapid BP fall raises contractility/HR and can trigger myocardial ischaemia",
+      "Because they belong to the thrombolytic class used only for acute STEMI care",
+      "Because they always cause a dry cough similar to ACE-inhibitor adverse effects"
     ],
     "answer": 1,
     "explain": "Dihydropyridines mainly relax peripheral vessels. If blood pressure falls too fast, sympathetic activity rises, and heart rate and contractility increase reflexively. That can trigger myocardial or cerebral ischaemia. A slower-onset drug can reduce this reflex. Both classes should avoid grapefruit.\nDHP 主要鬆外周血管。血壓跌得太快會刺激交感，反射性心跳同收縮力上升，可誘發心肌或腦缺血。起效較慢嘅藥可以減少呢個反射。兩類都要避免西柚。",
@@ -755,10 +755,10 @@ const QUESTIONS = [
     "id": "orig-gtn-pde",
     "stem": "Within 24–48 hours, sublingual glyceryl trinitrate is most dangerous when combined with which of the following?",
     "options": [
-      "Metoprolol",
+      "Metoprolol used alone for rate control in atrial fibrillation",
       "Sildenafil (Viagra) or tadalafil (Cialis), and also alcohol",
-      "Salbutamol plus ipratropium",
-      "Losartan plus amlodipine"
+      "Salbutamol plus ipratropium used together for acute bronchospasm",
+      "Losartan plus amlodipine used together for ordinary hypertension"
     ],
     "answer": 1,
     "explain": "Nitrates together with a PDE5 inhibitor (sildenafil or tadalafil) or alcohol cause excessive vasodilation. Blood pressure can fall to the point of shock or death. For sublingual GTN itself: if pain has not settled, one tablet every 5 minutes, up to 3 tablets in 15 minutes, and systolic pressure must stay above 90 mmHg.\n硝酸鹽同 PDE5 抑制劑（sildenafil、tadalafil）或酒精一齊，血管過度擴張，血壓可以跌到休克甚至死亡。舌下 GTN 本身：痛未退可每 5 分鐘 1 粒，最多 3 粒／15 分鐘，收縮壓要維持高過 90。",
@@ -769,10 +769,10 @@ const QUESTIONS = [
     "id": "orig-dig-pulse",
     "stem": "Before giving digoxin, the nurse should:",
     "options": [
-      "Count the radial pulse for 15 seconds and give the dose if the heart rate is above 50",
-      "Count the apical pulse for a full minute; if it is below 60, withhold the dose and tell the doctor",
-      "Give it with a high-vitamin-K meal",
-      "Skip the ECG because the therapeutic window is wide"
+      "Count the radial pulse for 15 seconds; give if the heart rate is above 50/min",
+      "Count apical pulse 1 full minute; if below 60, withhold and tell the doctor",
+      "Give with a high-vitamin-K meal to reduce the risk of digoxin toxicity signs",
+      "Skip ECG monitoring because digoxin has a wide therapeutic window in adults"
     ],
     "answer": 1,
     "explain": "Digoxin has a narrow therapeutic window and toxicity is easy. Before the dose, count the apical pulse for a full minute. If HR is below 60, withhold the dose and tell the doctor, and obtain ECGs regularly. The antidote is digoxin immune Fab. Hypokalaemia increases toxicity, so check electrolytes and renal function and replace a low potassium.\nDigoxin 治療窗窄，易中毒。給藥前心尖脈搏數足 1 分鐘，HR＜60 withhold 並通知醫生，定期心電圖。解毒藥係 digoxin immune Fab。低血鉀會增加中毒風險，要查電解質同腎功能，低鉀就要補。",
@@ -783,10 +783,10 @@ const QUESTIONS = [
     "id": "orig-amio-se",
     "stem": "Which statement about amiodarone matches the notes?",
     "options": [
-      "The half-life is a few hours, so it is suitable for indefinite long-term use",
-      "It can cause hepatotoxicity, pulmonary toxicity, and Stevens-Johnson syndrome; the mean half-life is about 58 days",
-      "The main adverse effect is a dry cough because it blocks ACE",
-      "Eating more grapefruit reduces the adverse effects"
+      "The half-life is only a few hours, so indefinite long-term use is usually ideal",
+      "May cause liver, lung, and SJS toxicity; mean half-life is about 58 days",
+      "The main adverse effect is a dry cough because it blocks ACE enzymes like ACEIs",
+      "Eating more grapefruit reliably reduces amiodarone adverse effects in most patients"
     ],
     "answer": 1,
     "explain": "It is used for VF or pulseless VT. Adverse effects include bradycardia, hypotension, liver toxicity, lung toxicity, and SJS. The risks must be weighed, and long-term use is not recommended. The mean half-life is about 58 days, and the range can be very wide. Avoid grapefruit.\n用於 VF／無脈 VT。副作用包括心跳慢、低血壓、肝毒、肺毒、SJS，要權衡風險，唔建議長期用。平均半衰期約 58 日（範圍可好闊）。要避免西柚。",
@@ -797,10 +797,10 @@ const QUESTIONS = [
     "id": "orig-hep-moa",
     "stem": "Which statement best describes the mechanism of heparin?",
     "options": [
-      "It blocks vitamin K epoxide reductase",
-      "It blocks HMG-CoA reductase",
-      "It binds antithrombin III, inhibits thrombin, and stops fibrinogen becoming fibrin",
-      "It stops plasmin from breaking down fibrin"
+      "It blocks vitamin K epoxide reductase in the hepatic clotting-factor pathway",
+      "It blocks HMG-CoA reductase and thereby lowers hepatic cholesterol synthesis",
+      "It binds antithrombin III, inhibits thrombin, and blocks fibrin formation",
+      "It stops plasmin from breaking down fibrin once a clot has already formed"
     ],
     "answer": 2,
     "explain": "Heparin works through the antithrombin III pathway and is an injectable anticoagulant. Blocking vitamin K reductase is warfarin. Blocking HMG-CoA reductase is a statin. Stopping plasmin from breaking down fibrin is tranexamic acid.\nHeparin 走 AT-III 路徑，屬注射抗凝。阻維他命 K 還原酶係 warfarin；阻 HMG-CoA 係 statin；阻止 plasmin 分解 fibrin 係 tranexamic acid。",
@@ -811,10 +811,10 @@ const QUESTIONS = [
     "id": "orig-lmwh",
     "stem": "Which statement about LMWH matches the notes?",
     "options": [
-      "An example is enoxaparin (Clexane). It is given subcutaneously and has a lower bleeding risk than unfractionated heparin",
-      "It must be taken by mouth once a day with food",
-      "Like aspirin, it is an antiplatelet drug, not an anticoagulant",
-      "It is a thrombolytic used specifically to dissolve a clot that has already formed"
+      "Example: enoxaparin (Clexane); given SC with lower bleed risk than UFH",
+      "It must be taken by mouth once a day with food like an oral vitamin",
+      "Like aspirin, it is only an antiplatelet drug and not an anticoagulant",
+      "It is a thrombolytic used specifically to dissolve an already formed clot"
     ],
     "answer": 0,
     "explain": "LMWH (enoxaparin/Clexane, nadroparin/Fraxiparine, and similar drugs) is still an anticoagulant, but the bleeding risk is lower and the route is subcutaneous. Aspirin and clopidogrel are antiplatelet drugs. Streptokinase is the thrombolytic.\nLMWH（enoxaparin／Clexane、nadroparin／Fraxiparine 等）仍係抗凝，但出血風險較低，途徑係皮下。Aspirin、clopidogrel 先係抗血小板；streptokinase 先係溶栓。",
@@ -825,10 +825,10 @@ const QUESTIONS = [
     "id": "orig-classes-clot",
     "stem": "Which statement correctly separates anticoagulants, antiplatelet drugs, and thrombolytics?",
     "options": [
-      "Aspirin and clopidogrel, like warfarin, are anticoagulants",
-      "Streptokinase prevents clot formation by inhibiting clotting factors",
-      "Aspirin and clopidogrel are antiplatelet drugs; streptokinase dissolves a clot that has already formed; warfarin and heparin are the anticoagulants",
-      "The three classes have exactly the same mechanism and differ only in name"
+      "Aspirin and clopidogrel, like warfarin, are anticoagulants reducing fibrin formation in vessels",
+      "Streptokinase prevents new clots only by inhibiting clotting-factor synthesis in the liver",
+      "Antiplatelets: aspirin/clopidogrel; thrombolytic streptokinase; anticoagulants warfarin/heparin",
+      "All three classes share one mechanism and differ only by brand naming across the markets"
     ],
     "answer": 2,
     "explain": "Anticoagulants (heparin, LMWH, warfarin) inhibit clotting factors and prevent clots. Antiplatelet drugs (aspirin blocks COX-1; clopidogrel) inhibit platelet aggregation. A thrombolytic (streptokinase) dissolves a clot that has already formed.\n抗凝（heparin、LMWH、warfarin）抑制凝血因子，預防血塊。抗血小板（aspirin 阻 COX-1、clopidogrel）抑制血小板聚集。溶栓（streptokinase）先至溶解已形成嘅血塊。",
@@ -839,10 +839,10 @@ const QUESTIONS = [
     "id": "orig-warfarin-moa",
     "stem": "How does warfarin make the blood less likely to clot?",
     "options": [
-      "It stops plasmin from breaking down fibrin",
-      "It blocks vitamin K epoxide reductase and reduces vitamin K-dependent clotting factors",
-      "It blocks HMG-CoA reductase",
-      "It stimulates beta-1 receptors and increases cardiac output"
+      "It stops plasmin from breaking down fibrin after a clot has already formed",
+      "It blocks vitamin K epoxide reductase and cuts vitamin K–dependent factors",
+      "It blocks HMG-CoA reductase and thereby lowers circulating cholesterol levels",
+      "It stimulates beta-1 receptors and increases cardiac output and heart rate"
     ],
     "answer": 1,
     "explain": "Warfarin is an oral anticoagulant. It blocks formation of vitamin K-dependent clotting factors in the liver, so clotting time lengthens. It is used for thromboembolism, atrial fibrillation, and prosthetic heart valves. The main adverse effect is bleeding, and intramuscular injection should be avoided.\nWarfarin 口服抗凝，阻肝內維他命 K 依賴凝血因子形成，凝血時間變長。用喺血栓栓塞、房顫、人工心瓣。主要副作用係出血，要避免肌肉注射。",
@@ -853,10 +853,10 @@ const QUESTIONS = [
     "id": "orig-txa",
     "stem": "Tranexamic acid (Transamin) is:",
     "options": [
-      "An antiplatelet drug that blocks COX-1",
-      "A haemostatic drug: it stops plasmin from breaking down fibrin",
-      "A statin that lowers cholesterol",
-      "A beta-2 agonist that dilates bronchi"
+      "An antiplatelet drug that blocks COX-1 in circulating platelets",
+      "A haemostatic drug that stops plasmin from breaking down fibrin",
+      "A statin that lowers cholesterol by blocking HMG-CoA reductase",
+      "A beta-2 agonist that dilates bronchi during an acute asthma attack"
     ],
     "answer": 1,
     "explain": "Tranexamic acid is an antifibrinolytic haemostatic. It stops plasminogen becoming plasmin, so fibrin is less easily broken down. Uses include stopping bleeding. Do not confuse it with warfarin or streptokinase.\nTranexamic acid 屬抗纖溶止血藥，阻止 plasminogen 變成 plasmin，令 fibrin 唔易被分解。用途包括止血。唔好同 warfarin 或 streptokinase 撈亂。",
@@ -867,10 +867,10 @@ const QUESTIONS = [
     "id": "orig-statin",
     "stem": "After starting atorvastatin, a person has muscle pain and dark urine. Which action is correct?",
     "options": [
-      "Continue it and add a second statin",
-      "Watch for rhabdomyolysis, check CK and liver function as ordered, and avoid grapefruit and red yeast rice",
-      "Drink a large amount of grapefruit juice to help metabolism",
-      "Red yeast rice can safely replace any monitoring"
+      "Continue the dose and add a second statin to strengthen the lipid-lowering effect",
+      "Suspect rhabdomyolysis; check CK/LFTs as ordered; avoid grapefruit/red yeast rice",
+      "Drink large amounts of grapefruit juice to speed hepatic statin metabolism",
+      "Replace laboratory monitoring with red yeast rice taken every morning"
     ],
     "answer": 1,
     "explain": "Statins block HMG-CoA reductase and reduce cholesterol production. A rare but serious effect is myopathy or rhabdomyolysis, so check LFTs and CK. Grapefruit and red yeast rice, which is chemically similar to a statin, increase the risk. Do not add another statin on your own.\n他汀阻 HMG-CoA reductase，減少膽固醇製造。罕見但嚴重係肌病／橫紋肌溶解，要查 LFT、CK。西柚同紅麴（化學上似他汀）會加重風險。唔可以自行再加一只他汀。",
@@ -895,10 +895,10 @@ const QUESTIONS = [
     "id": "orig-saba",
     "stem": "Which statement about inhaled drugs for the bronchi is correct?",
     "options": [
-      "A LABA can be used alone as first-line rescue treatment",
-      "A SABA (for example salbutamol) is used for quick relief; a LABA should be given with an inhaled corticosteroid and not used alone",
+      "A LABA can be used alone as first-line rescue treatment for wheeze",
+      "SABA (e.g. salbutamol) for quick relief; LABA with ICS, not alone",
       "There is no need to rinse the mouth after an inhaled corticosteroid",
-      "Propranolol is the first choice to dilate bronchi in acute asthma"
+      "Propranolol is first choice to dilate bronchi in an acute asthma attack"
     ],
     "answer": 1,
     "explain": "SABAs (salbutamol, terbutaline) start working in less than 5 minutes and last about 3–6 hours. They are first-line for acute bronchospasm. A LABA can last up to about 12 hours, but it must be paired with a corticosteroid and not used as monotherapy. Rinse the mouth after an inhaled corticosteroid to prevent oral candidiasis.\nSABA（salbutamol、terbutaline）起效少過 5 分鐘，作用約 3–6 小時，係急性支氣管痙攣一線。LABA 可維持到約 12 小時，但要配類固醇，唔好 monotherapy。類固醇吸入後要漱口，防口腔念珠菌。",
@@ -909,10 +909,10 @@ const QUESTIONS = [
     "id": "orig-nac",
     "stem": "Which statement about acetylcysteine (Fluimucil) as a mucolytic is correct?",
     "options": [
-      "Like bromhexine, it indirectly stimulates surfactant",
-      "It directly breaks bonds in mucus; it has a rotten-egg smell; separate it from antibiotics by at least 2 hours",
-      "It is the first-line cough suppressant for a dry cough",
-      "It can be used only together with propranolol"
+      "Like bromhexine, it only indirectly stimulates surfactant production in the alveoli",
+      "Directly breaks mucus bonds; rotten-egg smell; separate from antibiotics ≥2 h",
+      "It is the first-line cough suppressant chosen for a dry irritating non-productive cough",
+      "It should be given only together with oral propranolol every day for safety"
     ],
     "answer": 1,
     "explain": "Direct mucolytic: NAC chemically cuts the bonds in mucus. Indirect mucolytics: bromhexine and ambroxol promote pulmonary surfactant. NAC can inactivate antibiotics, so separate them by at least 2 hours, and it smells unpleasant. Antitussives (codeine, dextromethorphan) are used for a dry cough.\n直接型 mucolytic：NAC 化學切斷痰結。間接型：bromhexine、ambroxol 促進肺表面活性劑。NAC 可滅活抗生素，所以至少隔 2 小時，而且有臭味。鎮咳（codeine、dextromethorphan）先用喺乾咳。",
@@ -923,10 +923,10 @@ const QUESTIONS = [
     "id": "orig-antihist",
     "stem": "Which statement about antihistamines matches the notes?",
     "options": [
-      "First-generation drugs (for example chlorpheniramine and promethazine) cross the blood-brain barrier more easily and cause drowsiness",
-      "Second-generation drugs (for example cetirizine and loratadine) cross the blood-brain barrier more, so they cause more drowsiness",
-      "Both generations are used mainly as emergency bronchodilators",
-      "First-generation drugs have no anticholinergic effect at all"
+      "1st-gen (chlorpheniramine, promethazine) cross BBB more → more drowsiness",
+      "2nd-gen (cetirizine, loratadine) cross BBB more → more drowsiness as well",
+      "Both generations are used mainly as emergency bronchodilators in acute asthma",
+      "1st-gen agents have essentially no anticholinergic effects at usual adult doses"
     ],
     "answer": 0,
     "explain": "Both generations block H1 and reduce runny nose, itch, and swelling. First-generation drugs cross the blood-brain barrier easily, cause drowsiness, have anticholinergic effects, last about 4–6 hours, and alcohol and driving should be avoided. Second-generation drugs cross less, cause less drowsiness, and last about 12–24 hours.\n兩代都阻 H1，減少流鼻水、痕、腫。第一代易過 BBB，瞌睡、有抗膽鹼作用，約 4–6 小時，忌酒、唔好揸車。第二代少過 BBB，少瞌睡，約 12–24 小時。",
@@ -937,10 +937,10 @@ const QUESTIONS = [
     "id": "orig-atropine",
     "stem": "What dose of atropine do the notes give for bradycardia?",
     "options": [
-      "10 mg by mouth once a day",
-      "0.6 mg intravenously, which may be repeated every 1–2 minutes, up to 3 mg",
-      "1 mg subcutaneously every hour, with no maximum",
-      "Eye drops only; it cannot be given intravenously"
+      "10 mg by mouth once a day as a fixed morning maintenance dose",
+      "0.6 mg IV, may repeat every 1–2 minutes, up to a total of 3 mg",
+      "1 mg subcutaneously every hour with no stated maximum cumulative dose",
+      "Eye drops only; the intravenous route is not used for bradycardia"
     ],
     "answer": 1,
     "explain": "Atropine blocks acetylcholine and blocks the parasympathetic system, so the heart rate is no longer pulled down. It is used for bradycardia. Adverse effects: blurred vision, dry mouth, fast heart rate, urinary retention, constipation, and drowsiness.\nAtropine 阻乙酰膽鹼，阻副交感，所以心跳唔會再被拉低，用嚟治 bradycardia。副作用：視力模糊、口乾、心跳快、尿潴留、便秘、瞌睡。",
@@ -951,10 +951,10 @@ const QUESTIONS = [
     "id": "orig-nitrate-hl",
     "stem": "Why is glyceryl trinitrate usually given sublingually rather than by ordinary oral dosing?",
     "options": [
-      "Because it has no vasodilator effect at all",
-      "First-pass metabolism is very strong, and the half-life is short (about 1–4 minutes)",
-      "Because oral bioavailability is 100%",
-      "Because it is an antiplatelet drug"
+      "Because it has no useful vasodilator effect when given by any practical route",
+      "Strong first-pass metabolism and a very short half-life (about 1–4 minutes)",
+      "Because ordinary oral bioavailability of GTN is essentially complete (~100%)",
+      "Because GTN is classified primarily as an antiplatelet drug for ACS care"
     ],
     "answer": 1,
     "explain": "Nitrates are converted to nitric oxide, lower intracellular calcium, dilate vessels, and reduce preload, afterload, and angina. First-pass metabolism is strong, so the routes are sublingual or intravenous. The half-life is about 1–4 minutes, so it is short-acting.\n硝酸鹽轉成一氧化氮，降低細胞內鈣，血管擴張，減前負荷／後負荷同心絞痛。首過效應強，所以舌下或靜脈；半衰期大約 1–4 分鐘，屬短效。",
@@ -965,10 +965,10 @@ const QUESTIONS = [
     "id": "orig-nasal",
     "stem": "Oxymetazoline nasal spray belongs mainly to which class, and what is it used for?",
     "options": [
-      "An alpha-1 agonist that constricts nasal vessels and relieves nasal congestion",
-      "A beta blocker for angina",
-      "An anticoagulant that prevents stroke",
-      "A mucolytic that cuts mucus bonds"
+      "Alpha-1 agonist that constricts nasal vessels and eases nasal congestion",
+      "Non-selective beta blocker mainly used for relief of exertional angina pain",
+      "Anticoagulant used long term to prevent ischaemic stroke in AF patients",
+      "Mucolytic that chemically cuts disulfide bonds inside sticky airway mucus"
     ],
     "answer": 0,
     "explain": "Alpha-1 agonists (oral pseudoephedrine, and nasal oxymetazoline and xylometazoline) stimulate constriction of nasal vessels and reduce runny nose and congestion. Do not confuse them with beta-2 bronchodilators.\nα1 激動劑（pseudoephedrine 口服、oxymetazoline、xylometazoline 噴鼻）刺激鼻血管收縮，減輕流鼻水同鼻塞。唔好同 β2 支氣管擴張藥撈亂。",
@@ -979,10 +979,10 @@ const QUESTIONS = [
     "id": "orig-cough",
     "stem": "Which statement about drugs for a dry cough and a productive cough is correct?",
     "options": [
-      "Codeine acts on the medullary cough centre and is used for a dry cough; expectorants are used for a productive cough",
-      "Codeine is an expectorant used specifically to thin sputum",
-      "At a usual dose, dextromethorphan strongly activates mu-opioid receptors",
-      "NAC is an antitussive used for a dry cough"
+      "Codeine: medullary cough centre for dry cough; expectorants for productive cough",
+      "Codeine is classified as an expectorant used only to thin thick productive sputum",
+      "At usual antitussive doses, dextromethorphan strongly activates mu-opioid receptors",
+      "N-acetylcysteine is an antitussive reserved for a dry non-productive cough only"
     ],
     "answer": 0,
     "explain": "Antitussives (codeine, pholcodine, dextromethorphan) are used for a dry cough. Dextromethorphan is a morphinan, but at a usual dose it does not activate mu receptors, so it does not cause typical respiratory depression or analgesia. Expectorants (guaifenesin, MES) are used for a productive cough, and the person should drink more water.\n鎮咳（codeine、pholcodine、dextromethorphan）用於乾咳。Dextromethorphan 屬 morphinan，但正常劑量唔激活 μ 受體，所以冇典型呼吸抑制或止痛。祛痰藥（guaifenesin、MES）用於有痰，並要多飲水。",
@@ -993,10 +993,10 @@ const QUESTIONS = [
     "id": "orig-symbicort",
     "stem": "What does one Symbicort inhaler already contain?",
     "options": [
-      "Salbutamol only",
-      "Formoterol (a LABA) plus budesonide (a corticosteroid)",
-      "Ipratropium only",
-      "Amiodarone plus digoxin"
+      "Salbutamol alone as a short-acting beta-2 agonist for rescue use",
+      "Formoterol (a LABA) plus budesonide (an inhaled corticosteroid)",
+      "Ipratropium alone as a short-acting antimuscarinic inhaler only",
+      "Amiodarone plus digoxin combined in one metered-dose inhaler device"
     ],
     "answer": 1,
     "explain": "The revision material states that Symbicort already contains formoterol (a long-acting beta-2 agonist) and budesonide (a corticosteroid). A LABA should not be used alone. It is given with a corticosteroid to prevent airway inflammation in chronic asthma.\nRevision 寫明 Symbicort 已包含 formoterol（長效 β2）同 budesonide（類固醇）。LABA 唔好單獨做單藥，要同類固醇一齊預防慢性哮喘氣道發炎。",
@@ -1007,10 +1007,10 @@ const QUESTIONS = [
     "id": "orig-bph",
     "stem": "In the revision material, terazosin (Hytrin) and prazosin (Minipress) belong to which class and are used for what?",
     "options": [
-      "Alpha-1 blockers, used for benign prostatic hyperplasia",
-      "Beta-2 agonists, used as rescue treatment for asthma",
-      "Statins, used to lower cholesterol",
-      "Thrombolytics, used to dissolve clots"
+      "Alpha-1 blockers, used mainly for BPH (and sometimes for hypertension)",
+      "Beta-2 agonists, used as rescue bronchodilators for acute asthma symptoms",
+      "Statins (HMG-CoA reductase inhibitors), used mainly to lower LDL cholesterol",
+      "Thrombolytics, used to dissolve established clots during acute STEMI care"
     ],
     "answer": 0,
     "explain": "Alpha-1 adrenergic blockers can relax smooth muscle in the prostate and bladder neck. Examples are terazosin and prazosin, used for BPH. Do not confuse them with beta blockers or with alpha-1 nasal decongestants.\nα1 腎上腺素阻斷劑可放鬆前列腺同膀胱頸平滑肌，例子係 terazosin、prazosin，用喺 BPH。唔好同 β 阻斷劑或 α1 鼻血管收縮藥撈亂。",
@@ -1021,10 +1021,10 @@ const QUESTIONS = [
     "id": "orig-interaction",
     "stem": "Two drugs used together produce an effect clearly greater than the sum of each alone (1 + 1 > 2). What is this interaction called?",
     "options": [
-      "Additive",
-      "Synergistic / potentiation",
-      "Antagonistic",
-      "Idiosyncratic"
+      "Additive (1 + 1 = 2) with no extra combined effect beyond the arithmetic sum",
+      "Synergistic / potentiation (combined effect clearly greater than the sum)",
+      "Antagonistic, so each drug cancels most of the other's clinical effect in vivo",
+      "Idiosyncratic, meaning a rare genetically driven reaction in one patient only"
     ],
     "answer": 1,
     "explain": "An additive effect is about 1 + 1 = 2. Synergy or potentiation is 1 + 1 > 2. Antagonism is 1 + 1 < 1. An idiosyncratic reaction is an unexpected response in an individual, not a dose-addition formula.\n相加大約 1＋1＝2；協同／增強係 1＋1＞2；拮抗係 1＋1＜1。Idiosyncratic 係個別病人預期以外嘅反應，唔係劑量相加公式。",
@@ -1035,10 +1035,10 @@ const QUESTIONS = [
     "id": "orig-load",
     "stem": "What is the difference between a loading dose and a maintenance dose?",
     "options": [
-      "A loading dose is a small dose continued long term; a maintenance dose is one large dose",
-      "A loading dose uses a larger amount to reach an effective blood level quickly; a maintenance dose uses smaller, regular amounts to keep the level steady",
-      "The two doses must always be the same",
-      "A loading dose is used only for topical drugs"
+      "Loading is a small long-term dose; maintenance is one large single bolus dose",
+      "Loading = larger amount for quick effect; maintenance = smaller regular doses",
+      "Loading and maintenance amounts must always be exactly the same milligram size",
+      "A loading dose is reserved only for topical creams and eye ointment products"
     ],
     "answer": 1,
     "explain": "A loading dose is meant to reach a therapeutic concentration quickly. A maintenance dose replaces drug that has been cleared and keeps the level on a plateau. How often the drug is given also depends on the half-life.\n負荷劑量想快啲上到治療濃度；維持劑量用嚟補返清除咗嘅藥，保持平臺。給藥頻率亦要睇半衰期。",
@@ -1064,9 +1064,9 @@ const QUESTIONS = [
     "stem": "Which description best fits a Type B adverse reaction?",
     "options": [
       "It can be predicted from known pharmacology, for example when the dose is too large",
-      "It cannot be predicted from known pharmacology, for example allergy or an idiosyncratic reaction",
-      "It is the expected therapeutic effect of treatment",
-      "It is simple addition of two drugs"
+      "It cannot be predicted from known pharmacology (allergy or idiosyncratic reaction)",
+      "It is simply the expected therapeutic effect of treatment at usual labelled doses",
+      "It is only the arithmetic addition of two drugs given together in one prescription"
     ],
     "answer": 1,
     "explain": "Type A can be predicted from known pharmacology (overdose, side effect, interaction). Type B cannot be predicted (allergy, idiosyncratic reaction, immune reaction). The intended therapeutic effect itself is not an adverse reaction.\nType A：可由已知藥理預測（過量、副作用、交互）。Type B：預測唔到（過敏、idiosyncratic、免疫反應）。治療效果本身唔算不良反應。",
@@ -1091,10 +1091,10 @@ const QUESTIONS = [
     "id": "l5-tca",
     "stem": "Compared with an SNRI, which statement about a tricyclic antidepressant (TCA) is correct?",
     "options": [
-      "Selectivity is high, so it is usually first-line",
-      "The risk of death in overdose is lower",
-      "Selectivity is low (it also affects histamine and acetylcholine), overdose can be fatal, and it is usually third-line",
-      "Because it has no anticholinergic effect, it can be used freely in glaucoma"
+      "Selectivity is high, so a TCA is usually chosen as first-line therapy",
+      "The risk of death after an overdose is lower than with an SNRI",
+      "Low selectivity (also H1/ACh); overdose can kill; usually third-line",
+      "No anticholinergic effect, so it can be used freely in glaucoma patients"
     ],
     "answer": 2,
     "explain": "A TCA (for example amitriptyline) also affects histamine and acetylcholine. Adverse effects are heavier, cardiac toxicity in overdose is high, and it is usually third-line. Anticholinergic effects worsen glaucoma and urinary retention, so those conditions are contraindications. It is not used because it lacks anticholinergic effect.\nTCA（例如 amitriptyline）亦影響組織胺同乙酰膽鹼，副作用較重，過量心臟毒性高，通常第三線。抗膽鹼作用會令青光眼同尿潴留惡化，所以係禁忌，唔係「因為冇抗膽鹼」。",
@@ -1105,10 +1105,10 @@ const QUESTIONS = [
     "id": "l5-ss",
     "stem": "A person taking an SSRI develops tremor, diarrhoea, hyperreflexia, and a temperature of 39.5°C. What should be done first?",
     "options": [
-      "Increase the SSRI dose",
-      "Add an SNRI to strengthen the effect",
-      "Stop all serotonin-related drugs, give supportive care, and tell the doctor",
-      "Inject flumazenil"
+      "Increase the SSRI dose immediately to overcome the new serotonin-related symptoms",
+      "Add an SNRI on top of the SSRI to strengthen the central serotonin effect further",
+      "Stop all serotonin-related drugs, support the patient, and tell the doctor at once",
+      "Inject flumazenil as the specific antidote for this serotonin-syndrome presentation"
     ],
     "answer": 2,
     "explain": "This is serotonin syndrome. Management: stop serotonergic drugs and give supportive care. In severe cases a serotonin antagonist may be used (for example ondansetron). Do not stack two serotonergic drugs. Flumazenil is the benzodiazepine antidote.\n呢個係血清素症候群。處理：停晒 serotonergic 藥、支持治療；嚴重可用血清素拮抗劑（例如 ondansetron）。唔好兩只血清素藥疊加。Flumazenil 係 benzodiazepine 解藥。",
@@ -1119,10 +1119,10 @@ const QUESTIONS = [
     "id": "l5-bzd",
     "stem": "How does a benzodiazepine depress the central nervous system?",
     "options": [
-      "It blocks sodium channels",
-      "It binds its own site on the GABA-A receptor and increases how often the chloride channel opens",
-      "It blocks calcium channels on pain nerves",
-      "It replaces GABA and opens the chloride channel by itself"
+      "It blocks voltage-gated sodium channels throughout the cerebral cortex tissue",
+      "It binds its GABA-A site and increases how often the chloride channel opens",
+      "It blocks calcium channels on peripheral pain nerves in the spinal cord pathway",
+      "It replaces GABA and opens the chloride channel by itself without needing GABA"
     ],
     "answer": 1,
     "explain": "A benzodiazepine does not replace GABA and does not open the channel by itself. It strengthens GABA, so chloride ions enter the cell more often and the cell is harder to fire. Together with an opioid or alcohol it can cause severe respiratory depression.\nBZD 唔係取代 GABA，亦唔係自己開通道，而係加強 GABA，令氯離子入細胞更頻密，細胞更難放電。同 opioid 或酒精一齊可以嚴重呼吸抑制。",
@@ -1136,7 +1136,7 @@ const QUESTIONS = [
       "Naloxone (Narcan)",
       "Flumazenil (Anexate)",
       "Digoxin immune Fab",
-      "Vitamin K"
+      "Vitamin K (phytomenadione)"
     ],
     "answer": 1,
     "explain": "Flumazenil occupies the benzodiazepine receptor without activating it and displaces the benzodiazepine. Naloxone is for opioids, digoxin immune Fab is for digoxin, and vitamin K is related to warfarin. Early after an oral overdose, consider activated charcoal by nasogastric tube, plus supportive care.\nFlumazenil 佔住 benzodiazepine 受體但唔激活，趕走 BZD。Naloxone 係 opioid；digoxin immune Fab 係 digoxin；vitamin K 同 warfarin 相關。口服過量早期先考慮鼻胃管活性炭，加上支持治療。",
@@ -1148,9 +1148,9 @@ const QUESTIONS = [
     "stem": "Which statement about a Z-drug (for example zolpidem or zopiclone) is correct?",
     "options": [
       "Like a benzodiazepine, it is commonly used for anxiety, epilepsy, and muscle spasm",
-      "It is used mainly only for insomnia",
-      "It does not act on GABA-A at all",
-      "It is the antidote for an opioid"
+      "It is used mainly for insomnia; less anxiolytic/anticonvulsant use than BZDs",
+      "It does not act on the GABA-A receptor complex at all in therapeutic doses",
+      "It is the specific antidote used to reverse opioid overdose at the mu receptor"
     ],
     "answer": 1,
     "explain": "A Z-drug acts at the benzodiazepine binding site on GABA-A, but it is more selective (mainly alpha-1). Its use is insomnia. It has no clear anxiolytic or muscle-relaxant effect. Adverse effects include abnormal taste, dizziness, and poor coordination. Do not drive.\nZ-drug 作用喺 GABA-A 上 BZD 結合位，但選擇性較高（主要 α1），用途係失眠，冇明顯抗焦慮或肌鬆。副作用包括味覺異常、暈、協調差，唔好揸車。",
@@ -1161,10 +1161,10 @@ const QUESTIONS = [
     "id": "l5-vpa",
     "stem": "Which of the following are serious adverse effects of sodium valproate (Epilim)?",
     "options": [
-      "Hepatotoxicity, pancreatitis, hyperammonaemia, and teratogenicity",
-      "A typical dry cough",
-      "Bronchoconstriction and bradycardia as its main mechanism",
-      "Rhabdomyolysis caused by red yeast rice"
+      "Hepatotoxicity, pancreatitis, hyperammonaemia, and teratogenicity risk",
+      "A typical dry cough like that seen with ACE-inhibitor therapy in adults",
+      "Bronchoconstriction and bradycardia as its main listed adverse mechanism",
+      "Rhabdomyolysis caused only by concurrent red yeast rice intake with VPA"
     ],
     "answer": 0,
     "explain": "Valproate inhibits breakdown of GABA and also blocks sodium channels and T-type calcium channels. Serious problems: liver toxicity, pancreatitis, low platelets, hyperammonaemia, and teratogenicity. Stopping an antiepileptic suddenly can trigger seizures or status epilepticus.\nValproate 抑制 GABA 降解，亦阻鈉通道同 T 型鈣通道。嚴重問題：肝毒、胰臟炎、血小板低、高血氨、致畸。突然停抗癲癇藥可以誘發抽搐或癲癇持續狀態。",
@@ -1175,10 +1175,10 @@ const QUESTIONS = [
     "id": "l5-aed-stop",
     "stem": "Which statement about antiepileptic nursing care is correct?",
     "options": [
-      "Stop the drug immediately once seizures are controlled, to avoid dependence",
-      "The usual aim is to reduce how often seizures occur, not to cure them; stopping must be gradual, and sudden stopping can cause seizures",
-      "Changing brand has no effect on absorption at all",
-      "Valproate has no extra risk in pregnancy"
+      "Stop the drug at once once seizures are controlled, to avoid physical dependence risk",
+      "Aim to cut seizure frequency (not cure); taper slowly—sudden stop may provoke seizures",
+      "Changing brand never affects absorption or blood levels in any adult epilepsy patient",
+      "Valproate carries no extra fetal risk and is preferred in every pregnancy if seizures occur"
     ],
     "answer": 1,
     "explain": "Compare seizure counts before and after treatment to judge effect. Changing brand may change absorption and seizures may escape control. Monitor drug level and liver function. Rash, bruising, and mouth ulcers should raise concern for blood toxicity or SJS. Some drugs are teratogenic, so contraception should be discussed.\n用發作次數前後比較療效。轉品牌可能因為吸收差異令發作失控。要監察血藥濃度、肝功能。皮疹、瘀傷、口腔潰瘍要警覺血液毒性或 SJS。部分藥致畸，要討論避孕。",
@@ -1189,10 +1189,10 @@ const QUESTIONS = [
     "id": "l5-ldopa",
     "stem": "In Parkinson's disease, why is levodopa given rather than dopamine itself?",
     "options": [
-      "Dopamine is destroyed only in the stomach",
-      "Dopamine cannot cross the blood-brain barrier; levodopa can, and it is converted to dopamine after it enters the brain",
-      "Levodopa is an acetylcholine-receptor blocker",
-      "Levodopa mainly increases GABA"
+      "Dopamine is destroyed only in the stomach and never reaches the gut wall intact",
+      "Dopamine cannot cross the BBB; levodopa can, then converts to dopamine in brain",
+      "Levodopa works mainly as an acetylcholine-receptor blocker in the striatum",
+      "Levodopa mainly increases GABA rather than dopamine in the basal ganglia"
     ],
     "answer": 1,
     "explain": "Parkinson's disease is a fall in central dopamine, with acetylcholine relatively dominant. Dopamine cannot enter the brain. Levodopa can, and it is then converted to dopamine. Another approach is an anticholinergic drug to reduce acetylcholine stimulation.\n柏金遜係中樞 dopamine 下降，乙酰膽鹼相對佔優。Dopamine 入唔到腦；levodopa 入到，再轉成 dopamine。另一思路係用抗膽鹼藥減低乙酰膽鹼刺激。",
@@ -1203,10 +1203,10 @@ const QUESTIONS = [
     "id": "l5-na",
     "stem": "Phenytoin, carbamazepine, and lamotrigine act as antiepileptics mainly by blocking which channel?",
     "options": [
-      "Sodium channels, which reduces repetitive firing",
-      "Only the H1 histamine receptor",
-      "Only ACE",
-      "They activate mu-opioid receptors"
+      "Sodium channels, which reduces repetitive neuronal firing",
+      "Only the H1 histamine receptor in the cerebral cortex",
+      "Only angiotensin-converting enzyme in the pulmonary circulation",
+      "They activate mu-opioid receptors and depress the cough centre"
     ],
     "answer": 0,
     "explain": "A seizure is too much glutamate excitation and too little GABA inhibition, with repetitive neuronal firing. Sodium-channel blockers reduce action potentials. They are also used for trigeminal neuralgia. Adverse effects include drowsiness and ataxia.\n驚厥係谷氨酸興奮太多、GABA 抑制太少，神經重複放電。鈉通道阻斷劑減少動作電位。亦用於三叉神經痛。副作用包括瞌睡、共濟失調。",
@@ -1217,10 +1217,10 @@ const QUESTIONS = [
     "id": "l5-ssri-time",
     "stem": "According to the notes, about how long does a full SSRI effect take?",
     "options": [
-      "30 minutes after the first tablet",
-      "6–12 weeks; suicidal ideation needs extra attention in the first few weeks",
-      "There is no response at all until a full year has passed",
-      "It works only if taken at bedtime; a morning dose is ineffective"
+      "About 30 minutes after the first tablet is swallowed",
+      "6–12 weeks; watch suicidal ideation extra carefully early on",
+      "There is no response at all until a full year of daily dosing",
+      "It works only at bedtime; a morning dose is always ineffective"
     ],
     "answer": 1,
     "explain": "Adverse effects can appear in the first two weeks, but a full improvement in mood and function takes about 6–12 weeks. It is usually taken in the morning and may be taken with food to reduce stomach upset. Do not stop it suddenly, because withdrawal can occur. Reduce it gradually. Avoid grapefruit juice.\n副作用頭兩星期就可以出現，但完整情緒同功能改善約 6–12 星期。通常朝早服，可配食物減胃不適。唔好突然停（會戒斷），要逐步減。避免西柚汁。",
@@ -1231,10 +1231,10 @@ const QUESTIONS = [
     "id": "rev-hl-40",
     "stem": "A drug's half-life is 8 hours. About what percentage of the original amount remains after 40 hours?",
     "options": [
-      "50%",
-      "12.5%",
-      "6.25%",
-      "3.125%"
+      "50.000% remaining",
+      "12.500% remaining",
+      "6.2500% remaining",
+      "3.1250% remaining"
     ],
     "answer": 3,
     "explain": "Each half-life of 8 hours halves what remains: 8 h 50%, 16 h 25%, 24 h 12.5%, 32 h 6.25%, 40 h 3.125%. Forty hours is the fifth half-life in the revision table.\n每 8 小時減半：8 小時 50%、16 小時 25%、24 小時 12.5%、32 小時 6.25%、40 小時 3.125%。40 小時就係表入面第 5 個半衰期。",
@@ -1245,10 +1245,10 @@ const QUESTIONS = [
     "id": "rev-met-purpose",
     "stem": "In the revision notes, what is the purpose of drug metabolism (biotransformation)?",
     "options": [
-      "To make every drug more lipid-soluble so it stays in tissue",
+      "To make every drug more lipid-soluble so it stays longer in tissue stores",
       "To make the drug less harmful, more water-soluble, and easier to excrete",
-      "To bind the drug permanently to its receptor",
-      "To stop all excretion by the kidney"
+      "To bind the drug permanently to its receptor without any later dissociation",
+      "To stop all excretion by the kidney once hepatic metabolism has started"
     ],
     "answer": 1,
     "explain": "Metabolism changes the drug chemically. The notes list three purposes: detoxify, increase water solubility, and make excretion easier. It can also activate a prodrug.\n代謝係身體改藥物嘅化學結構。練習列出三個目的：解毒、變得更溶於水、更容易排泄。亦可以激活前藥。",
@@ -1259,10 +1259,10 @@ const QUESTIONS = [
     "id": "rev-prodrug-acy",
     "stem": "Why do the revision notes mention acyclovir when they explain a prodrug?",
     "options": [
-      "It is given as an inactive form that becomes active after the body processes it, to improve absorption from the stomach",
-      "It is already fully active and is used only to block first-pass metabolism",
-      "It is an angiotensin-receptor blocker",
-      "It replaces vitamin K clotting factors"
+      "Given inactive, then activated in the body to improve gut absorption",
+      "Already fully active and used only to block hepatic first-pass metabolism",
+      "It is classified as an angiotensin-receptor blocker for hypertension",
+      "It replaces vitamin K–dependent clotting factors after warfarin overdose"
     ],
     "answer": 0,
     "explain": "A prodrug is inactive until the body processes it (for example by first-pass metabolism in the liver). The notes say this can improve bioavailability, and they give acyclovir as an example used to improve absorption from the stomach.\n前藥一開始冇活性，身體處理之後（例如肝 first-pass）先變活性，用嚟改善生物利用度。練習用 acyclovir 做例子，改善由胃吸收。",
@@ -1273,10 +1273,10 @@ const QUESTIONS = [
     "id": "rev-ach-se",
     "stem": "Which cluster matches the anticholinergic adverse effects in the revision notes?",
     "options": [
-      "Dry cough, angioedema, and fetal toxicity",
-      "Drowsiness, blurred vision, dry mouth, tachycardia, constipation, and urinary retention",
-      "Hand tremor only, with no heart effect",
-      "Bleeding and a raised INR"
+      "Dry cough, angioedema, and fetal toxicity as the main listed adverse cluster",
+      "Drowsiness, blurred vision, dry mouth, tachycardia, constipation, retention",
+      "Hand tremor only, with no meaningful effect on heart rate or cardiac rhythm",
+      "Bleeding tendency and a raised INR as the dominant adverse clinical pattern"
     ],
     "answer": 1,
     "explain": "The revision list is drowsiness, blurred vision, dry mouth, tachycardia or palpitation, constipation, and urinary retention. The respiratory table also includes arrhythmia. Dry cough belongs with ACE inhibitors, and bleeding belongs with warfarin.\n練習列出：嗜睡、視力模糊、口乾、心跳快或心悸、便秘、尿瀦留。呼吸表亦有心律不整。乾咳係 ACEI；出血係 warfarin。",
@@ -1287,10 +1287,10 @@ const QUESTIONS = [
     "id": "rev-sama-lama",
     "stem": "Which pairing of inhaled anticholinergics matches the revision notes?",
     "options": [
-      "Salbutamol is a SAMA and salmeterol is a LAMA",
-      "Ipratropium is a short-acting antimuscarinic; tiotropium is a long-acting antimuscarinic",
-      "Formoterol is a SAMA and budesonide is a LAMA",
-      "Codeine is a SAMA and guaifenesin is a LAMA"
+      "Salbutamol is listed as a SAMA and salmeterol as a LAMA inhaler agent",
+      "Ipratropium = short-acting antimuscarinic; tiotropium = long-acting",
+      "Formoterol is listed as a SAMA and budesonide as a LAMA inhaler agent",
+      "Codeine is listed as a SAMA and guaifenesin as a LAMA expectorant agent"
     ],
     "answer": 1,
     "explain": "SAMA example: ipratropium bromide (Atrovent). LAMA example: tiotropium (Spiriva Handihaler or Spiriva Respimat). Salbutamol and salmeterol are beta-2 agonists. Formoterol plus budesonide is the Symbicort combination.\nSAMA 例子係 ipratropium bromide (Atrovent)。LAMA 例子係 tiotropium（Spiriva）。Salbutamol、salmeterol 係 β2 激動劑。Formoterol 加 budesonide 先係 Symbicort。",
@@ -1301,10 +1301,10 @@ const QUESTIONS = [
     "id": "rev-bb-b1",
     "stem": "Which drugs are the cardiovascular (beta-1) selective blockers in the revision list?",
     "options": [
-      "Propranolol and sotalol",
-      "Atenolol, metoprolol, and bisoprolol",
-      "Carvedilol and labetalol only",
-      "Salbutamol and terbutaline"
+      "Propranolol and sotalol as the listed beta-1 selective cardiovascular pair",
+      "Atenolol, metoprolol, and bisoprolol as the beta-1 selective blockers",
+      "Carvedilol and labetalol only, with no other beta-1 selective options listed",
+      "Salbutamol and terbutaline listed as cardiovascular beta-1 selective blockers"
     ],
     "answer": 1,
     "explain": "Beta-1 selective: atenolol (Tenormin), metoprolol (Betaloc), and bisoprolol. Non-selective beta-1 plus beta-2: propranolol (Inderal) and sotalol. Carvedilol and labetalol also block alpha-1. Salbutamol and terbutaline are beta-2 agonists.\nβ1 選擇性：atenolol (Tenormin)、metoprolol (Betaloc)、bisoprolol。非選擇性 β1＋β2：propranolol (Inderal)、sotalol。Carvedilol、labetalol 仲阻 α1。Salbutamol、terbutaline 係 β2 激動劑。",
@@ -1329,10 +1329,10 @@ const QUESTIONS = [
     "id": "rev-ace-cough",
     "stem": "Which adverse effects does the revision table list for ACE inhibitors such as captopril and lisinopril?",
     "options": [
-      "Hypotension, hyperkalaemia, toxicity to the fetus, and dry cough or hypersensitivity including angioedema",
-      "Only reflex tachycardia and ankle oedema",
-      "Pinpoint pupils and respiratory arrest",
-      "A rotten-egg smell"
+      "Hypotension, hyperkalaemia, fetal toxicity, dry cough / angioedema",
+      "Only reflex tachycardia and ankle oedema as the listed ACE effects",
+      "Pinpoint pupils and respiratory arrest as the main ACE inhibitor risks",
+      "A rotten-egg smell as the characteristic adverse effect of ACE inhibitors"
     ],
     "answer": 0,
     "explain": "ACE inhibitors block the enzyme that converts angiotensin I to angiotensin II and lower blood pressure. The table lists hypotension, hyperkalaemia, toxicity to the fetus, and hypersensitivity with dry cough and angioedema. They are used for hypertension and heart failure.\nACEI 阻斷將 angiotensin I 轉成 angiotensin II 嘅酶，並且降血壓。表列低血壓、高血鉀、對胎兒有毒，以及過敏、乾咳、血管性水腫。用嚟治高血壓同心衰。",
@@ -1343,10 +1343,10 @@ const QUESTIONS = [
     "id": "rev-nondhp",
     "stem": "Where do non-dihydropyridine calcium-channel blockers act, according to the revision table?",
     "options": [
-      "On peripheral vessels only, with no effect on heart rate",
+      "On peripheral vessels only, with no meaningful effect on heart rate or force",
       "On the heart and the periphery, lowering contractility and heart rate",
-      "Only on beta-2 receptors in the bronchi",
-      "Only on vitamin K-dependent clotting factors"
+      "Only on beta-2 receptors in the bronchi with no meaningful vascular action",
+      "Only on vitamin K–dependent clotting factors in the hepatic synthesis pathway"
     ],
     "answer": 1,
     "explain": "Non-dihydropyridines (diltiazem and verapamil) act on the heart and the periphery. They lower contraction force, heart rate, and peripheral vasoconstriction. Dihydropyridines (amlodipine, nifedipine) act mainly on the periphery.\nNon-DHP（diltiazem、verapamil）作用喺心臟同外周，降低收縮力、心率同外周血管收縮。DHP（amlodipine、nifedipine）主要作用外周。",
@@ -1357,10 +1357,10 @@ const QUESTIONS = [
     "id": "rev-unstable",
     "stem": "Why do the revision notes say dihydropyridines are not used for unstable angina?",
     "options": [
-      "They block vitamin K and cause bleeding",
-      "A fall in blood pressure that is too fast can reflexively raise contractility and heart rate and trigger myocardial and cerebral ischaemia",
-      "They are long-acting beta-2 agonists and must not be used alone",
-      "They inhibit the sodium-potassium pump"
+      "They block vitamin K pathways and therefore cause major bleeding",
+      "Too-rapid BP fall can raise HR/contractility and trigger ischaemia",
+      "They are long-acting beta-2 agonists and must never be used alone",
+      "They inhibit the sodium–potassium pump like digoxin in heart failure"
     ],
     "answer": 1,
     "explain": "The special-points cell says a fall in blood pressure that is too fast stimulates the sympathetic pathway, causing a reflex increase in contractility and tachycardia, which can induce myocardial ischaemia and cerebral ischaemia. Slow-onset drugs reduce that reflex tachycardia.\n特別欄寫：降血壓太快會刺激交感，反射性增加收縮力同心跳，容易誘發心肌缺血同腦缺血。起效慢嘅藥可以減少呢個反射性心跳加快。",
@@ -1371,10 +1371,10 @@ const QUESTIONS = [
     "id": "rev-elantan",
     "stem": "In the revision examples, Elantan is which nitrate?",
     "options": [
-      "Isosorbide mononitrate",
-      "Salbutamol",
-      "Ipratropium",
-      "Atorvastatin"
+      "Isosorbide mononitrate (a nitrate used for angina prophylaxis)",
+      "Salbutamol (a short-acting beta-2 agonist for acute bronchospasm)",
+      "Ipratropium (a short-acting antimuscarinic inhaled bronchodilator)",
+      "Atorvastatin (an HMG-CoA reductase inhibitor that lowers cholesterol)"
     ],
     "answer": 0,
     "explain": "Isosorbide mononitrate is Elantan. Isosorbide dinitrate examples are Isordil and Isoket. Glyceryl trinitrate is also called nitroglycerin. Nitrates have a strong first-pass effect, so they are given sublingually, and the half-life is about 1 to 4 minutes.\nElantan 係 isosorbide mononitrate。Isosorbide dinitrate 例子係 Isordil 同 Isoket。Glyceryl trinitrate 亦叫 nitroglycerin。硝酸鹽 first-pass 好強，所以舌下用，半衰期約 1–4 分鐘。",
@@ -1399,10 +1399,10 @@ const QUESTIONS = [
     "id": "rev-dig-pump",
     "stem": "Which description of digoxin matches the revision notes?",
     "options": [
-      "It blocks HMG-CoA reductase and lowers cholesterol",
-      "It inhibits the sodium-potassium pump, increases contraction force, and slows the heart rate",
-      "It is a short-acting beta-2 agonist for acute asthma",
-      "It dissolves an already formed clot"
+      "It blocks HMG-CoA reductase and thereby lowers plasma cholesterol",
+      "It inhibits the Na+/K+ pump, raises contraction force, and slows HR",
+      "It is a short-acting beta-2 agonist used for acute asthma attacks",
+      "It dissolves an already formed clot by activating circulating plasmin"
     ],
     "answer": 1,
     "explain": "Digoxin competes with potassium at the sodium-potassium pump. Intracellular sodium rises, then the sodium-calcium exchanger brings calcium in, so contraction force rises (positive inotropic effect). It also slows atrioventricular conduction and heart rate (negative chronotropic effect). Adverse effects listed are hyperkalaemia and bradycardia.\nDigoxin 同鉀競爭鈉鉀泵。細胞內鈉上升，鈉鈣交換把鈣泵入，收縮力增加（正肌力）。同時減慢房室結傳導同心率（負變時）。副作用欄係高血鉀同心跳慢。",
@@ -1413,10 +1413,10 @@ const QUESTIONS = [
     "id": "rev-dig-hold",
     "stem": "Before giving digoxin, which check do the revision notes require?",
     "options": [
-      "A random finger-prick glucose, and withhold if it is below 4 mmol/L",
-      "An apical pulse for 1 minute, and withhold if the heart rate is below 60 per minute",
-      "An international normalised ratio, and withhold if it is below 2",
-      "A peak-flow rate, and withhold if tremor is present"
+      "A random finger-prick glucose; withhold if it is below 4 mmol/L before dosing",
+      "An apical pulse for 1 minute; withhold if HR is below 60 beats per minute",
+      "An international normalised ratio; withhold if the INR is below 2.0 units",
+      "A peak-flow rate; withhold if any resting tremor is present before the dose"
     ],
     "answer": 1,
     "explain": "Count the apical pulse for 1 minute. If the heart rate is below 60 per minute, withhold the dose and tell the doctor, and check the ECG regularly. Also monitor electrolytes and renal function, and replace potassium if it is low. The therapeutic range is narrow.\n心尖脈搏數 1 分鐘。心率低過 60 次／分鐘就暫停並通知醫生，並且定期查心電圖。亦要監察電解質同腎功能；低血鉀要補鉀。治療窗窄。",
@@ -1427,10 +1427,10 @@ const QUESTIONS = [
     "id": "rev-statin-avoid",
     "stem": "Which monitoring and food points for a statin are in the revision notes?",
     "options": [
-      "Check only the INR, and avoid green leafy vegetables",
-      "Monitor liver function and creatine kinase, and avoid grapefruit and red yeast rice",
-      "Give it only by nasal spray",
-      "Withhold it when the apical pulse is below 60"
+      "Check only the INR, and avoid all green leafy vegetables every day",
+      "Monitor LFTs and CK, and avoid grapefruit juice and red yeast rice",
+      "Give the statin only by nasal spray for better systemic absorption",
+      "Withhold the statin whenever the apical pulse falls below 60/min"
     ],
     "answer": 1,
     "explain": "Statins inhibit HMG-CoA reductase so less cholesterol is made. Monitor liver function tests and creatine kinase. Avoid grapefruit and red yeast rice. With warfarin they may increase bleeding. Rare effects include muscle pain, myopathy, and rhabdomyolysis.\nStatin 抑制 HMG-CoA reductase，減少製造膽固醇。要監察肝功能同 creatine kinase。避免西柚同紅麴。同 warfarin 一齊可能增加出血。罕見有肌痛、肌病、橫紋肌溶解。",
@@ -1441,10 +1441,10 @@ const QUESTIONS = [
     "id": "rev-saba-time",
     "stem": "Which timing matches a short-acting beta-2 agonist for acute bronchospasm?",
     "options": [
-      "Onset under 5 minutes and effect about 3 to 6 hours; these are first-line for an acute asthma attack",
-      "Onset after 12 hours, used alone for chronic asthma",
-      "Effect lasting only 1 to 4 minutes, given only under the tongue",
-      "Onset after the drug is converted to nitric oxide"
+      "Onset <5 min, effect ~3–6 h; first-line for an acute asthma attack",
+      "Onset after about 12 hours; used alone as chronic asthma monotherapy",
+      "Effect lasts only 1–4 minutes and is given only under the tongue",
+      "Onset only after the drug is converted in vivo to nitric oxide gas"
     ],
     "answer": 0,
     "explain": "The revision sheet says beta-adrenergic agonists are the most effective drugs for relieving acute bronchospasm and are first-line for an acute asthma attack. Onset is under 5 minutes and the effect lasts about 3 to 6 hours. Examples are salbutamol (albuterol, Ventolin) and terbutaline (Bricanyl).\n練習寫 β 激動劑係緩解急性支氣管痙攣最有效，亦係急性哮喘一線。起效少過 5 分鐘，效果約 3–6 小時。例子係 salbutamol（albuterol，Ventolin）同 terbutaline（Bricanyl）。",
@@ -1455,10 +1455,10 @@ const QUESTIONS = [
     "id": "rev-laba-rule",
     "stem": "Which statement about a long-acting beta-2 agonist matches the revision notes?",
     "options": [
-      "Use it alone as the only treatment for chronic asthma",
-      "It may dilate the airway for up to about 12 hours and should be combined with a corticosteroid, not used as monotherapy",
-      "It is the antidote for heparin",
-      "It blocks histamine-1 receptors in the brain and causes sleepiness"
+      "Use it alone as the only long-term controller treatment for chronic asthma",
+      "May dilate airways ~12 h; combine with a corticosteroid, not as monotherapy",
+      "It is the specific antidote used to reverse heparin anticoagulation promptly",
+      "It blocks H1 receptors in the brain and is mainly used to treat sleepiness"
     ],
     "answer": 1,
     "explain": "A LABA is combined with a corticosteroid to prevent bronchial inflammation in chronic asthma and should never be used alone. Duration is up to about 12 hours, usually with an inhaled corticosteroid. Salmeterol, formoterol, indacaterol, and olodaterol are examples. Symbicort already contains formoterol plus budesonide.\nLABA 要配類固醇，預防慢性哮喘嘅支氣管發炎，唔可以單獨用。作用可達約 12 小時。例子有 salmeterol、formoterol、indacaterol、olodaterol。Symbicort 已經有 formoterol 加 budesonide。",
@@ -1469,10 +1469,10 @@ const QUESTIONS = [
     "id": "rev-tremor",
     "stem": "Hand tremor and muscle cramps from a beta-2 agonist are linked in the notes to an effect on which tissue?",
     "options": [
-      "Skeletal muscle",
-      "The cough centre in the medulla",
-      "Vitamin K-dependent clotting factors",
-      "Only the nasal blood vessels"
+      "Skeletal muscle (neuromuscular junction targets)",
+      "The cough centre in the medulla oblongata",
+      "Vitamin K-dependent clotting factors in the liver",
+      "Only the nasal mucosal blood vessels"
     ],
     "answer": 0,
     "explain": "Beta-2 receptors are also in skeletal muscle, so cramps and hand tremor can occur. An effect on beta-1 can cause tachycardia and palpitations. Nervousness, headache, and hyperactivity fit the fight-or-flight response.\nβ2 受體亦喺骨骼肌，所以可以抽筋同手震。影響 β1 可以心跳快、心悸。緊張、頭痛、過度活躍屬於 fight-or-flight。",
@@ -1497,10 +1497,10 @@ const QUESTIONS = [
     "id": "rev-cough-split",
     "stem": "Which matching of cough medicines agrees with the revision table?",
     "options": [
-      "Guaifenesin is a narcotic antitussive for a dry cough, and codeine is an expectorant",
-      "Codeine and dextromethorphan are used for a dry cough; guaifenesin lowers the viscosity of secretions in a productive cough",
-      "Bromhexine is a beta-1 selective blocker",
-      "Oxymetazoline is a mucolytic that breaks mucous plugs"
+      "Guaifenesin is a narcotic antitussive for dry cough; codeine is an expectorant",
+      "Codeine/dextromethorphan = dry cough; guaifenesin thins productive secretions",
+      "Bromhexine is classified as a beta-1 selective blocker used for hypertension",
+      "Oxymetazoline is a mucolytic that chemically breaks mucous plugs in the airway"
     ],
     "answer": 1,
     "explain": "Codeine and pholcodine act on the cough centre in the medulla for a dry cough. Dextromethorphan is also for a dry cough. Guaifenesin is an expectorant that reduces the viscosity of bronchial secretions. Bromhexine, ambroxol, and acetylcysteine are mucolytics. Oxymetazoline is an alpha-1 nasal spray.\nCodeine、pholcodine 作用喺延髓咳嗽中樞，用喺乾咳。Dextromethorphan 亦用喺乾咳。Guaifenesin 係袪痰藥，降低支氣管分泌物黏度。Bromhexine、ambroxol、acetylcysteine 係化痰藥。Oxymetazoline 係 α1 噴鼻藥。",
@@ -1511,10 +1511,10 @@ const QUESTIONS = [
     "id": "rev-muco",
     "stem": "Which drugs are listed as mucolytics that liquefy secretions and break up mucous plugs?",
     "options": [
-      "Bromhexine, ambroxol, and acetylcysteine",
-      "Losartan, valsartan, and azilsartan",
-      "Atenolol, metoprolol, and bisoprolol",
-      "Salbutamol and terbutaline only"
+      "Bromhexine, ambroxol, and acetylcysteine as mucus-liquefying agents",
+      "Losartan, valsartan, and azilsartan as angiotensin-receptor blockers",
+      "Atenolol, metoprolol, and bisoprolol as beta-1 selective blockers",
+      "Salbutamol and terbutaline only as short-acting beta-2 agonists"
     ],
     "answer": 0,
     "explain": "Mucolytics in the table are bromhexine (Bisolvon), ambroxol (Mucosolvan), and acetylcysteine (Fluimucil). They are for a productive cough. Listed adverse effects include dizziness, drowsiness, nausea, and vomiting.\n化痰藥：bromhexine (Bisolvon)、ambroxol (Mucosolvan)、acetylcysteine (Fluimucil)。用喺有痰咳。副作用包括頭暈、瞌睡、噁心、嘔吐。",
@@ -1525,10 +1525,10 @@ const QUESTIONS = [
     "id": "rev-alpha-oral",
     "stem": "Pseudoephedrine and phenylephrine, taken by mouth for a blocked nose, belong to which class?",
     "options": [
-      "Alpha-1 agonists that constrict nasal vessels",
-      "Beta-1 selective blockers",
-      "Vitamin K antagonists",
-      "Mucolytics"
+      "Alpha-1 agonists that constrict nasal vessels and ease congestion",
+      "Beta-1 selective blockers used mainly for rate control in angina",
+      "Vitamin K antagonists used to prevent thromboembolic stroke events",
+      "Mucolytics that liquefy secretions and break up thick mucous plugs"
     ],
     "answer": 0,
     "explain": "Oral alpha-1 agonists in the notes include ephedrine, pseudoephedrine (Sudafed), and phenylephrine (Neo-Synephrine). Nasal sprays include oxymetazoline (Afrin) and xylometazoline (Otrivin). They stimulate nasal vasoconstriction. Adverse effects include tachycardia, arrhythmias, dilated pupils, and dry mouth.\n口服 α1 激動劑包括 ephedrine、pseudoephedrine (Sudafed)、phenylephrine。噴鼻有 oxymetazoline (Afrin)、xylometazoline (Otrivin)。佢哋令鼻血管收縮。副作用包括心跳快、心律不整、瞳孔放大、口乾。",
@@ -1539,10 +1539,10 @@ const QUESTIONS = [
     "id": "rev-bph",
     "stem": "Terazosin and prazosin appear in the autonomic-nervous-system table as treatment for what?",
     "options": [
-      "Benign prostatic hyperplasia, as alpha-1 blockers",
-      "Acute asthma, as short-acting beta-2 agonists",
-      "Atrial fibrillation, as vitamin K antagonists",
-      "Insomnia, as Z-drugs"
+      "Benign prostatic hyperplasia, acting as alpha-1 blockers",
+      "Acute asthma, acting as short-acting beta-2 agonist inhalers",
+      "Atrial fibrillation, acting as vitamin K antagonist anticoagulants",
+      "Insomnia, acting as non-benzodiazepine Z-drug hypnotics only"
     ],
     "answer": 0,
     "explain": "Alpha-1 adrenergic blockers used for benign prostatic hyperplasia are terazosin (Hytrin) and prazosin (Minipress). They sit on the 'block sympathetic' side of the table, with beta blockers such as atenolol and metoprolol on the cardiac side.\nα1 阻斷劑 terazosin (Hytrin)、prazosin (Minipress) 用嚟治良性前列腺增生。佢哋喺表入面「阻斷交感」嗰邊；心臟例子係 atenolol、metoprolol 呢類 β 阻斷劑。",
@@ -1625,42 +1625,40 @@ var CALC_TEMPLATES = [
     id: "calc-pump-mcg",
     mid: true,
     gen: function () {
-      // A. IV pump mcg/kg/min → mL/hr
-      var rate = calcPick([2, 3, 4, 5, 6, 7, 8, 10]); // mcg/kg/min
-      var wt = calcPick([50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100]); // kg
-      var bagVol = calcPick([250, 500]); // mL
-      var drugMg = calcPick([250, 500, 1000]); // mg in bag
-      // Prefer combinations that give a clean-ish pump rate
+      var rate = calcPick([2, 3, 4, 5, 6, 7, 8, 10]);
+      var wt = calcPick([50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100]);
+      var bagVol = calcPick([250, 500]);
+      var drugMg = calcPick([250, 500, 1000]);
       var mcgPerMin = rate * wt;
       var mgPerHr = (mcgPerMin * 60) / 1000;
-      var conc = drugMg / bagVol; // mg/mL
-      var pump = mgPerHr / conc; // mL/hr
+      var conc = drugMg / bagVol;
+      var pump = mgPerHr / conc;
       var correct = calcRoundDose(pump);
-      // Distractors: forget weight; forget ×60; treat mcg as mg; wrong concentration
-      var d1 = calcRoundDose((rate * 60) / 1000 / conc); // forgot weight
-      var d2 = calcRoundDose((mcgPerMin) / 1000 / conc); // forgot ×60 (mg/min not mg/hr)
-      var d3 = calcRoundDose(mgPerHr / (drugMg / (bagVol === 250 ? 500 : 250))); // wrong bag vol
-      var d4 = calcRoundDose((mcgPerMin * 60) / conc); // forgot mcg→mg (/1000)
-      var d5 = calcRoundDose(mgPerHr * conc);
-      var d6 = calcRoundDose(pump * 10);
-      var d7 = calcRoundDose(pump / 10);
+      // Closer distractors: rate±1; forgot weight; forgot ×60; off-by-factor 2
+      var dForgotWt = calcRoundDose((rate * 60) / 1000 / conc);
+      var dForgot60 = calcRoundDose(mcgPerMin / 1000 / conc);
+      var dRatePlus = calcRoundDose((((rate + 1) * wt * 60) / 1000) / conc);
+      var dRateMinus = calcRoundDose((((Math.max(1, rate - 1)) * wt * 60) / 1000) / conc);
+      var dHalf = calcRoundDose(pump / 2);
+      var dDouble = calcRoundDose(pump * 2);
+      var dWrongBag = calcRoundDose(mgPerHr / (drugMg / (bagVol === 250 ? 500 : 250)));
       var correctLabel = calcFmt(correct, "mL/h");
       var built = calcBuildOpts(correctLabel, [
-        calcFmt(d1, "mL/h"),
-        calcFmt(d2, "mL/h"),
-        calcFmt(d3, "mL/h"),
-        calcFmt(d4, "mL/h"),
-        calcFmt(d5, "mL/h"),
-        calcFmt(d6, "mL/h"),
-        calcFmt(d7, "mL/h")
+        calcFmt(dForgotWt, "mL/h"),
+        calcFmt(dForgot60, "mL/h"),
+        calcFmt(dRatePlus, "mL/h"),
+        calcFmt(dRateMinus, "mL/h"),
+        calcFmt(dHalf, "mL/h"),
+        calcFmt(dDouble, "mL/h"),
+        calcFmt(dWrongBag, "mL/h"),
+        calcFmt(calcRoundDose(correct + 0.5), "mL/h"),
+        calcFmt(calcRoundDose(Math.max(0.1, correct - 0.5)), "mL/h")
       ]);
-      // Retry if distractors collapsed to same as correct
       if (built.options.filter(function (x, i, a) { return a.indexOf(x) === i; }).length < 4) {
         built = calcBuildOpts(correctLabel, [
-          calcFmt(correct * 2, "mL/h"),
-          calcFmt(correct / 2 || 0.1, "mL/h"),
-          calcFmt(correct + 1, "mL/h"),
-          calcFmt(Math.max(0.1, correct - 1), "mL/h")
+          calcFmt(calcRoundDose(correct * 1.2), "mL/h"),
+          calcFmt(calcRoundDose(correct * 0.8), "mL/h"),
+          calcFmt(calcRoundDose(correct + 1), "mL/h")
         ]);
       }
       var drugName = drugMg >= 1000 ? "dobutamine" : "Drug A";
@@ -1675,43 +1673,39 @@ var CALC_TEMPLATES = [
         " mL/h.\n需要量：" + rate + "×" + wt + "＝" + mcgPerMin + " mcg/min＝" + calcFmt(mgPerHr) +
         " mg/h。濃度：" + drugMg + " mg／" + bagVol + " mL＝" + calcFmt(conc) +
         " mg/mL。泵速＝" + calcFmt(mgPerHr) + "÷" + calcFmt(conc) + "＝" + calcFmt(correct) + " mL/h。";
-      return {
-        id: "calc-pump-mcg",
-        stem: stem,
-        options: built.options,
-        answer: built.answer,
-        explain: explain,
-        source: "rewritten (calculation)",
-        mid: true
-      };
+      return { id: "calc-pump-mcg", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "rewritten (calculation)", mid: true };
     }
   },
   {
     id: "calc-drip-rate",
     mid: true,
     gen: function () {
-      // B. Gravity drip rate
       var vol = calcPick([100, 250, 500, 1000]);
       var hours = calcPick([1, 2, 3, 4, 5, 6, 8, 10]);
       var factor = calcPick([10, 15, 20, 60]);
       var mins = hours * 60;
       var raw = (vol * factor) / mins;
       var correct = Math.round(raw);
-      var d1 = Math.round((vol * factor) / hours); // used hours not minutes
-      var d2 = Math.round(vol / mins * factor * 2);
-      var d3 = Math.round((vol * factor) / (hours * 60 * 2));
-      var d4 = Math.floor(raw); // truncate
-      var d5 = Math.round(vol * factor / 60); // forgot hours entirely partially
-      var d6 = Math.round((vol / factor) * mins / 60);
+      // Closer: used hours not minutes; off-by-one round; wrong factor neighbor; ±2 drops
+      var dHours = Math.round((vol * factor) / hours);
+      var dFloor = Math.floor(raw);
+      if (dFloor === correct) dFloor = correct - 1;
+      var dCeil = Math.ceil(raw);
+      if (dCeil === correct) dCeil = correct + 1;
+      var altFactor = factor === 15 ? 10 : (factor === 10 ? 15 : (factor === 20 ? 15 : 20));
+      var dWrongF = Math.round((vol * altFactor) / mins);
+      var dPlus2 = Math.max(1, correct + 2);
+      var dMinus2 = Math.max(1, correct - 2);
       var correctLabel = calcFmtWhole(correct, "drops/min");
       var built = calcBuildOpts(correctLabel, [
-        calcFmtWhole(d1, "drops/min"),
-        calcFmtWhole(d2, "drops/min"),
-        calcFmtWhole(d3 || 1, "drops/min"),
-        calcFmtWhole(d4 === correct ? correct + 1 : d4, "drops/min"),
-        calcFmtWhole(d5, "drops/min"),
-        calcFmtWhole(Math.max(1, correct + 5), "drops/min"),
-        calcFmtWhole(Math.max(1, correct - 3), "drops/min")
+        calcFmtWhole(dHours, "drops/min"),
+        calcFmtWhole(dFloor, "drops/min"),
+        calcFmtWhole(dCeil, "drops/min"),
+        calcFmtWhole(dWrongF, "drops/min"),
+        calcFmtWhole(dPlus2, "drops/min"),
+        calcFmtWhole(dMinus2, "drops/min"),
+        calcFmtWhole(Math.max(1, correct + 1), "drops/min"),
+        calcFmtWhole(Math.max(1, correct - 1), "drops/min")
       ]);
       var stem = vol + " mL is to run over " + hours + " hour" + (hours === 1 ? "" : "s") +
         " with a drop factor of " + factor + " drops/mL. What is the gravity drip rate, to the nearest whole drop?";
@@ -1720,30 +1714,19 @@ var CALC_TEMPLATES = [
         ") ÷ " + mins + " = " + (Math.round(raw * 100) / 100) + ", which rounds to " + correct +
         " drops/min for a gravity drip.\n滴/分鐘＝（容量 × drop factor）÷ 分鐘＝（" + vol + "×" + factor +
         "）÷" + mins + "＝" + (Math.round(raw * 100) / 100) + "，重力滴四捨五入至整數＝" + correct + " 滴/分鐘。";
-      return {
-        id: "calc-drip-rate",
-        stem: stem,
-        options: built.options,
-        answer: built.answer,
-        explain: explain,
-        source: "rewritten (calculation)",
-        mid: true
-      };
+      return { id: "calc-drip-rate", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "rewritten (calculation)", mid: true };
     }
   },
   {
     id: "calc-finish-time",
     mid: true,
     gen: function () {
-      // C. Infusion finish time
       var vol = calcPick([500, 1000]);
       var factor = calcPick([10, 15, 20]);
       var rate = calcPick([20, 25, 30, 40, 50]);
       var startH = calcPick([6, 7, 8, 9, 10, 14, 16, 20]);
       var mins = (vol * factor) / rate;
-      // Prefer clean hour finishes
       if (mins % 60 !== 0) {
-        // adjust rate to make mins divisible by 60 when possible
         var wantHours = Math.max(1, Math.round(mins / 60));
         var idealRate = (vol * factor) / (wantHours * 60);
         if (idealRate >= 10 && idealRate <= 60 && Math.abs(idealRate - Math.round(idealRate)) < 1e-9) {
@@ -1754,18 +1737,7 @@ var CALC_TEMPLATES = [
         }
       }
       var hours = mins / 60;
-      var finishH = startH + hours;
-      var correctLabel = calcPadTime(Math.round(finishH));
-      // If not near hour, format with minutes
-      var rem = mins % 60;
-      var finishMin = 0;
       var absFinish = startH * 60 + mins;
-      var fh = Math.floor(absFinish / 60) % 24;
-      var fm = Math.round(absFinish % 60);
-      correctLabel = (fh < 10 ? "0" : "") + fh + ":" + (fm < 10 ? "0" : "") + fm;
-      var alt1mins = startH * 60 + (vol * factor) / (rate * 2);
-      var alt2mins = startH * 60 + vol / rate; // forgot factor
-      var alt3mins = startH * 60 + (vol * factor) / rate / 60; // treated as hours wrongly twice
       function clockFromAbs(abs) {
         var h = Math.floor(abs / 60) % 24;
         if (h < 0) h += 24;
@@ -1773,15 +1745,15 @@ var CALC_TEMPLATES = [
         if (m === 60) { m = 0; h = (h + 1) % 24; }
         return (h < 10 ? "0" : "") + h + ":" + (m < 10 ? "0" : "") + m;
       }
-      var d1 = clockFromAbs(startH * 60 + (vol / rate) * 60); // hours = vol/rate
-      var d2 = clockFromAbs(startH * 60 + (vol * factor) / (rate * 60) * 60); // used hours = mins/60 incorrectly as if factor forgotten differently
-      var d3 = clockFromAbs(startH * 60 + mins / 2);
-      var d4 = clockFromAbs(startH * 60 + mins * 2);
-      var d5 = clockFromAbs(startH * 60 + (vol * factor) / rate); // same as correct if already minutes... wait that's correct
-      // distractor: forgot drop factor → time = vol/rate minutes
-      d5 = clockFromAbs(startH * 60 + vol / rate);
-      var d6 = clockFromAbs(startH * 60 + (vol * factor));
-      var built = calcBuildOpts(correctLabel, [d1, d2, d3, d4, d5, d6, calcPadTime(startH + 4), calcPadTime(startH + 8)]);
+      var correctLabel = clockFromAbs(absFinish);
+      // Closer distractors: ±1h, forgot factor, half time, used hours=vol/rate
+      var d1 = clockFromAbs(absFinish + 60);
+      var d2 = clockFromAbs(absFinish - 60);
+      var d3 = clockFromAbs(startH * 60 + (vol / rate) * 60);
+      var d4 = clockFromAbs(startH * 60 + mins / 2);
+      var d5 = clockFromAbs(startH * 60 + vol / rate);
+      var d6 = clockFromAbs(absFinish + 30);
+      var built = calcBuildOpts(correctLabel, [d1, d2, d3, d4, d5, d6, calcPadTime(startH + Math.round(hours)), calcPadTime(startH + Math.round(hours) + 1)]);
       var stem = "A " + vol + " mL IV infusion uses a drop factor of " + factor +
         " drops/mL and runs at " + rate + " drops/min, starting at " + calcPadTime(startH) +
         ". About when will it finish?";
@@ -1791,53 +1763,36 @@ var CALC_TEMPLATES = [
         " hours. " + calcPadTime(startH) + " plus that duration finishes at " + correctLabel +
         ".\n時間（分鐘）＝（容量 × drop factor）÷ 每分鐘滴數＝（" + vol + "×" + factor +
         "）÷" + rate + "＝" + mins + " 分鐘。由 " + calcPadTime(startH) + " 起計，約 " + correctLabel + " 完成。";
-      return {
-        id: "calc-finish-time",
-        stem: stem,
-        options: built.options,
-        answer: built.answer,
-        explain: explain,
-        source: "rewritten (calculation)",
-        mid: true
-      };
+      return { id: "calc-finish-time", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "rewritten (calculation)", mid: true };
     }
   },
   {
     id: "calc-lb-kg",
     mid: true,
     gen: function () {
-      // D. lb → kg
       var lb = calcPick([40, 44, 50, 55, 60, 66, 70, 80, 88, 100, 110, 120, 132, 150, 176]);
       var kg = lb / 2.2;
       var correctLabel = calcFmtKg(kg);
-      var d1 = (Math.round(lb * 10) / 10).toFixed(1) + " kg"; // treat lb as kg
-      var d2 = calcFmtKg(lb * 2.2); // multiplied
-      var d3 = calcFmtKg(lb / 2);
-      var d4 = calcFmtKg(lb / 2.2 * 10);
-      var d5 = String(Math.round(kg)) + " kg"; // wrong rounding to whole
-      if (d5 === correctLabel) d5 = calcFmtKg(kg + 1);
-      var built = calcBuildOpts(correctLabel, [d1, d2, d3, d4, d5, calcFmtKg(kg + 5), calcFmtKg(Math.max(1, kg - 3))]);
+      // Closer: ÷2, ÷2.2±rounding, treat as kg, ×2.2 too big kept but also nearby
+      var dDiv2 = calcFmtKg(lb / 2);
+      var dRoundUp = calcFmtKg(kg + 0.5);
+      var dRoundDown = calcFmtKg(Math.max(0.1, kg - 0.5));
+      var dAsKg = (Math.round(lb * 10) / 10).toFixed(1) + " kg";
+      var dMul = calcFmtKg(lb * 2.2);
+      var dNear = calcFmtKg(kg + 1);
+      var built = calcBuildOpts(correctLabel, [dDiv2, dRoundUp, dRoundDown, dAsKg, dMul, dNear, calcFmtKg(Math.max(0.1, kg - 1))]);
       var stem = "A patient weighs " + lb + " lb. About how many kilograms is that?";
       var explain =
         "1 kg = 2.2 lb, so " + lb + " ÷ 2.2 ≈ " + (Math.round(kg * 10) / 10).toFixed(1) +
         " kg. Do not treat pounds as kilograms, and do not multiply by 2.2.\n1 kg＝2.2 lb，所以 " +
         lb + "÷2.2≈" + (Math.round(kg * 10) / 10).toFixed(1) + " kg。唔好將磅直接當公斤，亦唔好乘 2.2。";
-      return {
-        id: "calc-lb-kg",
-        stem: stem,
-        options: built.options,
-        answer: built.answer,
-        explain: explain,
-        source: "rewritten (calculation)",
-        mid: true
-      };
+      return { id: "calc-lb-kg", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "rewritten (calculation)", mid: true };
     }
   },
   {
     id: "calc-mgkg-split",
     mid: true,
     gen: function () {
-      // E. mg/kg/day split doses (weight in lb → kg, then per dose)
       var lb = calcPick([40, 44, 50, 55, 60, 66, 70, 88]);
       var kg = lb / 2.2;
       var mgPerKgDay = calcPick([20, 40, 50, 75, 100]);
@@ -1850,17 +1805,19 @@ var CALC_TEMPLATES = [
       var perDose = daily / freq.n;
       var correct = calcRoundDose(perDose);
       var correctLabel = calcFmt(correct, "mg per dose");
-      var dForgotLb = calcRoundDose((lb * mgPerKgDay) / freq.n); // used lb as kg
-      var dDaily = calcRoundDose(daily); // gave daily not per dose
-      var dWrongFreq = calcRoundDose(daily / (freq.n === 4 ? 3 : 4));
-      var dNoWt = calcRoundDose(mgPerKgDay / freq.n);
+      var dForgotLb = calcRoundDose((lb * mgPerKgDay) / freq.n);
+      var dDaily = calcRoundDose(daily);
+      var dWrongFreq = calcRoundDose(daily / (freq.n === 4 ? 3 : (freq.n === 3 ? 2 : 4)));
+      var dNear = calcRoundDose(perDose + (perDose >= 10 ? 5 : 1));
+      var dNear2 = calcRoundDose(Math.max(0.1, perDose - (perDose >= 10 ? 5 : 1)));
       var built = calcBuildOpts(correctLabel, [
         calcFmt(dForgotLb, "mg per dose"),
         calcFmt(dDaily, "mg per dose"),
         calcFmt(dWrongFreq, "mg per dose"),
-        calcFmt(dNoWt, "mg per dose"),
-        calcFmt(calcRoundDose(perDose * 2), "mg per dose"),
-        calcFmt(calcRoundDose(Math.max(0.1, perDose / 2)), "mg per dose")
+        calcFmt(dNear, "mg per dose"),
+        calcFmt(dNear2, "mg per dose"),
+        calcFmt(calcRoundDose(perDose * 1.25), "mg per dose"),
+        calcFmt(calcRoundDose(perDose * 0.75), "mg per dose")
       ]);
       var stem = "Drug A is ordered at " + mgPerKgDay + " mg/kg/day " + freq.label +
         ". The patient weighs " + lb + " lb. About how many milligrams should be given per dose?";
@@ -1871,34 +1828,25 @@ var CALC_TEMPLATES = [
         " doses/day → ≈ " + calcFmt(correct) + " mg per dose.\n體重：" + lb + "÷2.2≈" +
         (Math.round(kg * 10) / 10).toFixed(1) + " kg。全日≈" + calcFmt(daily) + " mg；" +
         freq.label + "＝一日 " + freq.n + " 次 → 每次約 " + calcFmt(correct) + " mg。";
-      return {
-        id: "calc-mgkg-split",
-        stem: stem,
-        options: built.options,
-        answer: built.answer,
-        explain: explain,
-        source: "rewritten (calculation)",
-        mid: true
-      };
+      return { id: "calc-mgkg-split", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "rewritten (calculation)", mid: true };
     }
   },
   {
     id: "calc-halflife",
     mid: true,
     gen: function () {
-      // F. Half-life remaining
       var dose = calcPick([10, 16, 20, 40, 80, 100]);
       var tHalf = calcPick([2, 4, 6, 8, 12]);
       var n = calcPick([1, 2, 3, 4, 5]);
       var remain = dose / Math.pow(2, n);
       var correct = calcRoundDose(remain);
       var correctLabel = calcFmt(correct, "mg");
-      var d1 = calcFmt(calcRoundDose(dose / Math.pow(2, n - 1 || 1)), "mg"); // one less HL
-      var d2 = calcFmt(calcRoundDose(dose / Math.pow(2, Math.min(5, n + 1))), "mg");
-      var d3 = calcFmt(calcRoundDose(dose * (n / 10)), "mg");
-      var d4 = calcFmt(calcRoundDose(dose / n), "mg");
-      var d5 = calcFmt(calcRoundDose(dose / 2), "mg"); // only one HL
-      var built = calcBuildOpts(correctLabel, [d1, d2, d3, d4, d5, calcFmt(dose, "mg")]);
+      var d1 = calcFmt(calcRoundDose(dose / Math.pow(2, Math.max(1, n - 1))), "mg");
+      var d2 = calcFmt(calcRoundDose(dose / Math.pow(2, Math.min(6, n + 1))), "mg");
+      var d3 = calcFmt(calcRoundDose(dose / 2), "mg");
+      var d4 = calcFmt(calcRoundDose(remain * 1.5), "mg");
+      var d5 = calcFmt(calcRoundDose(Math.max(0.01, remain * 0.5)), "mg");
+      var built = calcBuildOpts(correctLabel, [d1, d2, d3, d4, d5, calcFmt(calcRoundDose(dose / n), "mg")]);
       var hours = tHalf * n;
       var pct = 100 / Math.pow(2, n);
       var stem = "Drug A has a half-life of " + tHalf + " hours and a single " + dose +
@@ -1908,37 +1856,28 @@ var CALC_TEMPLATES = [
         " half-life(s) → remaining ≈ " + dose + " × (1/2)^" + n + " = " + calcFmt(correct) +
         " mg (about " + (Math.round(pct * 1000) / 1000) + "%).\n每過一個 t½ 剩一半。" + hours +
         " 小時＝" + n + " 個半衰期 → 約剩 " + calcFmt(correct) + " mg。";
-      return {
-        id: "calc-halflife",
-        stem: stem,
-        options: built.options,
-        answer: built.answer,
-        explain: explain,
-        source: "rewritten (calculation)",
-        mid: true
-      };
+      return { id: "calc-halflife", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "rewritten (calculation)", mid: true };
     }
   },
   {
     id: "calc-unit-convert",
     mid: true,
     gen: function () {
-      // G. Unit conversion mg↔mcg or g↔mg
       var kind = calcPick(["mg2mcg", "mcg2mg", "g2mg", "mg2g"]);
       var stem, correctLabel, explain, distractors;
       if (kind === "mg2mcg") {
         var mg = calcPick([0.25, 0.5, 1, 2, 2.5, 5, 10, 25, 50, 100]);
         var mcg = mg * 1000;
         correctLabel = calcFmt(mcg, "mcg");
-        // For large whole numbers use whole
         if (mcg >= 1 && Math.abs(mcg - Math.round(mcg)) < 1e-9) correctLabel = Math.round(mcg) + " mcg";
+        // Closer: ×100, ×10, /10 of correct, same number wrong unit sense
         distractors = [
-          (mg / 1000) + " mcg",
-          (mg * 100) + " mcg",
-          (mg * 10) + " mcg",
-          mg + " mcg",
-          (mg * 10000) + " mcg"
-        ].map(String);
+          calcFmt(mg * 100, "mcg"),
+          calcFmt(mg * 10, "mcg"),
+          calcFmt(mcg / 10, "mcg"),
+          calcFmt(mcg * 10, "mcg"),
+          String(mg) + " mcg"
+        ];
         stem = "A dose of " + mg + " mg equals how many micrograms (mcg)?";
         explain = "1 mg = 1000 mcg, so " + mg + " × 1000 = " + (mg * 1000) +
           " mcg. A common error is dividing by 1000 or using ×100.\n1 mg＝1000 mcg，所以 " +
@@ -1948,10 +1887,11 @@ var CALC_TEMPLATES = [
         var mg2 = mcg2 / 1000;
         correctLabel = calcFmt(mg2, "mg");
         distractors = [
-          calcFmt(mcg2 * 1000, "mg"),
           calcFmt(mcg2 / 100, "mg"),
-          calcFmt(mcg2, "mg"),
-          calcFmt(mcg2 / 10, "mg")
+          calcFmt(mcg2 / 10, "mg"),
+          calcFmt(mg2 * 10, "mg"),
+          calcFmt(mg2 / 10, "mg"),
+          calcFmt(mcg2, "mg")
         ];
         stem = "A dose of " + mcg2 + " mcg equals how many milligrams (mg)?";
         explain = "1 mg = 1000 mcg, so " + mcg2 + " ÷ 1000 = " + calcFmt(mg2) +
@@ -1961,9 +1901,10 @@ var CALC_TEMPLATES = [
         var mg3 = g * 1000;
         correctLabel = (Math.abs(mg3 - Math.round(mg3)) < 1e-9 ? String(Math.round(mg3)) : calcFmt(mg3)) + " mg";
         distractors = [
-          (g / 1000) + " mg",
           (g * 100) + " mg",
           (g * 10) + " mg",
+          (mg3 / 10) + " mg",
+          (mg3 * 10) + " mg",
           g + " mg"
         ].map(String);
         stem = "A vial labelled " + g + " g contains how many milligrams?";
@@ -1974,47 +1915,38 @@ var CALC_TEMPLATES = [
         var g2 = mg4 / 1000;
         correctLabel = calcFmt(g2, "g");
         distractors = [
-          calcFmt(mg4 * 1000, "g"),
           calcFmt(mg4 / 100, "g"),
-          calcFmt(mg4, "g"),
-          calcFmt(mg4 / 10, "g")
+          calcFmt(mg4 / 10, "g"),
+          calcFmt(g2 * 10, "g"),
+          calcFmt(g2 / 10, "g"),
+          calcFmt(mg4, "g")
         ];
         stem = "How many grams is " + mg4 + " mg?";
         explain = "1 g = 1000 mg, so " + mg4 + " ÷ 1000 = " + calcFmt(g2) +
           " g.\n1 g＝1000 mg，所以 " + mg4 + "÷1000＝" + calcFmt(g2) + " g。";
       }
-      var built = calcBuildOpts(correctLabel, distractors.concat([
-        "0.001 mg", "10000 mcg", "0.5 g", "2500 mg"
-      ]));
-      return {
-        id: "calc-unit-convert",
-        stem: stem,
-        options: built.options,
-        answer: built.answer,
-        explain: explain,
-        source: "rewritten (calculation)",
-        mid: true
-      };
+      var built = calcBuildOpts(correctLabel, distractors);
+      return { id: "calc-unit-convert", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "rewritten (calculation)", mid: true };
     }
   },
   {
     id: "calc-vanco-min",
     mid: true,
     gen: function () {
-      // H. Vancomycin min volume and/or min time
       var dose = calcPick([500, 750, 1000, 1250, 1500]);
       var mode = calcPick(["volume", "time", "both-time", "both-vol"]);
-      var minVol = dose / 5; // mL at 5 mg/mL
-      var minMin = dose / 10; // minutes at 10 mg/min
+      var minVol = dose / 5;
+      var minMin = dose / 10;
       var stem, correctLabel, explain, distractors;
       if (mode === "volume" || mode === "both-vol") {
         correctLabel = calcFmt(minVol, "mL");
         if (minVol >= 1 && Math.abs(minVol - Math.round(minVol)) < 1e-9) correctLabel = Math.round(minVol) + " mL";
         distractors = [
           calcFmt(dose / 10, "mL"),
-          calcFmt(dose / 5 / 2, "mL"),
-          calcFmt(dose * 5, "mL"),
-          calcFmt(dose / 10 * 60, "mL"),
+          calcFmt(minVol / 2, "mL"),
+          calcFmt(minVol * 2, "mL"),
+          calcFmt(dose / 5 + 50, "mL"),
+          calcFmt(Math.max(1, minVol - 50), "mL"),
           Math.round(minMin) + " mL"
         ];
         stem = "Vancomycin " + dose + " mg IV is ordered. Using a maximum concentration of 5 mg/mL, what is the minimum infusion volume?";
@@ -2026,11 +1958,11 @@ var CALC_TEMPLATES = [
         correctLabel = Math.round(minMin) + " min";
         distractors = [
           Math.round(minVol) + " min",
-          Math.round(dose / 5) + " min",
-          Math.round(dose / 10 * 60) + " min",
-          Math.round(dose / 20) + " min",
           Math.round(minMin / 2) + " min",
-          Math.round(minMin * 2) + " min"
+          Math.round(minMin * 2) + " min",
+          Math.round(dose / 20) + " min",
+          Math.round(minMin + 15) + " min",
+          Math.round(Math.max(1, minMin - 15)) + " min"
         ];
         stem = "Vancomycin " + dose + " mg IV is ordered. Infusion must not exceed 10 mg/min. What is the minimum infusion time?";
         explain =
@@ -2039,48 +1971,30 @@ var CALC_TEMPLATES = [
           dose + "÷10＝" + calcFmt(minMin) + " 分鐘。（濃度亦 ≤5 mg/mL。）";
       }
       var built = calcBuildOpts(correctLabel, distractors);
-      return {
-        id: "calc-vanco-min",
-        stem: stem,
-        options: built.options,
-        answer: built.answer,
-        explain: explain,
-        source: "tutorial (calculation)",
-        mid: true
-      };
+      return { id: "calc-vanco-min", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "tutorial (calculation)", mid: true };
     }
   },
   {
     id: "calc-draw-volume",
     mid: true,
     gen: function () {
-      // Extra: Want × In / Got — volume to draw from a concentration
-      var want = calcPick([125, 250, 500, 750, 1000]); // mg wanted
-      var conc = calcPick([50, 100, 125, 250]); // mg/mL
-      // Ensure clean-ish answer
+      var want = calcPick([125, 250, 500, 750, 1000]);
+      var conc = calcPick([50, 100, 125, 250]);
       var raw = want / conc;
       var correct = calcRoundDose(raw);
       var correctLabel = calcFmt(correct, "mL");
-      var d1 = calcFmt(calcRoundDose(want * conc), "mL");
-      var d2 = calcFmt(calcRoundDose(conc / want), "mL");
-      var d3 = calcFmt(calcRoundDose(want / (conc * 10)), "mL");
-      var d4 = calcFmt(calcRoundDose(want / (conc / 10)), "mL");
-      var built = calcBuildOpts(correctLabel, [d1, d2, d3, d4, calcFmt(calcRoundDose(correct * 2), "mL"), calcFmt(calcRoundDose(Math.max(0.01, correct / 2)), "mL")]);
+      var d1 = calcFmt(calcRoundDose(want / (conc * 2)), "mL");
+      var d2 = calcFmt(calcRoundDose(want / (conc / 2)), "mL");
+      var d3 = calcFmt(calcRoundDose(correct + (correct >= 2 ? 1 : 0.5)), "mL");
+      var d4 = calcFmt(calcRoundDose(Math.max(0.01, correct - (correct >= 2 ? 1 : 0.5))), "mL");
+      var d5 = calcFmt(calcRoundDose(want / (conc + 25)), "mL");
+      var built = calcBuildOpts(correctLabel, [d1, d2, d3, d4, d5, calcFmt(calcRoundDose(correct * 1.5), "mL")]);
       var stem = "You need to give " + want + " mg of Drug A. The vial concentration is " + conc +
         " mg/mL. How many millilitres should you draw up?";
       var explain =
         "Volume = Want ÷ concentration = " + want + " mg ÷ " + conc + " mg/mL = " +
-        calcFmt(correct) + " mL (lecture rounding: volumes >1 → 1 d.p.; <1 → 2 d.p.).\n容量＝需要量÷濃度＝" +
-        want + "÷" + conc + "＝" + calcFmt(correct) + " mL（講義：>1 一位小數；<1 兩位小數）。";
-      return {
-        id: "calc-draw-volume",
-        stem: stem,
-        options: built.options,
-        answer: built.answer,
-        explain: explain,
-        source: "rewritten (calculation)",
-        mid: true
-      };
+        calcFmt(correct) + " mL.\n抽取體積＝需要量÷濃度＝" + want + "÷" + conc + "＝" + calcFmt(correct) + " mL。";
+      return { id: "calc-draw-volume", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "rewritten (calculation)", mid: true };
     }
   }
 ];
