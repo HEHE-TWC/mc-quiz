@@ -140,7 +140,7 @@
   <header>
     <div class="kicker">Tung Wah College · Pharmacology</div>
     <h1>NUR2047 Pharmacology MCQs</h1>
-    <p class="sub">Press Start for one random four-option question. After you answer, you see whether it is right, a short explanation, and the source.</p>
+    <p class="sub">Press Start for one random four-option question (calculation items use fresh numbers each draw). After you answer, you see whether it is right, a short explanation, and the source.</p>
   </header>
   <div class="bar">
     <label class="toggle">Subject
@@ -1551,6 +1551,541 @@ const QUESTIONS = [
   }
 ];
 
+/* Random calculation templates — regenerated on every Start/Next draw. Midterm only. */
+function calcPick(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+function calcRandInt(lo, hi) {
+  return lo + Math.floor(Math.random() * (hi - lo + 1));
+}
+function calcRoundDose(n) {
+  if (!isFinite(n)) return n;
+  if (Math.abs(n) >= 1) return Math.round(n * 10) / 10;
+  return Math.round(n * 100) / 100;
+}
+function calcFmt(n, unit) {
+  var v = calcRoundDose(n);
+  var s;
+  if (Math.abs(v) >= 1) {
+    if (Math.abs(v - Math.round(v)) < 1e-9) s = String(Math.round(v));
+    else s = (Math.round(v * 10) / 10).toFixed(1);
+  } else {
+    s = (Math.round(v * 100) / 100).toFixed(2);
+  }
+  return unit ? (s + " " + unit) : s;
+}
+function calcBuildOpts(correctLabel, distractors) {
+  var pool = [];
+  var seen = Object.create(null);
+  function push(lab) {
+    if (lab == null) return;
+    var k = String(lab).trim();
+    if (!k || seen[k]) return;
+    seen[k] = true;
+    pool.push(String(lab));
+  }
+  push(correctLabel);
+  distractors.forEach(push);
+  var guard = 0;
+  while (pool.length < 4 && guard < 50) {
+    guard++;
+    push("—");
+  }
+  // shuffle keeping track of correct
+  for (var i = pool.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = pool[i]; pool[i] = pool[j]; pool[j] = t;
+  }
+  var options = pool.slice(0, 4);
+  var answer = options.indexOf(String(correctLabel));
+  if (answer < 0) {
+    options[0] = String(correctLabel);
+    answer = 0;
+  }
+  return { options: options, answer: answer };
+}
+
+function calcFmtWhole(n, unit) {
+  var s = String(Math.round(n));
+  return unit ? (s + " " + unit) : s;
+}
+
+function calcFmtKg(n) {
+  return (Math.round(n * 10) / 10).toFixed(1) + " kg";
+}
+
+function calcPadTime(h) {
+  var hh = ((h % 24) + 24) % 24;
+  var s = (hh < 10 ? "0" : "") + hh + ":00";
+  return s;
+}
+
+var CALC_TEMPLATES = [
+  {
+    id: "calc-pump-mcg",
+    mid: true,
+    gen: function () {
+      // A. IV pump mcg/kg/min → mL/hr
+      var rate = calcPick([2, 3, 4, 5, 6, 7, 8, 10]); // mcg/kg/min
+      var wt = calcPick([50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100]); // kg
+      var bagVol = calcPick([250, 500]); // mL
+      var drugMg = calcPick([250, 500, 1000]); // mg in bag
+      // Prefer combinations that give a clean-ish pump rate
+      var mcgPerMin = rate * wt;
+      var mgPerHr = (mcgPerMin * 60) / 1000;
+      var conc = drugMg / bagVol; // mg/mL
+      var pump = mgPerHr / conc; // mL/hr
+      var correct = calcRoundDose(pump);
+      // Distractors: forget weight; forget ×60; treat mcg as mg; wrong concentration
+      var d1 = calcRoundDose((rate * 60) / 1000 / conc); // forgot weight
+      var d2 = calcRoundDose((mcgPerMin) / 1000 / conc); // forgot ×60 (mg/min not mg/hr)
+      var d3 = calcRoundDose(mgPerHr / (drugMg / (bagVol === 250 ? 500 : 250))); // wrong bag vol
+      var d4 = calcRoundDose((mcgPerMin * 60) / conc); // forgot mcg→mg (/1000)
+      var d5 = calcRoundDose(mgPerHr * conc);
+      var d6 = calcRoundDose(pump * 10);
+      var d7 = calcRoundDose(pump / 10);
+      var correctLabel = calcFmt(correct, "mL/h");
+      var built = calcBuildOpts(correctLabel, [
+        calcFmt(d1, "mL/h"),
+        calcFmt(d2, "mL/h"),
+        calcFmt(d3, "mL/h"),
+        calcFmt(d4, "mL/h"),
+        calcFmt(d5, "mL/h"),
+        calcFmt(d6, "mL/h"),
+        calcFmt(d7, "mL/h")
+      ]);
+      // Retry if distractors collapsed to same as correct
+      if (built.options.filter(function (x, i, a) { return a.indexOf(x) === i; }).length < 4) {
+        built = calcBuildOpts(correctLabel, [
+          calcFmt(correct * 2, "mL/h"),
+          calcFmt(correct / 2 || 0.1, "mL/h"),
+          calcFmt(correct + 1, "mL/h"),
+          calcFmt(Math.max(0.1, correct - 1), "mL/h")
+        ]);
+      }
+      var drugName = drugMg >= 1000 ? "dobutamine" : "Drug A";
+      var stem = (drugName === "dobutamine" ? "Dobutamine" : "Drug A") +
+        " is ordered at " + rate + " mcg/kg/min IV. The patient weighs " + wt +
+        " kg. The bag is " + drugMg + " mg in " + bagVol +
+        " mL. What infusion-pump rate should be set?";
+      var explain =
+        "Dose: " + rate + " × " + wt + " = " + mcgPerMin + " mcg/min = " + calcFmt(mgPerHr) +
+        " mg/h. Concentration: " + drugMg + " mg / " + bagVol + " mL = " + calcFmt(conc) +
+        " mg/mL. Pump = " + calcFmt(mgPerHr) + " ÷ " + calcFmt(conc) + " = " + calcFmt(correct) +
+        " mL/h.\n需要量：" + rate + "×" + wt + "＝" + mcgPerMin + " mcg/min＝" + calcFmt(mgPerHr) +
+        " mg/h。濃度：" + drugMg + " mg／" + bagVol + " mL＝" + calcFmt(conc) +
+        " mg/mL。泵速＝" + calcFmt(mgPerHr) + "÷" + calcFmt(conc) + "＝" + calcFmt(correct) + " mL/h。";
+      return {
+        id: "calc-pump-mcg",
+        stem: stem,
+        options: built.options,
+        answer: built.answer,
+        explain: explain,
+        source: "rewritten (calculation)",
+        mid: true
+      };
+    }
+  },
+  {
+    id: "calc-drip-rate",
+    mid: true,
+    gen: function () {
+      // B. Gravity drip rate
+      var vol = calcPick([100, 250, 500, 1000]);
+      var hours = calcPick([1, 2, 3, 4, 5, 6, 8, 10]);
+      var factor = calcPick([10, 15, 20, 60]);
+      var mins = hours * 60;
+      var raw = (vol * factor) / mins;
+      var correct = Math.round(raw);
+      var d1 = Math.round((vol * factor) / hours); // used hours not minutes
+      var d2 = Math.round(vol / mins * factor * 2);
+      var d3 = Math.round((vol * factor) / (hours * 60 * 2));
+      var d4 = Math.floor(raw); // truncate
+      var d5 = Math.round(vol * factor / 60); // forgot hours entirely partially
+      var d6 = Math.round((vol / factor) * mins / 60);
+      var correctLabel = calcFmtWhole(correct, "drops/min");
+      var built = calcBuildOpts(correctLabel, [
+        calcFmtWhole(d1, "drops/min"),
+        calcFmtWhole(d2, "drops/min"),
+        calcFmtWhole(d3 || 1, "drops/min"),
+        calcFmtWhole(d4 === correct ? correct + 1 : d4, "drops/min"),
+        calcFmtWhole(d5, "drops/min"),
+        calcFmtWhole(Math.max(1, correct + 5), "drops/min"),
+        calcFmtWhole(Math.max(1, correct - 3), "drops/min")
+      ]);
+      var stem = vol + " mL is to run over " + hours + " hour" + (hours === 1 ? "" : "s") +
+        " with a drop factor of " + factor + " drops/mL. What is the gravity drip rate, to the nearest whole drop?";
+      var explain =
+        "Drops/min = (volume × drop factor) ÷ time in minutes = (" + vol + " × " + factor +
+        ") ÷ " + mins + " = " + (Math.round(raw * 100) / 100) + ", which rounds to " + correct +
+        " drops/min for a gravity drip.\n滴/分鐘＝（容量 × drop factor）÷ 分鐘＝（" + vol + "×" + factor +
+        "）÷" + mins + "＝" + (Math.round(raw * 100) / 100) + "，重力滴四捨五入至整數＝" + correct + " 滴/分鐘。";
+      return {
+        id: "calc-drip-rate",
+        stem: stem,
+        options: built.options,
+        answer: built.answer,
+        explain: explain,
+        source: "rewritten (calculation)",
+        mid: true
+      };
+    }
+  },
+  {
+    id: "calc-finish-time",
+    mid: true,
+    gen: function () {
+      // C. Infusion finish time
+      var vol = calcPick([500, 1000]);
+      var factor = calcPick([10, 15, 20]);
+      var rate = calcPick([20, 25, 30, 40, 50]);
+      var startH = calcPick([6, 7, 8, 9, 10, 14, 16, 20]);
+      var mins = (vol * factor) / rate;
+      // Prefer clean hour finishes
+      if (mins % 60 !== 0) {
+        // adjust rate to make mins divisible by 60 when possible
+        var wantHours = Math.max(1, Math.round(mins / 60));
+        var idealRate = (vol * factor) / (wantHours * 60);
+        if (idealRate >= 10 && idealRate <= 60 && Math.abs(idealRate - Math.round(idealRate)) < 1e-9) {
+          rate = Math.round(idealRate);
+          mins = wantHours * 60;
+        } else {
+          mins = Math.round(mins);
+        }
+      }
+      var hours = mins / 60;
+      var finishH = startH + hours;
+      var correctLabel = calcPadTime(Math.round(finishH));
+      // If not near hour, format with minutes
+      var rem = mins % 60;
+      var finishMin = 0;
+      var absFinish = startH * 60 + mins;
+      var fh = Math.floor(absFinish / 60) % 24;
+      var fm = Math.round(absFinish % 60);
+      correctLabel = (fh < 10 ? "0" : "") + fh + ":" + (fm < 10 ? "0" : "") + fm;
+      var alt1mins = startH * 60 + (vol * factor) / (rate * 2);
+      var alt2mins = startH * 60 + vol / rate; // forgot factor
+      var alt3mins = startH * 60 + (vol * factor) / rate / 60; // treated as hours wrongly twice
+      function clockFromAbs(abs) {
+        var h = Math.floor(abs / 60) % 24;
+        if (h < 0) h += 24;
+        var m = Math.round(abs % 60);
+        if (m === 60) { m = 0; h = (h + 1) % 24; }
+        return (h < 10 ? "0" : "") + h + ":" + (m < 10 ? "0" : "") + m;
+      }
+      var d1 = clockFromAbs(startH * 60 + (vol / rate) * 60); // hours = vol/rate
+      var d2 = clockFromAbs(startH * 60 + (vol * factor) / (rate * 60) * 60); // used hours = mins/60 incorrectly as if factor forgotten differently
+      var d3 = clockFromAbs(startH * 60 + mins / 2);
+      var d4 = clockFromAbs(startH * 60 + mins * 2);
+      var d5 = clockFromAbs(startH * 60 + (vol * factor) / rate); // same as correct if already minutes... wait that's correct
+      // distractor: forgot drop factor → time = vol/rate minutes
+      d5 = clockFromAbs(startH * 60 + vol / rate);
+      var d6 = clockFromAbs(startH * 60 + (vol * factor));
+      var built = calcBuildOpts(correctLabel, [d1, d2, d3, d4, d5, d6, calcPadTime(startH + 4), calcPadTime(startH + 8)]);
+      var stem = "A " + vol + " mL IV infusion uses a drop factor of " + factor +
+        " drops/mL and runs at " + rate + " drops/min, starting at " + calcPadTime(startH) +
+        ". About when will it finish?";
+      var explain =
+        "Time in minutes = (volume × drop factor) ÷ drops/min = (" + vol + " × " + factor +
+        ") ÷ " + rate + " = " + mins + " minutes ≈ " + (Math.round(hours * 100) / 100) +
+        " hours. " + calcPadTime(startH) + " plus that duration finishes at " + correctLabel +
+        ".\n時間（分鐘）＝（容量 × drop factor）÷ 每分鐘滴數＝（" + vol + "×" + factor +
+        "）÷" + rate + "＝" + mins + " 分鐘。由 " + calcPadTime(startH) + " 起計，約 " + correctLabel + " 完成。";
+      return {
+        id: "calc-finish-time",
+        stem: stem,
+        options: built.options,
+        answer: built.answer,
+        explain: explain,
+        source: "rewritten (calculation)",
+        mid: true
+      };
+    }
+  },
+  {
+    id: "calc-lb-kg",
+    mid: true,
+    gen: function () {
+      // D. lb → kg
+      var lb = calcPick([40, 44, 50, 55, 60, 66, 70, 80, 88, 100, 110, 120, 132, 150, 176]);
+      var kg = lb / 2.2;
+      var correctLabel = calcFmtKg(kg);
+      var d1 = (Math.round(lb * 10) / 10).toFixed(1) + " kg"; // treat lb as kg
+      var d2 = calcFmtKg(lb * 2.2); // multiplied
+      var d3 = calcFmtKg(lb / 2);
+      var d4 = calcFmtKg(lb / 2.2 * 10);
+      var d5 = String(Math.round(kg)) + " kg"; // wrong rounding to whole
+      if (d5 === correctLabel) d5 = calcFmtKg(kg + 1);
+      var built = calcBuildOpts(correctLabel, [d1, d2, d3, d4, d5, calcFmtKg(kg + 5), calcFmtKg(Math.max(1, kg - 3))]);
+      var stem = "A patient weighs " + lb + " lb. About how many kilograms is that?";
+      var explain =
+        "1 kg = 2.2 lb, so " + lb + " ÷ 2.2 ≈ " + (Math.round(kg * 10) / 10).toFixed(1) +
+        " kg. Do not treat pounds as kilograms, and do not multiply by 2.2.\n1 kg＝2.2 lb，所以 " +
+        lb + "÷2.2≈" + (Math.round(kg * 10) / 10).toFixed(1) + " kg。唔好將磅直接當公斤，亦唔好乘 2.2。";
+      return {
+        id: "calc-lb-kg",
+        stem: stem,
+        options: built.options,
+        answer: built.answer,
+        explain: explain,
+        source: "rewritten (calculation)",
+        mid: true
+      };
+    }
+  },
+  {
+    id: "calc-mgkg-split",
+    mid: true,
+    gen: function () {
+      // E. mg/kg/day split doses (weight in lb → kg, then per dose)
+      var lb = calcPick([40, 44, 50, 55, 60, 66, 70, 88]);
+      var kg = lb / 2.2;
+      var mgPerKgDay = calcPick([20, 40, 50, 75, 100]);
+      var freq = calcPick([
+        { label: "Q6H", n: 4 },
+        { label: "Q8H", n: 3 },
+        { label: "Q12H", n: 2 }
+      ]);
+      var daily = kg * mgPerKgDay;
+      var perDose = daily / freq.n;
+      var correct = calcRoundDose(perDose);
+      var correctLabel = calcFmt(correct, "mg per dose");
+      var dForgotLb = calcRoundDose((lb * mgPerKgDay) / freq.n); // used lb as kg
+      var dDaily = calcRoundDose(daily); // gave daily not per dose
+      var dWrongFreq = calcRoundDose(daily / (freq.n === 4 ? 3 : 4));
+      var dNoWt = calcRoundDose(mgPerKgDay / freq.n);
+      var built = calcBuildOpts(correctLabel, [
+        calcFmt(dForgotLb, "mg per dose"),
+        calcFmt(dDaily, "mg per dose"),
+        calcFmt(dWrongFreq, "mg per dose"),
+        calcFmt(dNoWt, "mg per dose"),
+        calcFmt(calcRoundDose(perDose * 2), "mg per dose"),
+        calcFmt(calcRoundDose(Math.max(0.1, perDose / 2)), "mg per dose")
+      ]);
+      var stem = "Drug A is ordered at " + mgPerKgDay + " mg/kg/day " + freq.label +
+        ". The patient weighs " + lb + " lb. About how many milligrams should be given per dose?";
+      var explain =
+        "Weight: " + lb + " ÷ 2.2 ≈ " + (Math.round(kg * 10) / 10).toFixed(1) +
+        " kg. Daily dose ≈ " + (Math.round(kg * 10) / 10).toFixed(1) + " × " + mgPerKgDay +
+        " ≈ " + calcFmt(daily) + " mg/day. " + freq.label + " = " + freq.n +
+        " doses/day → ≈ " + calcFmt(correct) + " mg per dose.\n體重：" + lb + "÷2.2≈" +
+        (Math.round(kg * 10) / 10).toFixed(1) + " kg。全日≈" + calcFmt(daily) + " mg；" +
+        freq.label + "＝一日 " + freq.n + " 次 → 每次約 " + calcFmt(correct) + " mg。";
+      return {
+        id: "calc-mgkg-split",
+        stem: stem,
+        options: built.options,
+        answer: built.answer,
+        explain: explain,
+        source: "rewritten (calculation)",
+        mid: true
+      };
+    }
+  },
+  {
+    id: "calc-halflife",
+    mid: true,
+    gen: function () {
+      // F. Half-life remaining
+      var dose = calcPick([10, 16, 20, 40, 80, 100]);
+      var tHalf = calcPick([2, 4, 6, 8, 12]);
+      var n = calcPick([1, 2, 3, 4, 5]);
+      var remain = dose / Math.pow(2, n);
+      var correct = calcRoundDose(remain);
+      var correctLabel = calcFmt(correct, "mg");
+      var d1 = calcFmt(calcRoundDose(dose / Math.pow(2, n - 1 || 1)), "mg"); // one less HL
+      var d2 = calcFmt(calcRoundDose(dose / Math.pow(2, Math.min(5, n + 1))), "mg");
+      var d3 = calcFmt(calcRoundDose(dose * (n / 10)), "mg");
+      var d4 = calcFmt(calcRoundDose(dose / n), "mg");
+      var d5 = calcFmt(calcRoundDose(dose / 2), "mg"); // only one HL
+      var built = calcBuildOpts(correctLabel, [d1, d2, d3, d4, d5, calcFmt(dose, "mg")]);
+      var hours = tHalf * n;
+      var pct = 100 / Math.pow(2, n);
+      var stem = "Drug A has a half-life of " + tHalf + " hours and a single " + dose +
+        " mg dose is given. About how much remains in the body after " + hours + " hours?";
+      var explain =
+        "After each half-life, half remains. " + hours + " hours = " + n +
+        " half-life(s) → remaining ≈ " + dose + " × (1/2)^" + n + " = " + calcFmt(correct) +
+        " mg (about " + (Math.round(pct * 1000) / 1000) + "%).\n每過一個 t½ 剩一半。" + hours +
+        " 小時＝" + n + " 個半衰期 → 約剩 " + calcFmt(correct) + " mg。";
+      return {
+        id: "calc-halflife",
+        stem: stem,
+        options: built.options,
+        answer: built.answer,
+        explain: explain,
+        source: "rewritten (calculation)",
+        mid: true
+      };
+    }
+  },
+  {
+    id: "calc-unit-convert",
+    mid: true,
+    gen: function () {
+      // G. Unit conversion mg↔mcg or g↔mg
+      var kind = calcPick(["mg2mcg", "mcg2mg", "g2mg", "mg2g"]);
+      var stem, correctLabel, explain, distractors;
+      if (kind === "mg2mcg") {
+        var mg = calcPick([0.25, 0.5, 1, 2, 2.5, 5, 10, 25, 50, 100]);
+        var mcg = mg * 1000;
+        correctLabel = calcFmt(mcg, "mcg");
+        // For large whole numbers use whole
+        if (mcg >= 1 && Math.abs(mcg - Math.round(mcg)) < 1e-9) correctLabel = Math.round(mcg) + " mcg";
+        distractors = [
+          (mg / 1000) + " mcg",
+          (mg * 100) + " mcg",
+          (mg * 10) + " mcg",
+          mg + " mcg",
+          (mg * 10000) + " mcg"
+        ].map(String);
+        stem = "A dose of " + mg + " mg equals how many micrograms (mcg)?";
+        explain = "1 mg = 1000 mcg, so " + mg + " × 1000 = " + (mg * 1000) +
+          " mcg. A common error is dividing by 1000 or using ×100.\n1 mg＝1000 mcg，所以 " +
+          mg + "×1000＝" + (mg * 1000) + " mcg。常見錯係除以 1000 或只乘 100。";
+      } else if (kind === "mcg2mg") {
+        var mcg2 = calcPick([250, 500, 1000, 2000, 2500, 5000]);
+        var mg2 = mcg2 / 1000;
+        correctLabel = calcFmt(mg2, "mg");
+        distractors = [
+          calcFmt(mcg2 * 1000, "mg"),
+          calcFmt(mcg2 / 100, "mg"),
+          calcFmt(mcg2, "mg"),
+          calcFmt(mcg2 / 10, "mg")
+        ];
+        stem = "A dose of " + mcg2 + " mcg equals how many milligrams (mg)?";
+        explain = "1 mg = 1000 mcg, so " + mcg2 + " ÷ 1000 = " + calcFmt(mg2) +
+          " mg.\n1 mg＝1000 mcg，所以 " + mcg2 + "÷1000＝" + calcFmt(mg2) + " mg。";
+      } else if (kind === "g2mg") {
+        var g = calcPick([0.25, 0.5, 1, 1.5, 2]);
+        var mg3 = g * 1000;
+        correctLabel = (Math.abs(mg3 - Math.round(mg3)) < 1e-9 ? String(Math.round(mg3)) : calcFmt(mg3)) + " mg";
+        distractors = [
+          (g / 1000) + " mg",
+          (g * 100) + " mg",
+          (g * 10) + " mg",
+          g + " mg"
+        ].map(String);
+        stem = "A vial labelled " + g + " g contains how many milligrams?";
+        explain = "1 g = 1000 mg, so " + g + " × 1000 = " + (g * 1000) +
+          " mg.\n1 g＝1000 mg，所以 " + g + "×1000＝" + (g * 1000) + " mg。";
+      } else {
+        var mg4 = calcPick([250, 500, 750, 1000, 1500, 2000]);
+        var g2 = mg4 / 1000;
+        correctLabel = calcFmt(g2, "g");
+        distractors = [
+          calcFmt(mg4 * 1000, "g"),
+          calcFmt(mg4 / 100, "g"),
+          calcFmt(mg4, "g"),
+          calcFmt(mg4 / 10, "g")
+        ];
+        stem = "How many grams is " + mg4 + " mg?";
+        explain = "1 g = 1000 mg, so " + mg4 + " ÷ 1000 = " + calcFmt(g2) +
+          " g.\n1 g＝1000 mg，所以 " + mg4 + "÷1000＝" + calcFmt(g2) + " g。";
+      }
+      var built = calcBuildOpts(correctLabel, distractors.concat([
+        "0.001 mg", "10000 mcg", "0.5 g", "2500 mg"
+      ]));
+      return {
+        id: "calc-unit-convert",
+        stem: stem,
+        options: built.options,
+        answer: built.answer,
+        explain: explain,
+        source: "rewritten (calculation)",
+        mid: true
+      };
+    }
+  },
+  {
+    id: "calc-vanco-min",
+    mid: true,
+    gen: function () {
+      // H. Vancomycin min volume and/or min time
+      var dose = calcPick([500, 750, 1000, 1250, 1500]);
+      var mode = calcPick(["volume", "time", "both-time", "both-vol"]);
+      var minVol = dose / 5; // mL at 5 mg/mL
+      var minMin = dose / 10; // minutes at 10 mg/min
+      var stem, correctLabel, explain, distractors;
+      if (mode === "volume" || mode === "both-vol") {
+        correctLabel = calcFmt(minVol, "mL");
+        if (minVol >= 1 && Math.abs(minVol - Math.round(minVol)) < 1e-9) correctLabel = Math.round(minVol) + " mL";
+        distractors = [
+          calcFmt(dose / 10, "mL"),
+          calcFmt(dose / 5 / 2, "mL"),
+          calcFmt(dose * 5, "mL"),
+          calcFmt(dose / 10 * 60, "mL"),
+          Math.round(minMin) + " mL"
+        ];
+        stem = "Vancomycin " + dose + " mg IV is ordered. Using a maximum concentration of 5 mg/mL, what is the minimum infusion volume?";
+        explain =
+          "Maximum concentration 5 mg/mL → minimum volume = dose ÷ 5 = " + dose +
+          " ÷ 5 = " + calcFmt(minVol) + " mL. (Also rate should not exceed 10 mg/min.)\n最高濃度 5 mg/mL → 最少體積＝劑量÷5＝" +
+          dose + "÷5＝" + calcFmt(minVol) + " mL。（速率亦唔好超過 10 mg/min。）";
+      } else {
+        correctLabel = Math.round(minMin) + " min";
+        distractors = [
+          Math.round(minVol) + " min",
+          Math.round(dose / 5) + " min",
+          Math.round(dose / 10 * 60) + " min",
+          Math.round(dose / 20) + " min",
+          Math.round(minMin / 2) + " min",
+          Math.round(minMin * 2) + " min"
+        ];
+        stem = "Vancomycin " + dose + " mg IV is ordered. Infusion must not exceed 10 mg/min. What is the minimum infusion time?";
+        explain =
+          "Rate ≤ 10 mg/min → minimum time = dose ÷ 10 = " + dose + " ÷ 10 = " +
+          calcFmt(minMin) + " min. (Also keep concentration ≤ 5 mg/mL.)\n速率 ≤10 mg/min → 最短時間＝劑量÷10＝" +
+          dose + "÷10＝" + calcFmt(minMin) + " 分鐘。（濃度亦 ≤5 mg/mL。）";
+      }
+      var built = calcBuildOpts(correctLabel, distractors);
+      return {
+        id: "calc-vanco-min",
+        stem: stem,
+        options: built.options,
+        answer: built.answer,
+        explain: explain,
+        source: "tutorial (calculation)",
+        mid: true
+      };
+    }
+  },
+  {
+    id: "calc-draw-volume",
+    mid: true,
+    gen: function () {
+      // Extra: Want × In / Got — volume to draw from a concentration
+      var want = calcPick([125, 250, 500, 750, 1000]); // mg wanted
+      var conc = calcPick([50, 100, 125, 250]); // mg/mL
+      // Ensure clean-ish answer
+      var raw = want / conc;
+      var correct = calcRoundDose(raw);
+      var correctLabel = calcFmt(correct, "mL");
+      var d1 = calcFmt(calcRoundDose(want * conc), "mL");
+      var d2 = calcFmt(calcRoundDose(conc / want), "mL");
+      var d3 = calcFmt(calcRoundDose(want / (conc * 10)), "mL");
+      var d4 = calcFmt(calcRoundDose(want / (conc / 10)), "mL");
+      var built = calcBuildOpts(correctLabel, [d1, d2, d3, d4, calcFmt(calcRoundDose(correct * 2), "mL"), calcFmt(calcRoundDose(Math.max(0.01, correct / 2)), "mL")]);
+      var stem = "You need to give " + want + " mg of Drug A. The vial concentration is " + conc +
+        " mg/mL. How many millilitres should you draw up?";
+      var explain =
+        "Volume = Want ÷ concentration = " + want + " mg ÷ " + conc + " mg/mL = " +
+        calcFmt(correct) + " mL (lecture rounding: volumes >1 → 1 d.p.; <1 → 2 d.p.).\n容量＝需要量÷濃度＝" +
+        want + "÷" + conc + "＝" + calcFmt(correct) + " mL（講義：>1 一位小數；<1 兩位小數）。";
+      return {
+        id: "calc-draw-volume",
+        stem: stem,
+        options: built.options,
+        answer: built.answer,
+        explain: explain,
+        source: "rewritten (calculation)",
+        mid: true
+      };
+    }
+  }
+];
+
+
 const BANKS = { NUR2047: QUESTIONS };
 </script>
 <script>
@@ -1570,12 +2105,20 @@ const BANKS = { NUR2047: QUESTIONS };
   function bank() {
     return BANKS[subjectEl.value] || [];
   }
+  function calcSlotsForMode(mode) {
+    if (mode === "extra") return [];
+    return CALC_TEMPLATES.map(function (t) {
+      return { kind: "calc", id: t.id, mid: true, gen: t.gen };
+    });
+  }
   function pool() {
     const mode = scopeEl.value;
     const items = bank();
-    if (mode === "extra") return items.filter(q => !q.mid);
-    if (mode === "all") return items.slice();
-    return items.filter(q => q.mid);
+    let staticQ;
+    if (mode === "extra") staticQ = items.filter(q => !q.mid);
+    else if (mode === "all") staticQ = items.slice();
+    else staticQ = items.filter(q => q.mid);
+    return staticQ.concat(calcSlotsForMode(mode));
   }
   function shuffle(arr) {
     const a = arr.slice();
@@ -1592,38 +2135,49 @@ const BANKS = { NUR2047: QUESTIONS };
     }
     deck = items;
   }
+  function materialize(slot) {
+    if (slot && slot.kind === "calc" && typeof slot.gen === "function") {
+      const q = slot.gen();
+      q.id = slot.id;
+      q.mid = true;
+      return q;
+    }
+    return slot;
+  }
   function updateFoot() {
     const all = bank().length;
     const mid = bank().filter(q => q.mid).length;
     const extra = all - mid;
+    const calcN = CALC_TEMPLATES.length;
     const counts = {};
     bank().forEach(q => { counts[q.source] = (counts[q.source] || 0) + 1; });
-    foot.textContent = "Default Start is the midterm pool (" + mid + "). Beyond midterm: " + extra
-      + " (Lecture 5 CNS / psychiatric, including the SSRI and opioid tutorial items). Full bank " + all
+    foot.textContent = "Default Start is the midterm pool (" + mid + " static + " + calcN
+      + " random-calc templates). Beyond midterm: " + extra
+      + " (Lecture 5 CNS / psychiatric, including the SSRI and opioid tutorial items). Full static bank " + all
       + ". Sources: past paper " + (counts["past paper"] || 0)
       + " · tutorial " + (counts["tutorial"] || 0)
       + " · revision exercise " + (counts["revision"] || 0)
       + " · rewritten " + (counts["rewritten"] || 0)
-      + ". Midterm is Lectures 1–4 through respiratory drugs, non-CNS tutorials, and Revision Exercise 1. Stems are paraphrased. Each explanation is English, then Traditional Chinese. This is not an official paper.";
+      + ". Each Start/Next regenerates fresh numbers for calculation items. Midterm is Lectures 1–4 through respiratory drugs, non-CNS tutorials, and Revision Exercise 1. Stems are paraphrased. Each explanation is English, then Traditional Chinese. This is not an official paper.";
   }
   function drawNext() {
     if (!deck.length) refill();
-    let q = deck.pop();
-    if (q && q.id === lastId && deck.length) {
+    let slot = deck.pop();
+    if (slot && slot.id === lastId && deck.length) {
       const other = deck.pop();
-      deck.push(q);
-      q = other;
+      deck.push(slot);
+      slot = other;
     }
-    lastId = q.id;
+    lastId = slot.id;
     locked = false;
-    renderQuestion(q);
+    renderQuestion(materialize(slot));
   }
   function renderIdle() {
     stage.innerHTML = "";
     const box = document.createElement("div");
     box.className = "idle";
     const p = document.createElement("p");
-    p.textContent = "Start uses the midterm set: Lectures 1–4 through respiratory drugs, plus Revision Exercise 1. Change the practice set if you want CNS / psychiatric items only.";
+    p.textContent = "Start uses the midterm set: Lectures 1–4 through respiratory drugs, plus Revision Exercise 1, including random-number calculation items that refresh every draw. Change the practice set if you want CNS / psychiatric items only.";
     const btn = document.createElement("button");
     btn.className = "start";
     btn.type = "button";
@@ -1706,6 +2260,7 @@ const BANKS = { NUR2047: QUESTIONS };
   updateFoot();
   renderIdle();
 })();
+
 </script>
 </body>
 </html>
