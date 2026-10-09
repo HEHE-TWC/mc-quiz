@@ -140,7 +140,7 @@
   <header>
     <div class="kicker">Tung Wah College · Pharmacology</div>
     <h1>NUR2047 Pharmacology MCQs</h1>
-    <p class="sub">Press Start for one random four-option question (calculation items use fresh numbers each draw). After you answer, you see whether it is right, a short explanation, and the source.</p>
+    <p class="sub">Press Start for one random four-option question (calculation items use fresh numbers each draw; A–D order reshuffles every time). After you answer, you see whether it is right, a short explanation, and the source.</p>
   </header>
   <div class="bar">
     <label class="toggle">Subject
@@ -2049,14 +2049,30 @@ const BANKS = { NUR2047: QUESTIONS };
     }
     deck = items;
   }
+  function shuffleQuestionOptions(q) {
+    // Fresh A–D order every display; answer index follows the correct text.
+    const paired = q.options.map(function (text, i) {
+      return { text: text, correct: i === q.answer };
+    });
+    for (let i = paired.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const t = paired[i]; paired[i] = paired[j]; paired[j] = t;
+    }
+    q.options = paired.map(function (p) { return p.text; });
+    q.answer = paired.findIndex(function (p) { return p.correct; });
+    if (q.answer < 0) q.answer = 0;
+    return q;
+  }
   function materialize(slot) {
     if (slot && slot.kind === "calc" && typeof slot.gen === "function") {
       const q = slot.gen();
       q.id = slot.id;
       q.mid = true;
-      return q;
+      return shuffleQuestionOptions(q);
     }
-    return slot;
+    // Clone so the bank's canonical option order is never mutated.
+    const q = Object.assign({}, slot, { options: slot.options.slice() });
+    return shuffleQuestionOptions(q);
   }
   function updateFoot() {
     const all = bank().length;
@@ -2072,7 +2088,7 @@ const BANKS = { NUR2047: QUESTIONS };
       + " · tutorial " + (counts["tutorial"] || 0)
       + " · revision exercise " + (counts["revision"] || 0)
       + " · rewritten " + (counts["rewritten"] || 0)
-      + ". Each Start/Next regenerates fresh numbers for calculation items. Midterm is Lectures 1–4 through respiratory drugs, non-CNS tutorials, and Revision Exercise 1. Stems are paraphrased. Each explanation is English, then Traditional Chinese. This is not an official paper.";
+      + ". Each Start/Next regenerates fresh numbers for calculation items and reshuffles A–D option order. Midterm is Lectures 1–4 through respiratory drugs, non-CNS tutorials, and Revision Exercise 1. Stems are paraphrased. Each explanation is English, then Traditional Chinese. This is not an official paper.";
   }
   function drawNext() {
     if (!deck.length) refill();
