@@ -2002,7 +2002,7 @@ var CALC_TEMPLATES = [
 
 
 
-/* NUR2018 Pathophysiology MC bank. English stems/options. Explanations: English, then Traditional Chinese. L1–7 + Seminar 1–4 (official answers). Seminar 5 deferred until official key. */
+/* NUR2018 Pathophysiology MC bank. English stems/options. Explanations: English, then Traditional Chinese. L1–7 + Seminar 1–5 (S5 official answers 2026-10-12). */
 const NUR2018_QUESTIONS = [
   {
     "id": "n18-l1-hypertrophy-athlete",
@@ -3353,6 +3353,186 @@ const NUR2018_QUESTIONS = [
     "source": "rewritten (notes)",
     "mid": true,
     "lecture": "L7"
+  },
+  {
+    "id": "n18-s5-food-type1",
+    "stem": "A patient develops anaphylaxis within 30 minutes after eating a food allergen. According to Seminar 5, which hypersensitivity type is this?",
+    "options": [
+      "Type IIIa: circulating immune complexes depositing in joints",
+      "Type I: immediate hypersensitivity mediated by IgE and mast cells",
+      "Type IIc: antibody blocking acetylcholine receptors on muscle",
+      "Type IV: delayed T-cell responses peaking after several days"
+    ],
+    "answer": 1,
+    "explain": "Seminar 5 Ans: food allergy belongs to Type I hypersensitivity (immediate hypersensitivity disorders).\nSeminar 5 答案：食物過敏屬 Type I（即發型）超敏反應。",
+    "source": "seminar",
+    "mid": true,
+    "lecture": "S5"
+  },
+  {
+    "id": "n18-s5-food-why-quick",
+    "stem": "Why can food-allergy anaphylaxis develop so quickly after re-exposure to the allergen?",
+    "options": [
+      "Circulating immune complexes need days to deposit before symptoms start",
+      "Memory helper T cells must first recruit macrophages over 24–72 hours",
+      "IgE already bound to mast cells; re-exposure triggers rapid mediator release",
+      "IgM must be newly synthesised each time before any mast cells can degranulate"
+    ],
+    "answer": 2,
+    "explain": "Official Ans: first exposure produces allergen-specific IgE that binds mast-cell surfaces (sensitisation). Subsequent exposure activates oral-mucosal mast cells to release inflammatory mediators immediately → anaphylaxis.\n官方答案：首次暴露產 IgE 並結合肥大細胞表面致敏；再暴露活化口腔黏膜肥大細胞即時釋炎症介質→anaphylaxis。",
+    "source": "seminar",
+    "mid": true,
+    "lecture": "S5"
+  },
+  {
+    "id": "n18-s5-transfusion-type2a",
+    "stem": "Mismatched blood transfusion causing intravascular haemolysis is classified in Seminar 5 as:",
+    "options": [
+      "Type I immediate hypersensitivity with IgE-coated mast-cell degranulation",
+      "Type IIa: complement- and antibody-mediated cell destruction",
+      "Type III serum sickness from soluble immune-complex deposition alone",
+      "Type IV delayed hypersensitivity driven only by cytotoxic T lymphocytes"
+    ],
+    "answer": 1,
+    "explain": "Seminar 5 Ans: mismatched transfusion = Type IIa hypersensitivity (complement- and antibody–mediated cell destruction).\nSeminar 5 答案：輸錯血屬 Type IIa（補體與抗體媒介的細胞破壞）。",
+    "source": "seminar",
+    "mid": true,
+    "lecture": "S5"
+  },
+  {
+    "id": "n18-s5-transfusion-mech",
+    "stem": "Which molecular sequence best matches the Seminar 5 explanation of haemolysis after incompatible transfusion?",
+    "options": [
+      "IgE cross-links on basophils and releases preformed histamine within minutes",
+      "Recipient IgG or IgM binds donor RBC antigens, activating phagocytes/complement",
+      "Soluble antigen–antibody complexes deposit first in synovial fluid then joints",
+      "Nickel–protein complexes activate memory helper T cells in regional nodes"
+    ],
+    "answer": 1,
+    "explain": "Official Ans: foreign donor RBCs are recognised; recipient IgG or IgM binds donor RBC surface antigens → phagocytes/complement destroy (haemolyse) the transfused cells → acute haemolytic reaction (fever, chills, pain).\n官方答案：視供者 RBC 為外來；受者 IgG 或 IgM 結合供者 RBC 抗原→吞噬細胞／補體破壞溶血→急性溶血反應。",
+    "source": "seminar",
+    "mid": true,
+    "lecture": "S5"
+  },
+  {
+    "id": "n18-s5-mg-type2c",
+    "stem": "Myasthenia gravis, with voluntary-muscle weakness from failed nerve–muscle communication, belongs to which type?",
+    "options": [
+      "Type IIa: antibody- and complement-mediated destruction of target cells",
+      "Type IIc: antibody-mediated cellular dysfunction without cell lysis",
+      "Type III: immune-complex deposition activating complement in vessel walls",
+      "Type IV: delayed helper-T recruitment of macrophages into muscle tissue"
+    ],
+    "answer": 1,
+    "explain": "Seminar 5 Ans: myasthenia gravis = Type IIc hypersensitivity (antibody-mediated cellular dysfunction).\nSeminar 5 答案：重症肌無力屬 Type IIc（抗體媒介的細胞功能異常）。",
+    "source": "seminar",
+    "mid": true,
+    "lecture": "S5"
+  },
+  {
+    "id": "n18-s5-mg-achr-block",
+    "stem": "According to the Seminar 5 answer, how does myasthenia gravis impair neuromuscular transmission?",
+    "options": [
+      "Autoantibody stimulates TSH receptors and increases acetylcholine release",
+      "Autoantibody binds muscle ACh receptors, blocking acetylcholine binding",
+      "IgE on mast cells at the neuromuscular junction triggers rapid degranulation",
+      "Immune complexes deposit in synovial fluid and destroy motor end-plates"
+    ],
+    "answer": 1,
+    "explain": "Official Ans: at the NMJ, nerve communicates via acetylcholine. Autoantibody binds the acetylcholine receptor on muscle, blocks the receptor, and prevents acetylcholine binding → ineffective nerve control → weakness.\n官方答案：神經以 ACh 溝通；自體抗體結合肌肉 ACh 受體並阻斷之，阻止 ACh 結合→神經不能有效控制肌肉→無力。",
+    "source": "seminar",
+    "mid": true,
+    "lecture": "S5"
+  },
+  {
+    "id": "n18-s5-antiserum-type3",
+    "stem": "After antiserum for envenomation, a minority of patients develop fever, hives, and joint pain 1–3 days later. Seminar 5 classifies this as:",
+    "options": [
+      "Type IV delayed hypersensitivity, because symptoms appear after 24–72 hours",
+      "Type I anaphylaxis from immediate mast-cell degranulation in the injection site",
+      "Type III immune complex–mediated disorder (serum-protein antigens)",
+      "Type IIa haemolysis from IgM binding red-cell antigens in the antiserum"
+    ],
+    "answer": 2,
+    "explain": "Seminar 5 Ans: Type III hypersensitivity, Immune Complex–Mediated Disorders. Timing alone must not push the answer to Type IV; the mechanism is immune complexes from foreign serum proteins.\nSeminar 5 答案：Type III（免疫複合體媒介）。勿單憑 1–3 日判 Type IV；機制是外來血清蛋白形成免疫複合體。",
+    "source": "seminar",
+    "mid": true,
+    "lecture": "S5"
+  },
+  {
+    "id": "n18-s5-antiserum-ic-sites",
+    "stem": "In the Seminar 5 explanation of post-antiserum fever, hives, and joint pain, immune complexes may diffuse into which sites before complement activation?",
+    "options": [
+      "Only the oral mucosa, where mast cells then release histamine immediately",
+      "Vascular wall, urine, or synovial fluid, where complement can be activated",
+      "Thymic cortex alone, where negative selection deletes the reactive clones",
+      "Bone-marrow sinusoids only, where IgE class switching is forced to restart"
+    ],
+    "answer": 1,
+    "explain": "Official Ans: serum host proteins in the antiserum may act as foreign antigens → antibody forms immune complexes that circulate and can diffuse into the vascular wall, urine, or synovial fluid → complement fixation/activation → inflammation (fever, hives, joint pain).\n官方答案：抗血清中血清宿主蛋白可為外來抗原→形成循環免疫複合體，可至血管壁、尿液或滑液→補體固定／活化→炎症。",
+    "source": "seminar",
+    "mid": true,
+    "lecture": "S5"
+  },
+  {
+    "id": "n18-s5-nickel-type4",
+    "stem": "A man develops an erythematous, papular, vesicular wrist rash where a nickel watch strap contacted the skin days earlier. Seminar 5 classifies this as:",
+    "options": [
+      "Type I immediate allergy with IgE already coating epidermal mast cells",
+      "Type IIa complement lysis of keratinocytes bearing nickel surface antigens",
+      "Type III immune-complex vasculitis limited to superficial dermal vessels",
+      "Type IV delayed-type hypersensitivity involving memory helper T cells"
+    ],
+    "answer": 3,
+    "explain": "Seminar 5 Ans: Type IV Delayed-Type Hypersensitivity Disorders.\nSeminar 5 答案：屬 Type IV 遲發型超敏反應。",
+    "source": "seminar",
+    "mid": true,
+    "lecture": "S5"
+  },
+  {
+    "id": "n18-s5-nickel-helper-t",
+    "stem": "Which sequence matches the Seminar 5 molecular mechanism for nickel contact dermatitis?",
+    "options": [
+      "IgE coats mast cells on first wear; re-wear causes minute-scale mast-cell degranulation",
+      "APC captures nickel → node T-cell activation; re-exposure recruits memory helper T cells",
+      "IgG–nickel complexes deposit in synovial fluid and fix complement within a few hours",
+      "Autoantibody blocks epidermal growth-factor receptors and produces vesicular skin injury"
+    ],
+    "answer": 1,
+    "explain": "Official Ans: sensitisation — nickel captured by APCs → regional lymph nodes → corresponding T-cell activation. Re-exposure — rapid recruitment/activation of memory-specific helper T cells → cytokines recruit/activate macrophages, lymphocytes, fibroblasts → erythematous/papular/vesicular rash.\n官方答案：致敏期鎳被 APC 捕捉→區域淋巴結→活化 T 細胞；再暴露招募記憶輔助 T→細胞激素招募巨噬／淋巴／纖維母細胞→皮疹。",
+    "source": "seminar",
+    "mid": true,
+    "lecture": "S5"
+  },
+  {
+    "id": "n18-s5-type2a-vs-2c",
+    "stem": "How should mismatched transfusion (Seminar 5 Q2) be distinguished from myasthenia gravis (Q3)?",
+    "options": [
+      "Both are Type I; transfusion is local and myasthenia gravis is systemic only",
+      "Transfusion is Type IIa (cell destruction); MG is Type IIc (receptor dysfunction)",
+      "Both are Type III; only the deposition site (RBC vs NMJ) differs between them",
+      "Transfusion is Type IV; MG is Type IIa complement-mediated red-cell lysis"
+    ],
+    "answer": 1,
+    "explain": "Official Ans pairs: Q2 = Type IIa (complement- and antibody–mediated cell destruction); Q3 = Type IIc (antibody-mediated cellular dysfunction — AChR block without requiring cell lysis as the primary mechanism).\n官方：輸錯血＝IIa（細胞破壞）；MG＝IIc（抗體媒介功能異常／阻斷 ACh 受體）。",
+    "source": "seminar",
+    "mid": true,
+    "lecture": "S5"
+  },
+  {
+    "id": "n18-s5-timing-trap",
+    "stem": "A student classifies post-antiserum fever/hives/arthralgia at 1–3 days as Type IV solely because of the delay. What is wrong with that reasoning?",
+    "options": [
+      "Type IV never causes joint pain, so any arthralgia must be Type I anaphylaxis",
+      "Seminar 5 assigns this pattern to Type III immune-complex disease, not Type IV",
+      "All reactions appearing after 24 hours are Type II by definition in this course",
+      "Delay means IgE must still be the mediator, so the correct type is always Type I"
+    ],
+    "answer": 1,
+    "explain": "Common trap: 1–3 days looks like delayed (Type IV) timing. Seminar 5 official classification is Type III (immune complex–mediated) from foreign serum proteins → complexes → complement → fever, hives, joint pain.\n常見誤解：用「1–3 日」判 Type IV。官方答案屬 Type III（外來血清蛋白→免疫複合體→補體→發燒、蕁麻疹、關節痛）。",
+    "source": "seminar",
+    "mid": true,
+    "lecture": "S5"
   }
 ];
 
