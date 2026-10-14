@@ -356,7 +356,7 @@ const QUESTIONS = [
       "25.0 kg"
     ],
     "answer": 0,
-    "explain": "1 kg = 2.2 lb, so 50 ÷ 2.2 ≈ 22.7 kg. Do not treat pounds as kilograms, and do not multiply by 2.2 (that would give about 110).\n1 kg＝2.2 lb，所以 50÷2.2≈22.7 kg。唔好將磅直接當公斤，亦唔好乘 2.2（咁會變成約 110）。",
+    "explain": "TS2 Ans uses 1 kg = 2.20 lb, so 50 ÷ 2.20 = 22.73 kg (about 22.7 kg). Do not treat pounds as kilograms, and do not multiply by 2.2 (that would give about 110).\nTS2 Ans：1 kg＝2.20 lb，50÷2.20＝22.73 kg（約 22.7）。唔好將磅直接當公斤，亦唔好乘 2.2（約 110）。",
     "source": "tutorial",
     "mid": true
   },
@@ -426,10 +426,68 @@ const QUESTIONS = [
       "Only when required"
     ],
     "answer": 1,
-    "explain": "q.o.d. = every other day; nocte = at night. Warfarin doses on odd and even days may differ, so follow the prescription.\nq.o.d.＝every other day 隔日；nocte＝at night 晚上。Warfarin 劑量奇偶日可以唔同，要跟返處方。",
+    "explain": "Official TS2 Ans label: Take one Warfarin tablet every other night. q.o.d. = every other day; nocte = at night. Combined as every other night. Warfarin doses on odd and even days may differ, so follow the prescription.\nTS2 Ans 官式：Take one Warfarin tablet every other night。q.o.d.＝隔日；nocte＝晚上，合成 every other night。Warfarin 奇偶日劑量可以唔同，跟返處方。",
     "source": "tutorial",
     "mid": true
   },
+
+  {
+    "id": "ts2-q6-dose",
+    "stem": "A patient weighs 50 lb. IV Drug ABC 100 mg/kg/day is ordered in divided doses Q6H. Using 1 kg = 2.20 lb (as in TS2 Ans), about how many mg should be given per dose?",
+    "options": [
+      "2273 mg per dose (give the whole daily amount once)",
+      "568.25 mg per dose (split the daily amount into 4)",
+      "100 mg per dose (flat dose; ignore patient weight)",
+      "1136.5 mg per dose (split the daily amount into 2)"
+    ],
+    "answer": 1,
+    "explain": "TS2 Ans: 50 ÷ 2.20 = 22.73 kg. Daily dose = 100 × 22.73 = 2273 mg/day. Q6H = 4 doses/day → 2273 ÷ 4 = 568.25 mg/dose.\nTS2 Ans：50÷2.20＝22.73 kg。全日＝100×22.73＝2273 mg。Q6H＝一日 4 次 → 2273÷4＝568.25 mg／dose。",
+    "source": "tutorial",
+    "mid": true
+  },
+  {
+    "id": "ts2-q6-pump",
+    "stem": "After drawing about 5.7 mL from a reconstituted vial, Drug ABC is further diluted in 100 mL NS to infuse over 30 minutes. What pump rate does TS2 Ans use?",
+    "options": [
+      "100 mL/h (use bag volume only; ignore infusion time)",
+      "200 mL/h (100 mL NS over 30 min; omit draw volume)",
+      "211.4 mL/h (100 mL NS plus 5.7 mL drug over 30 min)",
+      "5.7 mL/h (infuse the drawn volume alone over 1 hour)"
+    ],
+    "answer": 2,
+    "explain": "Official TS2 Ans adds the drawn volume to the bag: (100 + 5.7) mL over 30 min = 105.7 ÷ 0.5 h = 211.4 mL/h. A common error is 100 mL ÷ 0.5 h = 200 mL/h, which leaves out the drug volume.\nTS2 Ans 官式計埋抽取體積：（100＋5.7）mL／30 min＝105.7÷0.5 h＝211.4 mL/h。常見錯：只計 100÷0.5＝200，漏咗藥體積。",
+    "source": "tutorial",
+    "mid": true
+  },
+  {
+    "id": "ts2-match-ndhp",
+    "stem": "In the TS2 cardiovascular matching key, which set belongs to non-dihydropyridine calcium-channel blockers (e.g. diltiazem, verapamil)?",
+    "options": [
+      "Act mainly on periphery; reflex tachycardia; example amlodipine",
+      "Act on heart and periphery; prevent chest pain; bradycardia",
+      "Block Ang I to Ang II conversion; dry cough; ACEI examples",
+      "Inhibit plasmin breakdown of fibrin; used to treat bleeding"
+    ],
+    "answer": 1,
+    "explain": "TS2 Ans maps Non-DHP CCB to: act on heart and peripheral vessels, treat hypertension, prevent chest pain, hypotension, bradycardia, and diltiazem/verapamil. Reflex tachycardia and amlodipine are DHP items.\nTS2 Ans：Non-DHP＝心＋外周、HTN、預防胸口痛、低血壓、bradycardia、Diltiazem／Verapamil。Reflex tachycardia 同 Amlodipine 屬 DHP。",
+    "source": "tutorial",
+    "mid": true
+  },
+  {
+    "id": "ts2-match-acei",
+    "stem": "According to the TS2 matching answer key, which features map to ACE inhibitors?",
+    "options": [
+      "Block Ang II receptors; dry cough is not the ACEI hallmark here",
+      "Block Ang I to Ang II; dry cough; hyperkalemia; ACEI examples",
+      "Block β1 receptors; apical pulse check is for digoxin only",
+      "Reduce cholesterol production; avoid red yeast rice products"
+    ],
+    "answer": 1,
+    "explain": "TS2 Ans for ACEI includes: block converting Ang I to Ang II, treat hypertension, hypotension, hyperkalemia, dry cough, and captopril/lisinopril. Blocking Ang II receptors is ARB.\nTS2 Ans：ACEI＝阻 Ang I→II、HTN、低血壓、高血鉀、乾咳、Captopril／Lisinopril。阻 Ang II 受體係 ARB。",
+    "source": "tutorial",
+    "mid": true
+  },
+
   {
     "id": "tut-vitk",
     "stem": "Why should a person taking warfarin avoid liver, green tea, and large amounts of green leafy vegetables?",
@@ -1996,6 +2054,33 @@ var CALC_TEMPLATES = [
         "Volume = Want ÷ concentration = " + want + " mg ÷ " + conc + " mg/mL = " +
         calcFmt(correct) + " mL.\n抽取體積＝需要量÷濃度＝" + want + "÷" + conc + "＝" + calcFmt(correct) + " mL。";
       return { id: "calc-draw-volume", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "rewritten (calculation)", mid: true };
+    }
+  },
+  {
+    id: "calc-ns-draw-rate",
+    mid: true,
+    gen: function () {
+      var bag = calcPick([50, 100, 100, 150]);
+      var draw = calcPick([2.5, 5, 5.7, 8, 10]);
+      var mins = calcPick([15, 30, 30, 60]);
+      var total = bag + draw;
+      var correct = calcRoundDose(total / (mins / 60));
+      var correctLabel = calcFmt(correct, "mL/h");
+      var dBagOnly = calcFmt(calcRoundDose(bag / (mins / 60)), "mL/h");
+      var dDrawOnly = calcFmt(calcRoundDose(draw / (mins / 60)), "mL/h");
+      var dForgot60 = calcFmt(calcRoundDose(total / mins), "mL/h");
+      var dDouble = calcFmt(calcRoundDose(correct * 2), "mL/h");
+      var dHalf = calcFmt(calcRoundDose(correct / 2), "mL/h");
+      var built = calcBuildOpts(correctLabel, [dBagOnly, dDrawOnly, dForgot60, dDouble, dHalf, calcFmt(calcRoundDose(correct + 10), "mL/h")]);
+      var stem = "You draw " + draw + " mL from a vial and further dilute it in " + bag +
+        " mL NS to infuse over " + mins + " minutes. What pump rate should you set (include the draw volume)?";
+      var explain =
+        "Total volume = bag + draw = " + bag + " + " + draw + " = " + calcFmt(total) +
+        " mL. Rate = total ÷ hours = " + calcFmt(total) + " ÷ (" + mins + "/60) = " +
+        calcFmt(correct) + " mL/h. Do not use bag-only volume (that would be " + dBagOnly + ").\n總體積＝袋＋抽取＝" +
+        bag + "＋" + draw + "＝" + calcFmt(total) + " mL。泵速＝總體積÷小時＝" + calcFmt(correct) +
+        " mL/h。唔好只計袋裝（咁會變成 " + dBagOnly + "）。";
+      return { id: "calc-ns-draw-rate", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "tutorial (calculation)", mid: true };
     }
   }
 ];
