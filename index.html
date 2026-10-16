@@ -4163,6 +4163,9 @@ const BANKS = { NUR2047: QUESTIONS, NUR2018: NUR2018_QUESTIONS };
     row.appendChild(next);
     stage.appendChild(fb);
     stage.appendChild(row);
+    const oldCalc = stage.querySelector(".calc-wrap");
+    if (oldCalc) oldCalc.remove();
+    mountCalculator(stage);
   }
   scopeEl.addEventListener("change", () => { deck = []; });
   subjectEl.addEventListener("change", () => {
