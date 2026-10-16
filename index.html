@@ -153,7 +153,7 @@
     <label class="toggle">Practice set
       <select id="scope">
         <option value="mid" selected>Midterm (default): Lectures 1–4 through respiratory drugs</option>
-        <option value="extra">Beyond midterm only (CNS / psychiatric)</option>
+        <option value="extra">Beyond midterm only (CNS / endocrine / GI–urinary)</option>
         <option value="all">All questions</option>
       </select>
     </label>
@@ -162,7 +162,7 @@
   <footer id="foot"></footer>
 </div>
 <script>
-/* NUR2047 MC bank. English stems. Explanations: English, then Traditional Chinese. Midterm = Lectures 1-4 through respiratory drugs, non-CNS tutorials, and Revision ex1. */
+/* NUR2047 MC bank. English stems. Explanations: English, then Traditional Chinese. Midterm = Lectures 1-4 through respiratory drugs, non-CNS tutorials, and Revision ex1. mid:false = L5 CNS, L7 GI/urinary (and similar beyond-midterm). */
 const QUESTIONS = [
   {
     "id": "past-generic",
@@ -1284,6 +1284,202 @@ const QUESTIONS = [
     "answer": 1,
     "explain": "Adverse effects can appear in the first two weeks, but a full improvement in mood and function takes about 6–12 weeks. It is usually taken in the morning and may be taken with food to reduce stomach upset. Do not stop it suddenly, because withdrawal can occur. Reduce it gradually. Avoid grapefruit juice.\n副作用頭兩星期就可以出現，但完整情緒同功能改善約 6–12 星期。通常朝早服，可配食物減胃不適。唔好突然停（會戒斷），要逐步減。避免西柚汁。",
     "source": "rewritten",
+    "mid": false
+  },
+  {
+    "id": "l7-ppi-moa",
+    "stem": "According to Lecture 7, proton-pump inhibitors reduce gastric acid mainly by:",
+    "options": [
+      "Rapidly neutralizing acid already present in the stomach lumen",
+      "Binding irreversibly to H+, K+-ATPase (the proton pump) that secretes HCl",
+      "Blocking only H2 receptors, with no effect on the proton pump enzyme",
+      "Stimulating mucus secretion alone without changing acid output"
+    ],
+    "answer": 1,
+    "explain": "PPIs bind irreversibly to H+/K+-ATPase and are the most potent acid inhibitors; preferred for peptic ulcer disease and GERD.\nPPI 不可逆綁住 H+/K+-ATPase，係最強酸抑制；首選治消化性潰瘍同 GERD。",
+    "source": "rewritten (notes)",
+    "mid": false
+  },
+  {
+    "id": "l7-acid-timing",
+    "stem": "Which timing advice matches Lecture 7 nursing considerations?",
+    "options": [
+      "Take a PPI with food; take an H2 blocker 15–30 minutes before food",
+      "PPI 15–30 min before food; H2 with food; antacids with/after food, spaced from other drugs",
+      "Give antacids together with every other oral drug to boost absorption",
+      "All acid-suppressing classes must be taken only at midnight on an empty stomach"
+    ],
+    "answer": 1,
+    "explain": "PPI: 15–30 minutes before food. H2 blockers: with food. Antacids: with/after food and 1 hour before or 2 hours after other drugs.\nPPI 餐前 15–30 分鐘；H2 跟餐；制酸餐中／後，並同其他藥隔開（前 1 小時或後 2 小時）。",
+    "source": "rewritten (notes)",
+    "mid": false
+  },
+  {
+    "id": "l7-hpylori-first",
+    "stem": "First-line H. pylori eradication therapy in Lecture 7 is:",
+    "options": [
+      "Three days of amoxicillin alone without an acid-suppressing drug",
+      "A 14-day PPI-based triple: PPI plus clarithromycin and amoxicillin",
+      "Lifelong H2-blocker therapy without any antibiotic component",
+      "Fourteen days of bismuth salt alone as monotherapy for eradication"
+    ],
+    "answer": 1,
+    "explain": "First line = 14-day PPI-based triple therapy (PPI + clarithromycin + amoxicillin). Second line = 14-day bismuth quadruple (PPI + bismuth + two antibiotics).\n一線：14 日 PPI 三聯（PPI＋clarithromycin＋amoxicillin）。二線：14 日鉍劑四聯。",
+    "source": "rewritten (notes)",
+    "mid": false
+  },
+  {
+    "id": "l7-antacid-space",
+    "stem": "For antacids, Lecture 7 advises spacing from other drugs because they:",
+    "options": [
+      "Should be given 1 hour before or 2 hours after other medicines",
+      "Must always be infused intravenously over exactly 30 minutes",
+      "Replace the need for any PPI or H2 blocker in all ulcer patients",
+      "Work only if crushed and mixed into every co-prescribed tablet"
+    ],
+    "answer": 0,
+    "explain": "Antacids neutralize acid quickly (often Al + Mg hydroxide). Administer apart from other drugs: 1 hour before or 2 hours after. Side effects include constipation or diarrhea.\n制酸快速中和胃酸（常為鋁＋鎂）。同其他藥分開：前 1 小時或後 2 小時。副作用可便秘或腹瀉。",
+    "source": "rewritten (notes)",
+    "mid": false
+  },
+  {
+    "id": "l7-bulk-lax",
+    "stem": "Psyllium (bulk-forming laxative) teaching that matches the lecture includes:",
+    "options": [
+      "It works within about 20 minutes and needs no extra fluid intake at all",
+      "Take with a full glass of water; onset ~1–3 days; not for rapid full evacuation",
+      "It is the preferred daily stimulant and commonly causes long-term dependence",
+      "Rectal onset is about 20 minutes; oral onset is always under one hour exactly"
+    ],
+    "answer": 1,
+    "explain": "Bulk-forming agents absorb water, enlarge the fecal mass, and stimulate peristalsis. Take with a full glass of water; ~1–3 days; may cause fecal impaction; not used when rapid complete evacuation is needed.\n膨脹性瀉藥吸水增大糞塊刺激蠕動。要滿杯水；約 1–3 日；可致糞嵌塞；唔用於要快速清腸。",
+    "source": "rewritten (notes)",
+    "mid": false
+  },
+  {
+    "id": "l7-stim-lax",
+    "stem": "Which statement about stimulant laxatives (e.g. bisacodyl, senna) is correct?",
+    "options": [
+      "Oral onset about 6–12 hours; rectal about 20 minutes; use only occasionally",
+      "They never cause diarrhea or cramping at usual labelled doses",
+      "They are first-line for indefinite daily use in all adults with mild constipation",
+      "Senna must never be taken at bedtime according to the lecture"
+    ],
+    "answer": 0,
+    "explain": "Stimulants irritate bowel mucosa, increase peristalsis, and are rapid-acting. Oral ~6–12 h; rectal ~20 min. Senna is usually taken at bedtime. Occasional use only — dependence and fluid/electrolyte depletion possible.\n刺激性瀉藥刺激腸黏膜、增蠕動、較快。口服約 6–12 小時；直腸約 20 分鐘。Senna 通常睡前。只偶用——可依賴同耗水／電解質。",
+    "source": "rewritten (notes)",
+    "mid": false
+  },
+  {
+    "id": "l7-renal-fail",
+    "stem": "How does renal failure mainly affect pharmacotherapy in Lecture 7?",
+    "options": [
+      "Drugs are cleared much faster, so usual doses always become subtherapeutic",
+      "Drugs can accumulate to high concentrations in blood and tissues, causing toxicity",
+      "All oral drugs become completely unavailable because of zero gut absorption",
+      "Diuretics must never be used in any patient with reduced kidney function"
+    ],
+    "answer": 1,
+    "explain": "Renal failure reduces the kidney's ability to keep fluid/electrolyte balance and excrete wastes. Drugs accumulate and may become toxic. Pharmacotherapy may include diuretics, erythropoietin-related meds, and cardiovascular drugs.\n腎衰竭時排泄廢物／維持水電能力↓，藥物可積聚至毒。藥療可包括利尿、EPO 相關藥、心血管藥。",
+    "source": "rewritten (notes)",
+    "mid": false
+  },
+  {
+    "id": "l7-loop-moa",
+    "stem": "Loop diuretics such as furosemide are described as most effective because they:",
+    "options": [
+      "Block aldosterone receptors in the late distal tubule and spare potassium",
+      "Inhibit the Na+/K+/2Cl- cotransporter in the thick ascending limb of the loop of Henle",
+      "Act only as osmotic agents that stay in the lumen like mannitol",
+      "Work solely by carbonic anhydrase inhibition to treat glaucoma"
+    ],
+    "answer": 1,
+    "explain": "Loop diuretics act on the loop of Henle by inhibiting Na+/K+/2Cl- cotransport. IV use can produce large fluid loss quickly. Examples: furosemide, bumetanide.\nLoop 作用於 Henle 袢，抑制 Na+/K+/2Cl- 共運。IV 可短時間大量排水。例子：furosemide、bumetanide。",
+    "source": "rewritten (notes)",
+    "mid": false
+  },
+  {
+    "id": "l7-furosemide-risk",
+    "stem": "A patient on furosemide and digoxin reports new tinnitus. Priority teaching from the lecture includes:",
+    "options": [
+      "Ototoxicity is unrelated to dose and is always permanent hearing loss",
+      "Hypokalemia increases digoxin toxicity risk; monitor electrolytes and report hearing changes",
+      "Loop diuretics never lower potassium, so digoxin interaction is impossible",
+      "Store IV furosemide in direct sunlight to keep the solution stable"
+    ],
+    "answer": 1,
+    "explain": "Furosemide adverse effects include fluid/electrolyte depletion, hypokalemia, and dose-related (usually reversible) ototoxicity. Hypokalemia with digoxin can cause digoxin toxicity. Take in morning/early afternoon; protect IV from light.\nFurosemide 可致水電耗盡、低鉀、劑量相關（多數可逆）耳毒。低鉀＋digoxin → digoxin 毒性。朝早／下晝早服；IV 避光。",
+    "source": "rewritten (notes)",
+    "mid": false
+  },
+  {
+    "id": "l7-thiazide",
+    "stem": "Thiazide diuretics in Lecture 7 are primarily used for:",
+    "options": [
+      "Mild to moderate hypertension, acting on the distal tubule to block Na+ reabsorption",
+      "Emergency reduction of cerebral oedema as the only approved osmotic IV agent",
+      "Exclusive treatment of glaucoma via carbonic anhydrase inhibition alone",
+      "Potassium-sparing diuresis by blocking aldosterone in every patient"
+    ],
+    "answer": 0,
+    "explain": "Thiazides act on the distal tubule; primary use is mild to moderate hypertension. HCTZ may cause transient myopia and acute glaucoma — monitor vision; may cause photosensitivity.\nThiazide 作用遠曲小管；首要用於輕至中度高血壓。HCTZ 可致短暫近視／急性青光眼——監察視力；可有光敏感。",
+    "source": "rewritten (notes)",
+    "mid": false
+  },
+  {
+    "id": "l7-kspare",
+    "stem": "Spironolactone (a potassium-sparing diuretic) teaching that matches the lecture is:",
+    "options": [
+      "Expect marked hypokalemia; encourage high-potassium foods every day",
+      "It blocks aldosterone receptors, retains K+; avoid high-K foods; contraindicated in anuria",
+      "It is given only intravenously to lower intraocular pressure in glaucoma",
+      "Breast tenderness never occurs, and menstrual cycles are unaffected"
+    ],
+    "answer": 1,
+    "explain": "K-sparing agents block aldosterone in the late DCT, increase NaCl/water excretion, and conserve K+ and H+. Risk: hyperkalemia — avoid high-K foods. Contraindicated in anuria. Spironolactone may cause male breast enlargement/tenderness.\n保鉀利尿阻 late DCT aldosterone 受體，排 NaCl／水、留 K+／H+。風險高鉀——避高鉀食物。無尿禁忌。Spironolactone 可致男士乳房脹／痛。",
+    "source": "rewritten (notes)",
+    "mid": false
+  },
+  {
+    "id": "l7-mannitol",
+    "stem": "Mannitol (Osmitrol) in the lecture is best described as:",
+    "options": [
+      "An oral bulk-forming laxative taken daily with one full glass of water",
+      "An osmotic diuretic (IV only) for cerebral oedema and lowering IOP in some glaucoma",
+      "A first-line oral thiazide used mainly for mild hypertension in primary care",
+      "A urinary tract antibiotic that eradicates H. pylori within a 14-day course"
+    ],
+    "answer": 1,
+    "explain": "Mannitol remains in the lumen and holds water by osmosis (proximal tubule and descending loop). Used for cerebral oedema and to lower intraocular pressure; IV only.\nMannitol 留喺管腔以滲透拉水（近曲＋下行袢）。用於腦水腫、降部分青光眼眼壓；只 IV。",
+    "source": "rewritten (notes)",
+    "mid": false
+  },
+  {
+    "id": "l7-pyridium",
+    "stem": "Phenazopyridine (Pyridium) patient teaching from Lecture 7 includes:",
+    "options": [
+      "Urine may turn dark orange–red; avoid in G6PD deficiency; may stain; avoid contacts; take with meals",
+      "It is a loop diuretic reserved only for IV use in acute pulmonary oedema cases",
+      "It replaces PPI-based triple therapy as the first-line H. pylori eradication plan",
+      "Urine colour never changes, and wearing contact lenses remains always completely safe"
+    ],
+    "answer": 0,
+    "explain": "Phenazopyridine is a urinary tract analgesic with local anesthetic effect on urothelium. Urine dark orange–red; stains fabrics; avoid in G6PD deficiency (hemolysis); avoid contact lenses; take with meals for stomach upset.\nPhenazopyridine 係尿路鎮痛，局部麻醉尿路上皮。尿深橙至紅；染色；G6PD 缺乏忌用（溶血）；唔好戴隱形眼鏡；跟餐減胃部不適。",
+    "source": "rewritten (notes)",
+    "mid": false
+  },
+  {
+    "id": "l7-h2-use",
+    "stem": "H2 receptor blockers (famotidine, cimetidine, ranitidine) reduce acid because they:",
+    "options": [
+      "Irreversibly destroy the proton pump protein inside every parietal cell",
+      "Block H2 receptors that normally increase gastric acid secretion",
+      "Neutralize acid already formed, exactly like aluminum–magnesium antacids",
+      "Kill H. pylori as single-agent antibiotic therapy in all ulcer patients"
+    ],
+    "answer": 1,
+    "explain": "H2 receptors increase acid secretion; blocking them reduces acid. Used for ulcers, GERD, and dyspepsia. Take with food; caution in renal/liver dysfunction.\nH2 受體負責增加胃酸；阻斷後減酸。用於潰瘍、GERD、消化不良。跟餐；肝腎功能不全小心。",
+    "source": "rewritten (notes)",
     "mid": false
   },
   {
@@ -3706,7 +3902,7 @@ const BANKS = { NUR2047: QUESTIONS, NUR2018: NUR2018_QUESTIONS };
       allOpt.textContent = "All questions";
     } else {
       midOpt.textContent = "Midterm (default): Lectures 1–4 through respiratory drugs";
-      extraOpt.textContent = "Beyond midterm only (CNS / psychiatric)";
+      extraOpt.textContent = "Beyond midterm only (CNS / endocrine / GI–urinary)";
       allOpt.textContent = "All questions";
     }
   }
@@ -3727,7 +3923,7 @@ const BANKS = { NUR2047: QUESTIONS, NUR2018: NUR2018_QUESTIONS };
     } else {
       foot.textContent = "Default Start is the midterm pool (" + mid + " static + " + calcN
         + " random-calc templates). Beyond midterm: " + extra
-        + " (Lecture 5 CNS / psychiatric, including the SSRI and opioid tutorial items). Full static bank " + all
+        + " (Lecture 5 CNS / psychiatric + Lecture 7 GI/urinary; mid:false items). Full static bank " + all
         + ". Sources: past paper " + (counts["past paper"] || 0)
         + " · tutorial " + (counts["tutorial"] || 0)
         + " · revision exercise " + (counts["revision"] || 0)
