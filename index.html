@@ -126,6 +126,63 @@
     color: var(--amber);
   }
   .nextrow { margin-top: 16px; text-align: center; }
+
+  .calc-wrap {
+    margin-top: 18px;
+    border-top: 1px dashed var(--line);
+    padding-top: 14px;
+    font-family: "Avenir Next", "Segoe UI", sans-serif;
+  }
+  .calc-wrap .calc-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0 0 8px;
+  }
+  .calc-panel {
+    max-width: 280px;
+    background: #1c1915;
+    border-radius: 14px;
+    padding: 10px;
+    box-shadow: 0 6px 16px rgba(28, 25, 21, 0.18);
+  }
+  .calc-display {
+    width: 100%;
+    border: 0;
+    border-radius: 8px;
+    background: #2a2520;
+    color: #f7fff9;
+    font-size: 22px;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    text-align: right;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+  }
+  .calc-keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  .calc-keys button {
+    appearance: none;
+    border: 0;
+    border-radius: 8px;
+    min-height: 42px;
+    font-size: 16px;
+    font-weight: 650;
+    cursor: pointer;
+    background: #3a342e;
+    color: #f7fff9;
+  }
+  .calc-keys button:active { filter: brightness(1.15); }
+  .calc-keys button.op { background: #166534; }
+  .calc-keys button.util { background: #5c564c; }
+  .calc-keys button.eq { background: #92400e; grid-column: span 2; }
+  @media (max-width: 420px) {
+    .calc-panel { max-width: 100%; }
+  }
   footer {
     margin-top: 18px;
     color: var(--muted);
@@ -3962,6 +4019,91 @@ const BANKS = { NUR2047: QUESTIONS, NUR2018: NUR2018_QUESTIONS };
     box.appendChild(btn);
     stage.appendChild(box);
   }
+  function mountCalculator(parent) {
+    const wrap = document.createElement("div");
+    wrap.className = "calc-wrap";
+    const lab = document.createElement("p");
+    lab.className = "calc-label";
+    lab.textContent = "Calculator · 計算機";
+    const panel = document.createElement("div");
+    panel.className = "calc-panel";
+    const display = document.createElement("input");
+    display.className = "calc-display";
+    display.type = "text";
+    display.readOnly = true;
+    display.value = "0";
+    display.setAttribute("aria-label", "Calculator display");
+    const keys = document.createElement("div");
+    keys.className = "calc-keys";
+    let cur = "0";
+    let prev = null;
+    let op = null;
+    let fresh = true;
+    function show() { display.value = cur; }
+    function inputDigit(d) {
+      if (fresh || cur === "0") { cur = d === "." ? "0." : d; fresh = false; }
+      else if (d === "." && cur.indexOf(".") !== -1) return;
+      else cur += d;
+      show();
+    }
+    function setOp(next) {
+      const n = parseFloat(cur);
+      if (prev !== null && op && !fresh) {
+        cur = String(apply(prev, n, op));
+        show();
+      }
+      prev = parseFloat(cur);
+      op = next;
+      fresh = true;
+    }
+    function apply(a, b, o) {
+      if (o === "+") return a + b;
+      if (o === "-") return a - b;
+      if (o === "×") return a * b;
+      if (o === "÷") return b === 0 ? NaN : a / b;
+      return b;
+    }
+    function equals() {
+      if (op === null || prev === null) return;
+      const n = parseFloat(cur);
+      const r = apply(prev, n, op);
+      cur = Number.isFinite(r) ? String(Number(r.toPrecision(12))) : "Error";
+      prev = null;
+      op = null;
+      fresh = true;
+      show();
+    }
+    function clearAll() {
+      cur = "0"; prev = null; op = null; fresh = true; show();
+    }
+    function backspace() {
+      if (fresh) return;
+      cur = cur.length <= 1 ? "0" : cur.slice(0, -1);
+      if (cur === "-" || cur === "") cur = "0";
+      show();
+    }
+    const layout = [
+      ["C", "util", clearAll], ["⌫", "util", backspace], ["÷", "op", () => setOp("÷")], ["×", "op", () => setOp("×")],
+      ["7", "", () => inputDigit("7")], ["8", "", () => inputDigit("8")], ["9", "", () => inputDigit("9")], ["-", "op", () => setOp("-")],
+      ["4", "", () => inputDigit("4")], ["5", "", () => inputDigit("5")], ["6", "", () => inputDigit("6")], ["+", "op", () => setOp("+")],
+      ["1", "", () => inputDigit("1")], ["2", "", () => inputDigit("2")], ["3", "", () => inputDigit("3")], [".", "", () => inputDigit(".")],
+      ["0", "", () => inputDigit("0")], ["=", "eq", equals]
+    ];
+    layout.forEach(([label, cls, fn]) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.textContent = label;
+      if (cls) b.className = cls;
+      if (label === "0") b.style.gridColumn = "span 2";
+      b.addEventListener("click", (e) => { e.stopPropagation(); fn(); });
+      keys.appendChild(b);
+    });
+    panel.appendChild(display);
+    panel.appendChild(keys);
+    wrap.appendChild(lab);
+    wrap.appendChild(panel);
+    parent.appendChild(wrap);
+  }
   function renderQuestion(q) {
     stage.innerHTML = "";
     const stem = document.createElement("h2");
@@ -3984,6 +4126,7 @@ const BANKS = { NUR2047: QUESTIONS, NUR2018: NUR2018_QUESTIONS };
     });
     stage.appendChild(stem);
     stage.appendChild(opts);
+    mountCalculator(stage);
   }
   function choose(q, i, buttons) {
     if (locked) return;
