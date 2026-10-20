@@ -5022,6 +5022,38 @@ const BANKS = { NUR2047: QUESTIONS, NUR2018: NUR2018_QUESTIONS };
     updateFoot();
     renderIdle();
   });
+
+  // Share links: ?share=calc-hard or ?share=calc (also ?calc=hard / ?calc=all)
+  // Locks to NUR2047 calculation practice so you can send a calc-only URL.
+  (function applyShareLock() {
+    var params = new URLSearchParams(location.search);
+    var share = (params.get("share") || "").toLowerCase();
+    var calc = (params.get("calc") || "").toLowerCase();
+    var mode = null;
+    if (share === "calc-hard" || share === "hard" || calc === "hard" || calc === "calc-hard") mode = "calc-hard";
+    else if (share === "calc" || share === "all-calc" || calc === "all" || calc === "1" || calc === "calc") mode = "calc";
+    if (!mode) return;
+    subjectEl.value = "NUR2047";
+    scopeEl.value = mode;
+    subjectEl.disabled = true;
+    scopeEl.disabled = true;
+    var subLbl = subjectEl.closest("label");
+    var scopeLbl = scopeEl.closest("label");
+    if (subLbl) subLbl.style.display = "none";
+    if (scopeLbl) scopeLbl.style.display = "none";
+    var h1 = document.querySelector("header h1");
+    var sub = document.querySelector("header .sub");
+    var kicker = document.querySelector("header .kicker");
+    if (kicker) kicker.textContent = "Shared · Calculation practice";
+    if (h1) h1.textContent = mode === "calc-hard" ? "NUR2047 · Hard calculations" : "NUR2047 · All calculations";
+    if (sub) {
+      sub.textContent = mode === "calc-hard"
+        ? "This shared link opens harder calculation questions only (numbers refresh each draw). Choose an answer, then see the bilingual working."
+        : "This shared link opens calculation questions only (standard + harder; numbers refresh each draw). Choose an answer, then see the bilingual working.";
+    }
+    document.title = mode === "calc-hard" ? "NUR2047 Hard Calculations · MC Quiz" : "NUR2047 Calculations · MC Quiz";
+  })();
+
   updateFoot();
   renderIdle();
 })();
