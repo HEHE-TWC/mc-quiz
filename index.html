@@ -211,6 +211,8 @@
       <select id="scope">
         <option value="mid" selected>Midterm (default): Lectures 1–4 through respiratory drugs</option>
         <option value="extra">Beyond midterm only (CNS / endocrine / GI–urinary)</option>
+        <option value="calc-hard">Calculation only (harder)</option>
+        <option value="calc">All calculations</option>
         <option value="all">All questions</option>
       </select>
     </label>
@@ -2335,12 +2337,648 @@ var CALC_TEMPLATES = [
         " mL/h。唔好只計袋裝（咁會變成 " + dBagOnly + "）。";
       return { id: "calc-ns-draw-rate", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "tutorial (calculation)", mid: true };
     }
+  },
+  {
+    id: "calc-hard-lb-mcg-pump",
+    mid: true,
+    hard: true,
+    gen: function () {
+      var lb = calcPick([110, 121, 132, 143, 154, 165, 176, 187, 198]);
+      var kg = lb / 2.2;
+      var rate = calcPick([2.5, 3, 3.5, 4, 5, 6, 7.5]);
+      var bagVol = calcPick([250, 500]);
+      var drugMg = calcPick([250, 400, 500, 1000]);
+      var mcgPerMin = rate * kg;
+      var mgPerHr = (mcgPerMin * 60) / 1000;
+      var conc = drugMg / bagVol;
+      var pump = mgPerHr / conc;
+      var correct = calcRoundDose(pump);
+      var dLbAsKg = calcRoundDose((((rate * lb) * 60) / 1000) / conc);
+      var dDiv2 = calcRoundDose((((rate * (lb / 2)) * 60) / 1000) / conc);
+      var dForgot60 = calcRoundDose((mcgPerMin / 1000) / conc);
+      var dForgotWt = calcRoundDose(((rate * 60) / 1000) / conc);
+      var dBagOnlyWrong = calcRoundDose(mgPerHr / (drugMg / (bagVol === 250 ? 500 : 250)));
+      var dForgotBoth = calcRoundDose((rate / 1000) / conc);
+      var correctLabel = calcFmt(correct, "mL/h");
+      var built = calcBuildOpts(correctLabel, [
+        calcFmt(dLbAsKg, "mL/h"),
+        calcFmt(dDiv2, "mL/h"),
+        calcFmt(dForgot60, "mL/h"),
+        calcFmt(dForgotWt, "mL/h"),
+        calcFmt(dBagOnlyWrong, "mL/h"),
+        calcFmt(dForgotBoth, "mL/h"),
+        calcFmt(calcRoundDose(correct * 1.15), "mL/h"),
+        calcFmt(calcRoundDose(Math.max(0.1, correct * 0.85)), "mL/h")
+      ]);
+      var stem = "Dobutamine is ordered at " + rate + " mcg/kg/min IV. The patient weighs " + lb +
+        " lb. The bag contains " + drugMg + " mg in " + bagVol +
+        " mL. What pump rate should you set?";
+      var explain =
+        "Convert lb→kg: " + lb + " ÷ 2.2 ≈ " + calcFmtKg(kg).replace(" kg", "") +
+        " kg. Dose: " + rate + " × " + calcFmtKg(kg).replace(" kg", "") + " = " + calcFmt(mcgPerMin) +
+        " mcg/min = " + calcFmt(mgPerHr) + " mg/h. Conc: " + drugMg + "/" + bagVol + " = " +
+        calcFmt(conc) + " mg/mL. Pump = " + calcFmt(mgPerHr) + " ÷ " + calcFmt(conc) + " = " +
+        calcFmt(correct) + " mL/h. Do not treat pounds as kilograms.\n體重：" + lb +
+        "÷2.2≈" + calcFmtKg(kg) + "。劑量→" + calcFmt(mgPerHr) + " mg/h；濃度→泵速 " +
+        calcFmt(correct) + " mL/h。唔好把磅當公斤。";
+      return { id: "calc-hard-lb-mcg-pump", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "rewritten (calculation)", mid: true, hard: true };
+    }
+  },
+  {
+    id: "calc-hard-draw-bag-odd",
+    mid: true,
+    hard: true,
+    gen: function () {
+      var bag = calcPick([50, 100, 100, 150, 250]);
+      var draw = calcPick([2.4, 3.2, 4.8, 5.7, 6.4, 7.5, 8.8, 11.2]);
+      var mins = calcPick([15, 20, 30, 45, 60]);
+      var total = bag + draw;
+      var hours = mins / 60;
+      var correct = calcRoundDose(total / hours);
+      var dBagOnly = calcRoundDose(bag / hours);
+      var dDrawOnly = calcRoundDose(draw / hours);
+      var dForgotHrs = calcRoundDose(total / mins);
+      var dBagForgotHrs = calcRoundDose(bag / mins);
+      var dDoubleDraw = calcRoundDose((bag + draw * 2) / hours);
+      var correctLabel = calcFmt(correct, "mL/h");
+      var built = calcBuildOpts(correctLabel, [
+        calcFmt(dBagOnly, "mL/h"),
+        calcFmt(dDrawOnly, "mL/h"),
+        calcFmt(dForgotHrs, "mL/h"),
+        calcFmt(dBagForgotHrs, "mL/h"),
+        calcFmt(dDoubleDraw, "mL/h"),
+        calcFmt(calcRoundDose(correct + 10), "mL/h"),
+        calcFmt(calcRoundDose(Math.max(1, correct - 10)), "mL/h")
+      ]);
+      var stem = "You draw " + draw + " mL from a vial and add it to " + bag +
+        " mL NS. Infuse the mixture over " + mins +
+        " minutes. What pump rate should you set (include the draw volume)?";
+      var explain =
+        "Total volume = " + bag + " + " + draw + " = " + calcFmt(total) +
+        " mL. Hours = " + mins + "/60 = " + calcFmt(hours) +
+        ". Rate = " + calcFmt(total) + " ÷ " + calcFmt(hours) + " = " + calcFmt(correct) +
+        " mL/h. Bag-only would wrongly give " + calcFmt(dBagOnly) +
+        " mL/h.\n總體積＝袋＋抽取＝" + calcFmt(total) + " mL；÷小時＝" + calcFmt(correct) +
+        " mL/h。唔好漏計抽取體積。";
+      return { id: "calc-hard-draw-bag-odd", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "tutorial (calculation)", mid: true, hard: true };
+    }
+  },
+  {
+    id: "calc-hard-mgkg-lb-draw",
+    mid: true,
+    hard: true,
+    gen: function () {
+      var lb = calcPick([44, 55, 66, 77, 88, 99, 110]);
+      var kg = lb / 2.2;
+      var mgPerKg = calcPick([5, 7.5, 10, 12.5, 15, 20]);
+      var vialConc = calcPick([20, 25, 40, 50, 100, 125]);
+      var wantMg = kg * mgPerKg;
+      var draw = wantMg / vialConc;
+      var correct = calcRoundDose(draw);
+      var dLbAsKg = calcRoundDose((lb * mgPerKg) / vialConc);
+      var dDiv2 = calcRoundDose(((lb / 2) * mgPerKg) / vialConc);
+      var dForgotConc = calcRoundDose(wantMg);
+      var dInvert = calcRoundDose(vialConc / wantMg);
+      var dHalf = calcRoundDose(draw / 2);
+      var correctLabel = calcFmt(correct, "mL");
+      var built = calcBuildOpts(correctLabel, [
+        calcFmt(dLbAsKg, "mL"),
+        calcFmt(dDiv2, "mL"),
+        calcFmt(dForgotConc, "mL"),
+        calcFmt(dInvert, "mL"),
+        calcFmt(dHalf, "mL"),
+        calcFmt(calcRoundDose(draw * 1.25), "mL"),
+        calcFmt(calcRoundDose(Math.max(0.01, draw * 0.75)), "mL")
+      ]);
+      var stem = "Drug A is ordered at " + mgPerKg + " mg/kg IV once. The patient weighs " + lb +
+        " lb. The vial is " + vialConc + " mg/mL. How many millilitres should you draw?";
+      var explain =
+        "Weight: " + lb + " ÷ 2.2 ≈ " + calcFmtKg(kg) + ". Dose ≈ " +
+        calcFmtKg(kg).replace(" kg", "") + " × " + mgPerKg + " ≈ " + calcFmt(wantMg) +
+        " mg. Draw = dose ÷ concentration = " + calcFmt(wantMg) + " ÷ " + vialConc + " = " +
+        calcFmt(correct) + " mL.\n體重換算後劑量約 " + calcFmt(wantMg) + " mg；÷濃度 " +
+        vialConc + "＝" + calcFmt(correct) + " mL。";
+      return { id: "calc-hard-mgkg-lb-draw", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "rewritten (calculation)", mid: true, hard: true };
+    }
+  },
+  {
+    id: "calc-hard-daily-split-vial",
+    mid: true,
+    hard: true,
+    gen: function () {
+      var lb = calcPick([50, 60, 70, 80, 90, 100, 120]);
+      var kg = lb / 2.2;
+      var mgPerKgDay = calcPick([30, 40, 50, 60, 75]);
+      var freq = calcPick([
+        { label: "Q6H", n: 4 },
+        { label: "Q8H", n: 3 },
+        { label: "Q12H", n: 2 }
+      ]);
+      var vial = calcPick([100, 125, 200, 250, 500]);
+      var daily = kg * mgPerKgDay;
+      var perDose = daily / freq.n;
+      var draw = perDose / vial;
+      var correct = calcRoundDose(draw);
+      var dDailyDraw = calcRoundDose(daily / vial);
+      var dLbAsKg = calcRoundDose(((lb * mgPerKgDay) / freq.n) / vial);
+      var dWrongFreq = calcRoundDose((daily / (freq.n === 4 ? 3 : 2)) / vial);
+      var dMgAsMl = calcRoundDose(perDose);
+      var correctLabel = calcFmt(correct, "mL per dose");
+      var built = calcBuildOpts(correctLabel, [
+        calcFmt(dDailyDraw, "mL per dose"),
+        calcFmt(dLbAsKg, "mL per dose"),
+        calcFmt(dWrongFreq, "mL per dose"),
+        calcFmt(dMgAsMl, "mL per dose"),
+        calcFmt(calcRoundDose(draw * 2), "mL per dose"),
+        calcFmt(calcRoundDose(Math.max(0.01, draw / 2)), "mL per dose")
+      ]);
+      var stem = "Drug A " + mgPerKgDay + " mg/kg/day " + freq.label +
+        ". Patient weighs " + lb + " lb. Available concentration is " + vial +
+        " mg/mL. How many mL should you give per dose?";
+      var explain =
+        "kg ≈ " + calcFmtKg(kg) + "; daily ≈ " + calcFmt(daily) + " mg; per dose (" +
+        freq.label + ") ≈ " + calcFmt(perDose) + " mg; ÷ " + vial + " mg/mL = " +
+        calcFmt(correct) + " mL per dose.\n換算體重→全日→每次劑量→除濃度＝" +
+        calcFmt(correct) + " mL／次。";
+      return { id: "calc-hard-daily-split-vial", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "rewritten (calculation)", mid: true, hard: true };
+    }
+  },
+  {
+    id: "calc-hard-halflife-chain",
+    mid: true,
+    hard: true,
+    gen: function () {
+      var dose = calcPick([24, 36, 48, 64, 80, 96, 120]);
+      var tHalf = calcPick([1.5, 2, 2.5, 3, 4, 6]);
+      var n = calcPick([2, 3, 4, 5]);
+      var hours = calcRoundDose(tHalf * n);
+      var remain = dose / Math.pow(2, n);
+      var correct = calcRoundDose(remain);
+      var dOneOff = calcRoundDose(dose / Math.pow(2, n - 1));
+      var dPlusOne = calcRoundDose(dose / Math.pow(2, n + 1));
+      var dLinear = calcRoundDose(dose - (dose * (n / (n + 2))));
+      var dHalfOnly = calcRoundDose(dose / 2);
+      var dHoursAsN = calcRoundDose(dose / Math.pow(2, Math.round(hours)));
+      var correctLabel = calcFmt(correct, "mg");
+      var built = calcBuildOpts(correctLabel, [
+        calcFmt(dOneOff, "mg"),
+        calcFmt(dPlusOne, "mg"),
+        calcFmt(dLinear, "mg"),
+        calcFmt(dHalfOnly, "mg"),
+        calcFmt(dHoursAsN, "mg"),
+        calcFmt(calcRoundDose(remain * 1.5), "mg")
+      ]);
+      var stem = "A drug has a half-life of " + tHalf +
+        " hours. After a single " + dose + " mg dose, about how much remains after " +
+        hours + " hours?";
+      var explain =
+        hours + " hours ÷ " + tHalf + " h = " + n +
+        " half-lives. Remaining = " + dose + " × (1/2)^" + n + " = " + calcFmt(correct) +
+        " mg. Do not subtract linearly or treat elapsed hours as the half-life count without dividing.\n" +
+        hours + "÷" + tHalf + "＝" + n + " 個半衰期 → 剩 " + calcFmt(correct) + " mg。";
+      return { id: "calc-hard-halflife-chain", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "rewritten (calculation)", mid: true, hard: true };
+    }
+  },
+  {
+    id: "calc-hard-reconstitute",
+    mid: true,
+    hard: true,
+    gen: function () {
+      var labelMg = calcPick([500, 750, 1000, 1500, 2000]);
+      var diluent = calcPick([4.8, 5, 9.6, 10, 19.2, 20]);
+      // overfill / powder displacement trap: final volume slightly > diluent
+      var displace = calcPick([0, 0.2, 0.4, 0.5, 0.8]);
+      var finalVol = calcRoundDose(diluent + displace);
+      var want = calcPick([125, 250, 375, 500, 750]);
+      if (want > labelMg) want = labelMg / 2;
+      var conc = labelMg / finalVol;
+      var draw = want / conc;
+      var correct = calcRoundDose(draw);
+      var dIgnoreDisplace = calcRoundDose(want / (labelMg / diluent));
+      var dUseLabelAsDraw = calcRoundDose(want / labelMg);
+      var dInvert = calcRoundDose(conc / want);
+      var dWholeVial = calcRoundDose(finalVol);
+      var correctLabel = calcFmt(correct, "mL");
+      var built = calcBuildOpts(correctLabel, [
+        calcFmt(dIgnoreDisplace, "mL"),
+        calcFmt(dUseLabelAsDraw, "mL"),
+        calcFmt(dInvert, "mL"),
+        calcFmt(dWholeVial, "mL"),
+        calcFmt(calcRoundDose(draw * 1.2), "mL"),
+        calcFmt(calcRoundDose(Math.max(0.01, draw * 0.8)), "mL")
+      ]);
+      var stem;
+      if (displace > 0) {
+        stem = "A " + labelMg + " mg powder vial is reconstituted with " + diluent +
+          " mL diluent; after mixing the final volume is " + finalVol +
+          " mL. You need " + want + " mg. How many mL should you draw?";
+      } else {
+        stem = "A " + labelMg + " mg powder vial is reconstituted with " + diluent +
+          " mL diluent to make " + finalVol + " mL. You need " + want +
+          " mg. How many mL should you draw?";
+      }
+      var explain =
+        "Concentration = " + labelMg + " mg ÷ " + finalVol + " mL = " + calcFmt(conc) +
+        " mg/mL. Draw = " + want + " ÷ " + calcFmt(conc) + " = " + calcFmt(correct) +
+        " mL. Use the final volume after reconstitution, not diluent alone if they differ.\n濃度＝標示量÷最終體積；抽取＝需要量÷濃度＝" +
+        calcFmt(correct) + " mL。";
+      return { id: "calc-hard-reconstitute", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "rewritten (calculation)", mid: true, hard: true };
+    }
+  },
+  {
+    id: "calc-hard-pct-solution",
+    mid: true,
+    hard: true,
+    gen: function () {
+      var pct = calcPick([0.9, 1, 2, 2.5, 5, 10]);
+      var wantMg = calcPick([90, 100, 225, 250, 450, 500, 750, 1000]);
+      var mgPerMl = pct * 10; // 1% = 10 mg/mL
+      var draw = wantMg / mgPerMl;
+      var correct = calcRoundDose(draw);
+      var dPctAsMgMl = calcRoundDose(wantMg / pct); // treat % as mg/mL
+      var dForgot10 = calcRoundDose(wantMg / (pct * 100)); // 1%=100 mg/mL wrong
+      var dInvert = calcRoundDose(mgPerMl / wantMg);
+      var dHalf = calcRoundDose(draw / 2);
+      var correctLabel = calcFmt(correct, "mL");
+      var built = calcBuildOpts(correctLabel, [
+        calcFmt(dPctAsMgMl, "mL"),
+        calcFmt(dForgot10, "mL"),
+        calcFmt(dInvert, "mL"),
+        calcFmt(dHalf, "mL"),
+        calcFmt(calcRoundDose(draw * 2), "mL"),
+        calcFmt(calcRoundDose(wantMg / 100), "mL")
+      ]);
+      var stem = "You need " + wantMg + " mg of a drug supplied as a " + pct +
+        "% solution. How many millilitres should you draw?";
+      var explain =
+        "A " + pct + "% solution = " + pct + " g/100 mL = " + calcFmt(mgPerMl) +
+        " mg/mL. Volume = " + wantMg + " ÷ " + calcFmt(mgPerMl) + " = " + calcFmt(correct) +
+        " mL. Do not treat the % number as mg/mL.\n" + pct + "%＝" + calcFmt(mgPerMl) +
+        " mg/mL；抽取＝" + calcFmt(correct) + " mL。";
+      return { id: "calc-hard-pct-solution", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "rewritten (calculation)", mid: true, hard: true };
+    }
+  },
+  {
+    id: "calc-hard-drip-messy",
+    mid: true,
+    hard: true,
+    gen: function () {
+      var vol = calcPick([75, 125, 175, 225, 350, 750]);
+      var hours = calcPick([1.5, 2.5, 3.5, 4.5, 6.5]);
+      var factor = calcPick([10, 15, 20, 60]);
+      var mins = hours * 60;
+      var raw = (vol * factor) / mins;
+      var correct = Math.round(raw);
+      var dHours = Math.round((vol * factor) / hours);
+      var dForgotFactor = Math.round(vol / mins);
+      var dAltF = Math.round((vol * (factor === 15 ? 20 : 15)) / mins);
+      var dFloor = Math.floor(raw);
+      if (dFloor === correct) dFloor = Math.max(1, correct - 1);
+      var correctLabel = calcFmtWhole(correct, "drops/min");
+      var built = calcBuildOpts(correctLabel, [
+        calcFmtWhole(dHours, "drops/min"),
+        calcFmtWhole(dForgotFactor, "drops/min"),
+        calcFmtWhole(dAltF, "drops/min"),
+        calcFmtWhole(dFloor, "drops/min"),
+        calcFmtWhole(Math.max(1, correct + 2), "drops/min"),
+        calcFmtWhole(Math.max(1, correct - 2), "drops/min")
+      ]);
+      var stem = vol + " mL must run over " + hours +
+        " hours with a drop factor of " + factor +
+        " drops/mL. What gravity drip rate (nearest whole drop/min)?";
+      var explain =
+        "Drops/min = (" + vol + " × " + factor + ") ÷ (" + hours + " × 60) = " +
+        (Math.round(raw * 100) / 100) + " → " + correct +
+        " drops/min. Convert hours to minutes first.\n（容量×factor）÷分鐘＝" + correct + " 滴/分鐘。";
+      return { id: "calc-hard-drip-messy", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "rewritten (calculation)", mid: true, hard: true };
+    }
+  },
+  {
+    id: "calc-hard-vanco-both",
+    mid: true,
+    hard: true,
+    gen: function () {
+      var dose = calcPick([750, 1000, 1250, 1500, 1750, 2000]);
+      var minVol = dose / 5;
+      var minMin = dose / 10;
+      // ask pump rate if given in minimum volume over minimum time
+      var rate = calcRoundDose(minVol / (minMin / 60));
+      // rate should be 30 mL/h always if both mins used: (dose/5) / (dose/10 / 60) = (dose/5)*(60*10/dose) = 120
+      // Actually: minVol/(minMin/60) = (dose/5) / (dose/10 / 60) = (dose/5) * (60 * 10 / dose) = 120
+      // So always 120 - that's fine as a teaching point, but vary by asking volume OR time with a twist
+      var mode = calcPick(["min-vol", "min-time", "rate-at-limits"]);
+      var stem, correctLabel, explain, distractors;
+      if (mode === "min-vol") {
+        correctLabel = (Math.abs(minVol - Math.round(minVol)) < 1e-9 ? String(Math.round(minVol)) : calcFmt(minVol)) + " mL";
+        distractors = [
+          calcFmt(dose / 10, "mL"),
+          calcFmt(dose / 5 + 50, "mL"),
+          calcFmt(Math.max(1, minVol - 50), "mL"),
+          calcFmt(minVol * 2, "mL"),
+          Math.round(minMin) + " mL"
+        ];
+        stem = "Vancomycin " + dose + " mg IV: maximum concentration 5 mg/mL AND rate ≤ 10 mg/min. What is the minimum infusion volume?";
+        explain = "Min volume = dose ÷ 5 = " + dose + " ÷ 5 = " + calcFmt(minVol) +
+          " mL. (Min time separately = dose ÷ 10 = " + calcFmt(minMin) +
+          " min.)\n最少體積＝劑量÷5＝" + calcFmt(minVol) + " mL。";
+      } else if (mode === "min-time") {
+        correctLabel = Math.round(minMin) + " min";
+        distractors = [
+          Math.round(minVol) + " min",
+          Math.round(minMin / 2) + " min",
+          Math.round(minMin * 2) + " min",
+          Math.round(dose / 5) + " min",
+          Math.round(minMin + 30) + " min"
+        ];
+        stem = "Vancomycin " + dose + " mg IV: maximum concentration 5 mg/mL AND rate ≤ 10 mg/min. What is the minimum infusion time?";
+        explain = "Min time = dose ÷ 10 = " + dose + " ÷ 10 = " + Math.round(minMin) +
+          " min. (Min volume = dose ÷ 5 = " + calcFmt(minVol) +
+          " mL.)\n最短時間＝劑量÷10＝" + Math.round(minMin) + " 分鐘。";
+      } else {
+        // If infused at both minima, pump mL/h
+        correctLabel = calcFmt(120, "mL/h");
+        distractors = [
+          calcFmt(60, "mL/h"),
+          calcFmt(30, "mL/h"),
+          calcFmt(240, "mL/h"),
+          calcFmt(calcRoundDose(minVol), "mL/h"),
+          calcFmt(calcRoundDose(minMin), "mL/h")
+        ];
+        stem = "Vancomycin " + dose + " mg is diluted to the minimum volume allowed by 5 mg/mL and infused over the minimum time allowed by 10 mg/min. What pump rate (mL/h) results?";
+        explain =
+          "Min vol = " + calcFmt(minVol) + " mL; min time = " + Math.round(minMin) +
+          " min = " + calcFmt(minMin / 60) + " h. Rate = " + calcFmt(minVol) + " ÷ " +
+          calcFmt(minMin / 60) + " = 120 mL/h (always, when both limits are used).\n兩邊下限同時用 → 泵速固定 120 mL/h。";
+      }
+      var built = calcBuildOpts(correctLabel, distractors);
+      return { id: "calc-hard-vanco-both", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "tutorial (calculation)", mid: true, hard: true };
+    }
+  },
+  {
+    id: "calc-hard-unit-chain",
+    mid: true,
+    hard: true,
+    gen: function () {
+      var mcgPerKgMin = calcPick([0.5, 1, 1.5, 2, 2.5, 3]);
+      var wt = calcPick([58, 63, 67, 72, 78, 84, 91]);
+      var bagMg = calcPick([50, 100, 200, 250]);
+      var bagMl = calcPick([50, 100, 250]);
+      var mcgPerMin = mcgPerKgMin * wt;
+      var mgPerHr = (mcgPerMin * 60) / 1000;
+      var conc = bagMg / bagMl;
+      var pump = mgPerHr / conc;
+      var correct = calcRoundDose(pump);
+      var dForgot1000 = calcRoundDose((mcgPerMin * 60) / conc); // treated mcg as mg
+      var dForgot60 = calcRoundDose((mcgPerMin / 1000) / conc);
+      var dForgotWt = calcRoundDose(((mcgPerKgMin * 60) / 1000) / conc);
+      var dWrongBag = calcRoundDose(mgPerHr / (bagMg / (bagMl === 50 ? 100 : 50)));
+      var correctLabel = calcFmt(correct, "mL/h");
+      var built = calcBuildOpts(correctLabel, [
+        calcFmt(dForgot1000, "mL/h"),
+        calcFmt(dForgot60, "mL/h"),
+        calcFmt(dForgotWt, "mL/h"),
+        calcFmt(dWrongBag, "mL/h"),
+        calcFmt(calcRoundDose(correct * 2), "mL/h"),
+        calcFmt(calcRoundDose(Math.max(0.01, correct / 2)), "mL/h")
+      ]);
+      var stem = "An infusion is ordered at " + mcgPerKgMin +
+        " mcg/kg/min. Patient weight " + wt + " kg. Bag: " + bagMg + " mg in " + bagMl +
+        " mL. What pump rate (mL/h)?";
+      var explain =
+        mcgPerKgMin + " × " + wt + " = " + calcFmt(mcgPerMin) + " mcg/min → ×60÷1000 = " +
+        calcFmt(mgPerHr) + " mg/h. Conc = " + calcFmt(conc) + " mg/mL. Pump = " +
+        calcFmt(correct) + " mL/h. Watch the mcg→mg conversion (÷1000).\n留意 mcg→mg（÷1000）同 ×60；泵速＝" +
+        calcFmt(correct) + " mL/h。";
+      return { id: "calc-hard-unit-chain", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "rewritten (calculation)", mid: true, hard: true };
+    }
+  },
+  {
+    id: "calc-hard-tablet-supply",
+    mid: true,
+    hard: true,
+    gen: function () {
+      var ordered = calcPick([0.125, 0.25, 0.375, 0.5, 0.75, 1.5, 2.5]);
+      var stock = calcPick([0.125, 0.25, 0.5, 1]);
+      // ensure divisible-ish or allow 1.5 tabs etc.
+      var tabs = ordered / stock;
+      var correct = calcRoundDose(tabs);
+      var dInvert = calcRoundDose(stock / ordered);
+      var dMgMixup = calcRoundDose((ordered * 1000) / stock);
+      var dDouble = calcRoundDose(tabs * 2);
+      var dHalf = calcRoundDose(tabs / 2);
+      var correctLabel = calcFmt(correct, "tablet(s)");
+      var built = calcBuildOpts(correctLabel, [
+        calcFmt(dInvert, "tablet(s)"),
+        calcFmt(dMgMixup, "tablet(s)"),
+        calcFmt(dDouble, "tablet(s)"),
+        calcFmt(dHalf, "tablet(s)"),
+        calcFmt(calcRoundDose(tabs + 0.5), "tablet(s)"),
+        calcFmt(calcRoundDose(Math.max(0.25, tabs - 0.5)), "tablet(s)")
+      ]);
+      var stem = "The order is " + ordered + " mg PO. Available tablets are " + stock +
+        " mg each (scored). How many tablets should you give?";
+      var explain =
+        "Tablets = ordered ÷ stock strength = " + ordered + " ÷ " + stock + " = " +
+        calcFmt(correct) + " tablet(s). Do not invert the ratio.\n片數＝醫囑÷存貨強度＝" +
+        calcFmt(correct) + " 片。";
+      return { id: "calc-hard-tablet-supply", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "rewritten (calculation)", mid: true, hard: true };
+    }
+  },
+  {
+    id: "calc-hard-ivpb-chain",
+    mid: true,
+    hard: true,
+    gen: function () {
+      var wantMg = calcPick([250, 400, 500, 750, 1000]);
+      var vialConc = calcPick([50, 100, 125, 250]);
+      var bag = calcPick([50, 100, 150]);
+      var mins = calcPick([20, 30, 45, 60]);
+      var draw = wantMg / vialConc;
+      var total = bag + draw;
+      var correct = calcRoundDose(total / (mins / 60));
+      var dBagOnly = calcRoundDose(bag / (mins / 60));
+      var dDrawAsRate = calcRoundDose(draw / (mins / 60));
+      var dForgotDraw = dBagOnly;
+      var dForgotHrs = calcRoundDose(total / mins);
+      var dWrongConc = calcRoundDose((bag + wantMg / (vialConc * 2)) / (mins / 60));
+      var correctLabel = calcFmt(correct, "mL/h");
+      var built = calcBuildOpts(correctLabel, [
+        calcFmt(dBagOnly, "mL/h"),
+        calcFmt(dDrawAsRate, "mL/h"),
+        calcFmt(dForgotHrs, "mL/h"),
+        calcFmt(dWrongConc, "mL/h"),
+        calcFmt(calcRoundDose(correct + 15), "mL/h"),
+        calcFmt(calcRoundDose(Math.max(1, correct - 15)), "mL/h")
+      ]);
+      var stem = "Give " + wantMg + " mg IV. Vial is " + vialConc +
+        " mg/mL. Draw the dose into " + bag + " mL NS and infuse over " + mins +
+        " minutes. Pump rate (include draw volume)?";
+      var explain =
+        "Draw = " + wantMg + " ÷ " + vialConc + " = " + calcFmt(draw) +
+        " mL. Total = " + bag + " + " + calcFmt(draw) + " = " + calcFmt(total) +
+        " mL. Rate = total ÷ (" + mins + "/60) = " + calcFmt(correct) +
+        " mL/h.\n先計抽取，再加袋裝，再÷小時＝" + calcFmt(correct) + " mL/h。";
+      return { id: "calc-hard-ivpb-chain", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "tutorial (calculation)", mid: true, hard: true };
+    }
+  },
+  {
+    id: "calc-hard-finish-partial",
+    mid: true,
+    hard: true,
+    gen: function () {
+      var vol = calcPick([250, 500, 750, 1000]);
+      var factor = calcPick([10, 15, 20]);
+      var rate = calcPick([21, 28, 33, 37, 42, 47]);
+      var startH = calcPick([7, 8, 9, 13, 14, 15, 21]);
+      var startM = calcPick([0, 15, 30, 45]);
+      var mins = (vol * factor) / rate;
+      var absStart = startH * 60 + startM;
+      var absFinish = absStart + mins;
+      function clockFromAbs(abs) {
+        var total = Math.round(abs);
+        var h = Math.floor(total / 60) % 24;
+        if (h < 0) h += 24;
+        var m = total % 60;
+        return (h < 10 ? "0" : "") + h + ":" + (m < 10 ? "0" : "") + m;
+      }
+      var correctLabel = clockFromAbs(absFinish);
+      var dPlusHr = clockFromAbs(absFinish + 60);
+      var dMinusHr = clockFromAbs(absFinish - 60);
+      var dForgotFactor = clockFromAbs(absStart + vol / rate);
+      var dStartPlusVolRate = clockFromAbs(absStart + (vol / rate) * 60);
+      var dRoundHour = clockFromAbs(absStart + Math.round(mins / 60) * 60);
+      var built = calcBuildOpts(correctLabel, [dPlusHr, dMinusHr, dForgotFactor, dStartPlusVolRate, dRoundHour, clockFromAbs(absFinish + 30)]);
+      var startLabel = (startH < 10 ? "0" : "") + startH + ":" + (startM < 10 ? "0" : "") + startM;
+      var stem = "A " + vol + " mL infusion (drop factor " + factor +
+        " drops/mL) runs at " + rate + " drops/min starting at " + startLabel +
+        ". About when will it finish?";
+      var explain =
+        "Minutes = (" + vol + " × " + factor + ") ÷ " + rate + " = " +
+        (Math.round(mins * 10) / 10) + ". " + startLabel + " + that duration ≈ " +
+        correctLabel + ".\n（容量×factor）÷滴速＝分鐘；由開始時間加上去≈" + correctLabel + "。";
+      return { id: "calc-hard-finish-partial", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "rewritten (calculation)", mid: true, hard: true };
+    }
+  },
+  {
+    id: "calc-hard-weight-dose-drip",
+    mid: true,
+    hard: true,
+    gen: function () {
+      var lb = calcPick([88, 99, 110, 121, 132, 154]);
+      var kg = lb / 2.2;
+      var mgPerKg = calcPick([10, 15, 20, 25]);
+      var diluent = calcPick([50, 100, 100, 150]);
+      var hours = calcPick([1, 2, 4]);
+      var factor = calcPick([10, 15, 20]);
+      var doseMg = kg * mgPerKg;
+      // assume drug volume negligible OR include small draw from 100 mg/mL
+      var vialConc = 100;
+      var draw = doseMg / vialConc;
+      var total = diluent + draw;
+      var mins = hours * 60;
+      var raw = (total * factor) / mins;
+      var correct = Math.round(raw);
+      var dBagOnly = Math.round((diluent * factor) / mins);
+      var dLbAsKg = Math.round((((lb * mgPerKg / vialConc) + diluent) * factor) / mins);
+      var dForgotFactor = Math.round(total / mins);
+      var dHours = Math.round((total * factor) / hours);
+      var correctLabel = calcFmtWhole(correct, "drops/min");
+      var built = calcBuildOpts(correctLabel, [
+        calcFmtWhole(dBagOnly, "drops/min"),
+        calcFmtWhole(dLbAsKg, "drops/min"),
+        calcFmtWhole(dForgotFactor, "drops/min"),
+        calcFmtWhole(dHours, "drops/min"),
+        calcFmtWhole(Math.max(1, correct + 3), "drops/min"),
+        calcFmtWhole(Math.max(1, correct - 3), "drops/min")
+      ]);
+      var stem = "Order: " + mgPerKg + " mg/kg IV in " + diluent +
+        " mL NS over " + hours + " hour" + (hours === 1 ? "" : "s") +
+        ". Patient weighs " + lb + " lb. Vial is " + vialConc +
+        " mg/mL. Drop factor " + factor +
+        " drops/mL. Gravity drip rate (nearest whole drop/min), including draw volume?";
+      var explain =
+        "kg ≈ " + calcFmtKg(kg) + "; dose ≈ " + calcFmt(doseMg) + " mg; draw ≈ " +
+        calcFmt(draw) + " mL; total ≈ " + calcFmt(total) + " mL; drops/min = (" +
+        calcFmt(total) + " × " + factor + ") ÷ " + mins + " ≈ " + correct +
+        ".\n體重→劑量→抽取→加袋→重力滴速≈" + correct + " 滴/分鐘。";
+      return { id: "calc-hard-weight-dose-drip", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "rewritten (calculation)", mid: true, hard: true };
+    }
+  },
+  {
+    id: "calc-hard-remaining-infusion",
+    mid: true,
+    hard: true,
+    gen: function () {
+      var bag = calcPick([500, 1000]);
+      var rate = calcPick([75, 100, 125, 150, 175]);
+      var infused = calcPick([100, 150, 200, 250, 300]);
+      if (infused >= bag) infused = bag / 2;
+      var left = bag - infused;
+      var hoursLeft = left / rate;
+      var correct = calcRoundDose(hoursLeft);
+      var dWholeBag = calcRoundDose(bag / rate);
+      var dInfusedTime = calcRoundDose(infused / rate);
+      var dLeftOverRate = calcRoundDose(rate / left);
+      var dMins = calcRoundDose(left / rate * 60); // answered in minutes but labeled hours trap via number
+      var correctLabel = calcFmt(correct, "h");
+      var built = calcBuildOpts(correctLabel, [
+        calcFmt(dWholeBag, "h"),
+        calcFmt(dInfusedTime, "h"),
+        calcFmt(dLeftOverRate, "h"),
+        calcFmt(calcRoundDose(dMins), "h"),
+        calcFmt(calcRoundDose(correct + 0.5), "h"),
+        calcFmt(calcRoundDose(Math.max(0.1, correct - 0.5)), "h")
+      ]);
+      var stem = "A " + bag + " mL bag has been running at " + rate +
+        " mL/h. " + infused + " mL has already infused. About how many more hours until the bag finishes?";
+      var explain =
+        "Volume left = " + bag + " − " + infused + " = " + left +
+        " mL. Time left = " + left + " ÷ " + rate + " = " + calcFmt(correct) +
+        " h. Do not use the full bag volume again.\n剩餘＝" + left + " mL；÷泵速＝" +
+        calcFmt(correct) + " 小時。";
+      return { id: "calc-hard-remaining-infusion", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "rewritten (calculation)", mid: true, hard: true };
+    }
+  },
+  {
+    id: "calc-hard-mcg-to-mg-day",
+    mid: true,
+    hard: true,
+    gen: function () {
+      var mcgPerKgMin = calcPick([0.5, 1, 2]);
+      var wt = calcPick([60, 70, 80, 90]);
+      var hours = calcPick([6, 8, 12, 24]);
+      var totalMcg = mcgPerKgMin * wt * 60 * hours;
+      var totalMg = totalMcg / 1000;
+      var correct = calcRoundDose(totalMg);
+      var dForgot60 = calcRoundDose((mcgPerKgMin * wt * hours) / 1000);
+      var dForgotWt = calcRoundDose((mcgPerKgMin * 60 * hours) / 1000);
+      var dForgot1000 = calcRoundDose(mcgPerKgMin * wt * 60 * hours);
+      var dPerMinOnly = calcRoundDose((mcgPerKgMin * wt) / 1000);
+      var correctLabel = calcFmt(correct, "mg");
+      var built = calcBuildOpts(correctLabel, [
+        calcFmt(dForgot60, "mg"),
+        calcFmt(dForgotWt, "mg"),
+        calcFmt(dForgot1000, "mg"),
+        calcFmt(dPerMinOnly, "mg"),
+        calcFmt(calcRoundDose(correct * 2), "mg"),
+        calcFmt(calcRoundDose(Math.max(0.1, correct / 2)), "mg")
+      ]);
+      var stem = "An infusion runs at " + mcgPerKgMin + " mcg/kg/min for " + hours +
+        " hours. Patient weight " + wt +
+        " kg. About how many milligrams of drug are delivered in total?";
+      var explain =
+        "mcg/min = " + mcgPerKgMin + " × " + wt + " = " + (mcgPerKgMin * wt) +
+        ". Over " + hours + " h: ×60 × " + hours + " = " + calcFmt(totalMcg) +
+        " mcg = " + calcFmt(correct) + " mg.\n每分鐘×體重×60×小時後÷1000＝" +
+        calcFmt(correct) + " mg。";
+      return { id: "calc-hard-mcg-to-mg-day", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "rewritten (calculation)", mid: true, hard: true };
+    }
   }
 ];
 
 
 
-/* NUR2018 Pathophysiology MC bank. English stems/options. Explanations: English, then Traditional Chinese. L1–7 + Seminar 1–5 (S5 official answers 2026-10-12). */
+/* NUR2018 Pathophysiology MC bank. English stems/options. Explanations: English, then Traditional Chinese. L1–8 + Seminar 1–5 (S5 official answers 2026-10-12; L8 added 2026-10-19). */
 const NUR2018_QUESTIONS = [
   {
     "id": "n18-l1-hypertrophy-athlete",
@@ -3871,6 +4509,186 @@ const NUR2018_QUESTIONS = [
     "source": "seminar",
     "mid": true,
     "lecture": "S5"
+  },
+{
+    "id": "n18-l8-ldl-hdl",
+    "stem": "In Lecture 8 lipoprotein teaching, which pairing is correct?",
+    "options": [
+      "LDL returns excess cholesterol to the liver for bile excretion; HDL mainly delivers cholesterol outward to peripheral cells for hormone synthesis",
+      "LDL delivers cholesterol to tissues (excess → plaque); HDL returns excess cholesterol to the liver",
+      "Both LDL and HDL mainly carry dietary triglycerides from the intestine packaged as chylomicrons after every meal",
+      "HDL is cleared only by scavenger receptors on foam cells, whereas LDL uses ABCA1 exclusively in adipose tissue"
+    ],
+    "answer": 1,
+    "explain": "Lecture: LDL carries cholesterol to tissues and excess contributes to atherosclerosis (“bad”); HDL picks up excess cholesterol and returns it to the liver (reverse cholesterol transport, “good”).\n講義：LDL 運送膽固醇至組織、過高促斑塊（「壞」）；HDL 逆向運輸多餘膽固醇回肝（「好」）。",
+    "source": "rewritten (notes)",
+    "mid": true,
+    "lecture": "L8"
+  },
+  {
+    "id": "n18-l8-scavenger",
+    "stem": "Why is the scavenger pathway emphasised in atherosclerosis pathogenesis?",
+    "options": [
+      "It is the main regulated hepatic route that down-regulates new LDL receptors whenever intracellular cholesterol stores are already high",
+      "Macrophages take up modified LDL without strong shut-off when cholesterol is high → foam cells",
+      "It packages dietary fat into chylomicrons in the intestinal mucosa after a meal and clears them via ABCA1 alone",
+      "It converts mature HDL into VLDL inside hepatocyte lysosomes and thereby raises circulating triglycerides long-term"
+    ],
+    "answer": 1,
+    "explain": "Scavenger pathway: modified/oxidised LDL taken up by macrophages; unlike the LDL-receptor pathway it is not strongly switched off by adequate cell cholesterol → foam cells → fatty streaks/plaques.\nScavenger：巨噬攝取修飾／氧化 LDL；不像 LDL 受體途徑會因膽固醇足夠而強關閉→泡沫細胞→脂肪紋／斑塊。",
+    "source": "rewritten (notes)",
+    "mid": true,
+    "lecture": "L8"
+  },
+  {
+    "id": "n18-l8-exogenous",
+    "stem": "In the exogenous lipoprotein pathway, dietary fats are packed primarily into:",
+    "options": [
+      "LDL particles that bind apoB-100 on hepatocytes only and never enter lymph",
+      "Chylomicrons from the intestine, then trimmed by lipoprotein lipase",
+      "Nascent HDL that immediately returns all cholesterol to bile without any LPL activity",
+      "IDL synthesised de novo by adipose tissue after overnight fasting and secreted into urine"
+    ],
+    "answer": 1,
+    "explain": "Exogenous pathway: intestine packages dietary fats into chylomicrons → lymph → blood → LPL hydrolyses triglycerides for tissues; remnants go to the liver.\n外源路徑：腸道飲食脂肪→乳糜微粒→淋巴→血→LPL 水解 TG；殘餘→肝。",
+    "source": "rewritten (notes)",
+    "mid": true,
+    "lecture": "L8"
+  },
+  {
+    "id": "n18-l8-athero-stages",
+    "stem": "Which sequence matches the three atherosclerotic lesion stages in Lecture 8?",
+    "options": [
+      "Complicated lesion → fatty streak → fibrous plaque",
+      "Fatty streak → fibrous atheromatous plaque → complicated lesion",
+      "Fibrous plaque → vasculitis → Raynaud triad",
+      "True aneurysm → false aneurysm → arterial dissection"
+    ],
+    "answer": 1,
+    "explain": "Lecture progression of lesions: fatty streak → fibrous atheromatous plaque → complicated lesion (rupture/erosion, thrombosis, calcification). The latter two drive most clinical disease.\n三期：脂肪紋→纖維粥樣斑塊→複雜病變；後兩期較具臨床意義。",
+    "source": "rewritten (notes)",
+    "mid": true,
+    "lecture": "L8"
+  },
+  {
+    "id": "n18-l8-athero-steps",
+    "stem": "According to the 2026 Lecture 8 mechanism list, foam-cell formation is immediately preceded by:",
+    "options": [
+      "Fibrous-cap rupture with occlusive coronary thrombosis",
+      "Inflammation with LDL modification and monocyte-to-macrophage maturation in the wall",
+      "Berry aneurysm formation at the circle of Willis",
+      "Complete reverse cholesterol transport that empties all plaque lipid overnight"
+    ],
+    "answer": 1,
+    "explain": "Lecture 6-step sequence: endothelial damage → LDL retention → inflammation + LDL modification (monocytes→macrophages) → foam-cell formation → plaque formation → progression/complications.\n六步：…炎症與 LDL 修飾（單核→巨噬）→泡沫細胞形成→…",
+    "source": "rewritten (notes)",
+    "mid": true,
+    "lecture": "L8"
+  },
+  {
+    "id": "n18-l8-pad-vs-acute",
+    "stem": "How does acute arterial occlusion differ from typical peripheral arterial disease (PAD) in Lecture 8?",
+    "options": [
+      "PAD is always an embolus within minutes from the heart; acute occlusion is only gradual plaque growth over many years without thrombosis",
+      "Acute occlusion: sudden block (minutes–hours, thrombus/embolism); PAD: gradual atherosclerotic narrowing with claudication",
+      "Both are defined solely as cold-triggered vasospasm of digital arteries without any structural vessel disease",
+      "PAD affects only cerebral arteries and veins, whereas acute occlusion is limited to superficial skin capillaries"
+    ],
+    "answer": 1,
+    "explain": "Acute arterial occlusion: sudden critical stop of flow, usually thrombus in situ or embolism (e.g. from heart). PAD: chronic atherosclerotic narrowing of limb arteries (e.g. femoral/popliteal) with claudication, coolness, weak pulses, slow-healing wounds.\n急性阻塞＝分–小時突然堵（血栓／栓塞）；PAD＝慢性粥樣硬化收窄＋間歇跛行等。",
+    "source": "rewritten (notes)",
+    "mid": true,
+    "lecture": "L8"
+  },
+  {
+    "id": "n18-l8-buerger",
+    "stem": "Thromboangiitis obliterans (Buerger disease) is most strongly associated with:",
+    "options": [
+      "Lifelong vegetarian diet without any tobacco exposure or vessel inflammation in the limbs",
+      "Tobacco use → inflammation and thrombosis in small/medium limb arteries and veins",
+      "Isolated HDL elevation that completely prevents foam-cell formation in every arterial bed",
+      "Hyperacute antibody-mediated rejection of a renal allograft occurring within minutes of clamp release"
+    ],
+    "answer": 1,
+    "explain": "Buerger: rare inflammatory disease of small/medium arteries and veins with thrombosis; strongly linked to tobacco (cigarettes/chewing tobacco); ischaemic pain, colour change, ulcers, possible gangrene.\nBuerger：小–中動靜脈炎＋血栓；強烈與煙草相關；可致潰瘍壞疽。",
+    "source": "rewritten (notes)",
+    "mid": true,
+    "lecture": "L8"
+  },
+  {
+    "id": "n18-l8-raynaud",
+    "stem": "Classic colour sequence of Raynaud attacks of the digits is:",
+    "options": [
+      "Red → blue → permanent black gangrene without any recovery of digital blood flow",
+      "White → blue → red as flow returns (cold/stress; numbness/pain common)",
+      "Only yellow xanthomas over tendons without any episodic colour change of the digits",
+      "Uniform purple mottling of the whole limb that never changes with temperature or stress"
+    ],
+    "answer": 1,
+    "explain": "Raynaud: small-vessel spasm to cold/stress → white then blue then red as flow returns; numbness/tingling/pain; sympathetic hyperreactivity suggested; more common in females.\nRaynaud：遇冷／壓力→白→藍→紅；可有麻刺痛；女多於男。",
+    "source": "rewritten (notes)",
+    "mid": true,
+    "lecture": "L8"
+  },
+  {
+    "id": "n18-l8-aneurysm-dissection",
+    "stem": "Which statement correctly separates aneurysm from arterial dissection?",
+    "options": [
+      "Aneurysm is blood tracking between wall layers after an intimal tear; dissection is simple outward bulging of an intact wall",
+      "Aneurysm: outward bulge of weakened wall; dissection: intimal tear with blood between layers (± aneurysm)",
+      "Both terms mean the same Berry outpouching found only at incompetent venous valves in the calf",
+      "Dissection occurs only in veins after standing; aneurysms occur only in skin capillaries after trauma"
+    ],
+    "answer": 1,
+    "explain": "Aneurysm = localised bulge of weakened wall (rupture risk). Dissection = intimal tear → blood separates layers, may narrow/block/rupture; can occur with or without aneurysm.\n動脈瘤＝壁向外膨；剝離＝內層裂、血走層間；可有或無合併動脈瘤。",
+    "source": "rewritten (notes)",
+    "mid": true,
+    "lecture": "L8"
+  },
+  {
+    "id": "n18-l8-virchow",
+    "stem": "Virchow’s triad for deep-vein thrombosis comprises:",
+    "options": [
+      "Fever, productive cough, and lobar consolidation only",
+      "Stasis, hypercoagulability, and endothelial injury",
+      "IgE, mast-cell degranulation, and eosinophilia",
+      "Positive selection, negative selection, and anergy"
+    ],
+    "answer": 1,
+    "explain": "Lecture DVT pathogenesis via Virchow’s triad: stasis (immobility), hypercoagulability (genetic, cancer, pregnancy, estrogen contraceptives), endothelial injury (trauma, surgery, inflammation). Major threat = pulmonary embolism.\nVirchow triad：淤滯、高凝、內皮損傷；危＝肺栓塞。",
+    "source": "rewritten (notes)",
+    "mid": true,
+    "lecture": "L8"
+  },
+  {
+    "id": "n18-l8-true-false-aneurysm",
+    "stem": "A false (pseudo) aneurysm differs from a true aneurysm because:",
+    "options": [
+      "The wall bulge still contains all arterial layers, only weakened and stretched outward",
+      "Wall break lets blood pool in tissue/clot—not contained by intact arterial wall layers",
+      "It is defined exclusively as a fusiform dilation involving the entire vessel circumference only",
+      "It always sits at the circle of Willis as a small spherical Berry sac at a bifurcation"
+    ],
+    "answer": 1,
+    "explain": "True aneurysm: outward bulge still includes arterial wall layers (weakened/stretched). False/pseudoaneurysm: wall break → blood contained by tissue/clot, not intact arterial wall; pocket often still communicates with the artery.\n真性＝膨出仍含各層；假性＝壁破、血被組織／血塊包住。",
+    "source": "rewritten (notes)",
+    "mid": true,
+    "lecture": "L8"
+  },
+  {
+    "id": "n18-l8-familial-hc",
+    "stem": "Familial hypercholesterolemia is cited in Lecture 8 as a primary dyslipidemia due to:",
+    "options": [
+      "Impaired LDL-receptor function leading to markedly elevated LDL",
+      "Excessive HDL production that blocks all reverse cholesterol transport",
+      "Isolated chylomicron absence after every meal",
+      "Mandatory use of scavenger receptors on hepatocytes only"
+    ],
+    "answer": 0,
+    "explain": "Primary (genetic) example: familial hypercholesterolemia — impaired LDL-receptor function → severely elevated LDL.\n原發例：家族性高膽固醇血症＝LDL 受體功能受損→LDL 極高。",
+    "source": "rewritten (notes)",
+    "mid": true,
+    "lecture": "L8"
   }
 ];
 
@@ -3896,14 +4714,28 @@ const BANKS = { NUR2047: QUESTIONS, NUR2018: NUR2018_QUESTIONS };
   function calcSlotsForMode(mode) {
     if (subjectEl.value !== "NUR2047") return [];
     if (mode === "extra") return [];
-    return CALC_TEMPLATES.map(function (t) {
-      return { kind: "calc", id: t.id, mid: true, gen: t.gen };
+    var list = CALC_TEMPLATES;
+    if (mode === "calc-hard") {
+      list = CALC_TEMPLATES.filter(function (t) { return t.hard; });
+    } else if (mode === "calc") {
+      list = CALC_TEMPLATES.slice();
+    } else if (mode === "mid" || mode === "all") {
+      list = CALC_TEMPLATES.slice();
+    } else {
+      list = CALC_TEMPLATES.slice();
+    }
+    return list.map(function (t) {
+      return { kind: "calc", id: t.id, mid: !!t.mid, hard: !!t.hard, gen: t.gen };
     });
   }
   function pool() {
     const mode = scopeEl.value;
     const items = bank();
     let staticQ;
+    if (mode === "calc-hard" || mode === "calc") {
+      // Calculation-only practice sets: no static knowledge items
+      return calcSlotsForMode(mode);
+    }
     if (mode === "extra") staticQ = items.filter(q => !q.mid);
     else if (mode === "all") staticQ = items.slice();
     else staticQ = items.filter(q => q.mid);
@@ -3942,7 +4774,8 @@ const BANKS = { NUR2047: QUESTIONS, NUR2018: NUR2018_QUESTIONS };
     if (slot && slot.kind === "calc" && typeof slot.gen === "function") {
       const q = slot.gen();
       q.id = slot.id;
-      q.mid = true;
+      q.mid = slot.mid !== false;
+      if (slot.hard) q.hard = true;
       return shuffleQuestionOptions(q);
     }
     // Clone so the bank's canonical option order is never mutated.
@@ -3952,14 +4785,20 @@ const BANKS = { NUR2047: QUESTIONS, NUR2018: NUR2018_QUESTIONS };
   function syncScopeLabels() {
     const midOpt = scopeEl.querySelector('option[value="mid"]');
     const extraOpt = scopeEl.querySelector('option[value="extra"]');
+    const calcHardOpt = scopeEl.querySelector('option[value="calc-hard"]');
+    const calcOpt = scopeEl.querySelector('option[value="calc"]');
     const allOpt = scopeEl.querySelector('option[value="all"]');
     if (subjectEl.value === "NUR2018") {
       midOpt.textContent = "All current bank (L1–7 + Seminar 1–4)";
       extraOpt.textContent = "Reserved (empty for NUR2018)";
+      if (calcHardOpt) calcHardOpt.textContent = "Calculation only (harder) — NUR2047 only";
+      if (calcOpt) calcOpt.textContent = "All calculations — NUR2047 only";
       allOpt.textContent = "All questions";
     } else {
       midOpt.textContent = "Midterm (default): Lectures 1–4 through respiratory drugs";
       extraOpt.textContent = "Beyond midterm only (CNS / endocrine / GI–urinary)";
+      if (calcHardOpt) calcHardOpt.textContent = "Calculation only (harder)";
+      if (calcOpt) calcOpt.textContent = "All calculations";
       allOpt.textContent = "All questions";
     }
   }
@@ -3973,13 +4812,18 @@ const BANKS = { NUR2047: QUESTIONS, NUR2018: NUR2018_QUESTIONS };
     bank().forEach(q => { counts[q.source] = (counts[q.source] || 0) + 1; });
     if (subjectEl.value === "NUR2018") {
       foot.textContent = "NUR2018 Pathophysiology bank: " + all
-        + " items (Lectures 1–7 + Seminar 1–4 with official answers; Seminar 5 deferred). Sources: seminar "
+        + " items (Lectures 1–8 + Seminar 1–5 with official answers where posted). Sources: seminar "
         + (counts["seminar"] || 0) + " · rewritten (notes) " + (counts["rewritten (notes)"] || 0)
         + " · past paper " + (counts["past paper"] || 0)
         + ". Themes paraphrased from notes, seminars, and past-paper short/long patterns (MCQ stems were not in the extracts). A–D reshuffles each draw. Explanations: English, then Traditional Chinese. Not an official paper.";
     } else {
+      const hardN = CALC_TEMPLATES.filter(function (t) { return t.hard; }).length;
+      const baseCalcN = calcN - hardN;
       foot.textContent = "Default Start is the midterm pool (" + mid + " static + " + calcN
-        + " random-calc templates). Beyond midterm: " + extra
+        + " random-calc templates: " + baseCalcN + " standard + " + hardN
+        + " harder). Practice sets: Calculation only (harder) = " + hardN
+        + " hard templates; All calculations = " + calcN
+        + ". Beyond midterm: " + extra
         + " (Lecture 5 CNS / psychiatric + Lecture 7 GI/urinary; mid:false items). Full static bank " + all
         + ". Sources: past paper " + (counts["past paper"] || 0)
         + " · tutorial " + (counts["tutorial"] || 0)
@@ -4006,7 +4850,7 @@ const BANKS = { NUR2047: QUESTIONS, NUR2018: NUR2018_QUESTIONS };
     box.className = "idle";
     const p = document.createElement("p");
     if (subjectEl.value === "NUR2018") {
-      p.textContent = "Start draws from the NUR2018 Pathophysiology bank (Lectures 1–7 and Seminar 1–4). Seminar 5 items are withheld until the official answer key appears. A–D order reshuffles every question.";
+      p.textContent = "Start draws from the NUR2018 Pathophysiology bank (Lectures 1–8 and Seminar 1–5). A–D order reshuffles every question.";
     } else {
       p.textContent = "Start uses the midterm set: Lectures 1–4 through respiratory drugs, plus Revision Exercise 1, including random-number calculation items that refresh every draw. Change the practice set if you want CNS / psychiatric items only.";
     }
