@@ -2032,6 +2032,93 @@ var CALC_TEMPLATES = [
     }
   },
   {
+    id: "calc-drip-dilute-ignore-mass",
+    mid: true,
+    gen: function () {
+      var masses = [0.5, 1, 1.5, 2, 2.5, 3, 4.5, 5];
+      var vols = [50, 100, 150, 200, 250];
+      var factors = [10, 15, 20, 60];
+      var minsOpts = [15, 20, 30, 45, 60, 90];
+      var mass, vol, factor, mins, raw, correct;
+      var attempt = 0;
+      do {
+        mass = calcPick(masses);
+        vol = calcPick(vols);
+        factor = calcPick(factors);
+        mins = calcPick(minsOpts);
+        raw = (vol * factor) / mins;
+        correct = Math.round(raw);
+        attempt++;
+        // Prefer clean-ish rates (near integer or .5) and a sensible drip speed
+      } while (attempt < 40 && (correct < 5 || correct > 200 || (function () {
+        var frac = raw - Math.floor(raw);
+        var clean = frac < 0.08 || frac > 0.92 || Math.abs(frac - 0.5) < 0.08 ||
+          Math.abs(frac - 1 / 3) < 0.08 || Math.abs(frac - 2 / 3) < 0.08;
+        return !clean;
+      })()));
+      var dMassAsVol = Math.round((mass * factor) / mins);
+      var dVolTimesMass = Math.round((vol * mass) / mins);
+      var dMassMg = Math.round(((mass * 1000) * factor) / mins);
+      // Treat minute count as hours in the formula → 60× too large
+      var dAsHours = Math.round((vol * factor) / (mins / 60));
+      var dForgotF = Math.round(vol / mins);
+      var altFactor = factor === 15 ? 10 : (factor === 10 ? 15 : (factor === 20 ? 15 : 20));
+      var dWrongF = Math.round((vol * altFactor) / mins);
+      var dFloor = Math.floor(raw);
+      if (dFloor === correct) dFloor = Math.max(1, correct - 1);
+      var dCeil = Math.ceil(raw);
+      if (dCeil === correct) dCeil = correct + 1;
+      var correctLabel = calcFmtWhole(correct, "drops/min");
+      var massDistractors = [];
+      function pushIfPlausible(n) {
+        if (!isFinite(n) || n < 1) return;
+        if (n === correct) return;
+        // Keep magnitude near the correct drip rate so options look balanced
+        if (n < correct * 0.08 || n > correct * 6) return;
+        massDistractors.push(calcFmtWhole(n, "drops/min"));
+      }
+      pushIfPlausible(dMassAsVol);
+      pushIfPlausible(dVolTimesMass);
+      pushIfPlausible(dMassMg);
+      pushIfPlausible(dAsHours);
+      // Also offer the "converted min→h then still ÷minutes" near-miss when distinct
+      pushIfPlausible(Math.round((vol * factor) / (mins * 60)));
+      pushIfPlausible(dForgotF);
+      pushIfPlausible(dWrongF);
+      var built = calcBuildOpts(correctLabel, massDistractors.concat([
+        calcFmtWhole(dFloor, "drops/min"),
+        calcFmtWhole(dCeil, "drops/min"),
+        calcFmtWhole(Math.max(1, correct + 2), "drops/min"),
+        calcFmtWhole(Math.max(1, correct - 2), "drops/min"),
+        calcFmtWhole(Math.max(1, correct + 1), "drops/min"),
+        calcFmtWhole(Math.max(1, correct - 1), "drops/min"),
+        calcFmtWhole(Math.max(1, correct + 3), "drops/min"),
+        calcFmtWhole(Math.max(1, correct - 3), "drops/min")
+      ]));
+      if (built.options.filter(function (x, i, a) { return a.indexOf(x) === i; }).length < 4) {
+        built = calcBuildOpts(correctLabel, [
+          calcFmtWhole(Math.max(1, correct + 3), "drops/min"),
+          calcFmtWhole(Math.max(1, correct - 3), "drops/min"),
+          calcFmtWhole(Math.max(1, correct + 5), "drops/min")
+        ]);
+      }
+      var massLabel = (Math.abs(mass - Math.round(mass)) < 1e-9) ? String(Math.round(mass)) : String(mass);
+      var stem = "A drug of " + massLabel + " g is diluted in " + vol +
+        " mL of NS. It is to run over " + mins +
+        " minutes with a drop factor of " + factor +
+        " drops/mL. What is the gravity drip rate, to the nearest whole drop?";
+      var explain =
+        "Drops/min = (volume × drop factor) ÷ time in minutes = (" + vol + " × " + factor +
+        ") ÷ " + mins + " = " + (Math.round(raw * 100) / 100) + ", which rounds to " + correct +
+        " drops/min. The " + massLabel +
+        " g drug mass does NOT enter the drip-rate formula (it would matter for concentration or dose, not drops/min).\n滴/分鐘＝（容量 × drop factor）÷ 分鐘＝（" +
+        vol + "×" + factor + "）÷" + mins + "＝" + (Math.round(raw * 100) / 100) +
+        "，四捨五入＝" + correct + " 滴/分鐘。" + massLabel +
+        " g 藥量唔入 drop rate 公式（濃度／劑量先會用到）。";
+      return { id: "calc-drip-dilute-ignore-mass", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "rewritten (calculation)", mid: true };
+    }
+  },
+  {
     id: "calc-finish-time",
     mid: true,
     gen: function () {
@@ -2651,6 +2738,96 @@ var CALC_TEMPLATES = [
         (Math.round(raw * 100) / 100) + " → " + correct +
         " drops/min. Convert hours to minutes first.\n（容量×factor）÷分鐘＝" + correct + " 滴/分鐘。";
       return { id: "calc-hard-drip-messy", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "rewritten (calculation)", mid: true, hard: true };
+    }
+  },
+  {
+    id: "calc-hard-drip-dilute-ignore-mass",
+    mid: true,
+    hard: true,
+    gen: function () {
+      var useMg = Math.random() < 0.45;
+      var massG = calcPick([0.5, 1, 1.5, 2, 2.5, 3, 4.5, 5, 6]);
+      var massMg = calcPick([250, 500, 750, 1000, 1500, 2000, 4500]);
+      var vol = calcPick([75, 100, 125, 150, 200, 250, 300]);
+      var factor = calcPick([10, 15, 20, 60]);
+      var mins = calcPick([15, 20, 25, 30, 40, 45, 60, 90]);
+      var raw, correct, attempt = 0;
+      do {
+        vol = calcPick([75, 100, 125, 150, 200, 250, 300]);
+        factor = calcPick([10, 15, 20, 60]);
+        mins = calcPick([15, 20, 25, 30, 40, 45, 60, 90]);
+        raw = (vol * factor) / mins;
+        correct = Math.round(raw);
+        attempt++;
+      } while (attempt < 40 && (correct < 5 || correct > 250));
+      var massForWrongG = useMg ? (massMg / 1000) : massG;
+      var massMgVal = useMg ? massMg : Math.round(massG * 1000);
+      // Red-herring misuses of mass
+      var dGAsMl = Math.round((massForWrongG * factor) / mins);
+      var dMgAsVol = Math.round((massMgVal * factor) / mins);
+      var dVolMass = Math.round((vol * massForWrongG) / mins);
+      var dAsHours = Math.round((vol * factor) / (mins / 60));
+      var dForgotF = Math.round(vol / mins);
+      var altFactor = factor === 20 ? 15 : (factor === 15 ? 20 : (factor === 10 ? 15 : 20));
+      var dWrongF = Math.round((vol * altFactor) / mins);
+      var dFloor = Math.floor(raw);
+      if (dFloor === correct) dFloor = Math.max(1, correct - 1);
+      var dCeil = Math.ceil(raw);
+      if (dCeil === correct) dCeil = correct + 1;
+      // g→mg then divide wrongly by minutes only
+      var dMgOverMins = Math.round(massMgVal / mins);
+      var correctLabel = calcFmtWhole(correct, "drops/min");
+      function pushIfOk(arr, n) {
+        if (!isFinite(n) || n < 1 || n === correct) return;
+        if (n < correct * 0.08 || n > correct * 6) return;
+        arr.push(calcFmtWhole(n, "drops/min"));
+      }
+      var distractors = [];
+      pushIfOk(distractors, dGAsMl);
+      pushIfOk(distractors, dMgAsVol);
+      pushIfOk(distractors, dVolMass);
+      pushIfOk(distractors, dMgOverMins);
+      pushIfOk(distractors, dAsHours);
+      pushIfOk(distractors, Math.round((vol * factor) / (mins * 60)));
+      pushIfOk(distractors, dForgotF);
+      pushIfOk(distractors, dWrongF);
+      distractors = distractors.concat([
+        calcFmtWhole(dFloor, "drops/min"),
+        calcFmtWhole(dCeil, "drops/min"),
+        calcFmtWhole(Math.max(1, correct + 2), "drops/min"),
+        calcFmtWhole(Math.max(1, correct - 2), "drops/min"),
+        calcFmtWhole(Math.max(1, correct + 1), "drops/min"),
+        calcFmtWhole(Math.max(1, correct - 1), "drops/min"),
+        calcFmtWhole(Math.max(1, correct + 3), "drops/min"),
+        calcFmtWhole(Math.max(1, correct - 3), "drops/min")
+      ]);
+      var built = calcBuildOpts(correctLabel, distractors);
+      if (built.options.filter(function (x, i, a) { return a.indexOf(x) === i; }).length < 4) {
+        built = calcBuildOpts(correctLabel, [
+          calcFmtWhole(Math.max(1, correct + 4), "drops/min"),
+          calcFmtWhole(Math.max(1, correct - 4), "drops/min"),
+          calcFmtWhole(Math.max(1, correct + 7), "drops/min")
+        ]);
+      }
+      var massPhrase, massNote;
+      if (useMg) {
+        massPhrase = massMg + " mg of drug is reconstituted and further diluted in " + vol + " mL of NS";
+        massNote = massMg + " mg";
+      } else {
+        var massLabel = (Math.abs(massG - Math.round(massG)) < 1e-9) ? String(Math.round(massG)) : String(massG);
+        massPhrase = "A drug of " + massLabel + " g is diluted in " + vol + " mL of NS (further diluted for infusion)";
+        massNote = massLabel + " g";
+      }
+      var stem = massPhrase + ". It must run over " + mins +
+        " minutes with a drop factor of " + factor +
+        " drops/mL. What gravity drip rate (nearest whole drop/min)?";
+      var explain =
+        "Drops/min = (volume × drop factor) ÷ minutes = (" + vol + " × " + factor +
+        ") ÷ " + mins + " = " + (Math.round(raw * 100) / 100) + " → " + correct +
+        " drops/min. Ignore the stated drug mass (" + massNote +
+        "); mass affects concentration/dose, not gravity drip rate.\n（容量×factor）÷分鐘＝" +
+        correct + " 滴/分鐘。藥量（" + massNote + "）係干擾項，唔入 drop rate。";
+      return { id: "calc-hard-drip-dilute-ignore-mass", stem: stem, options: built.options, answer: built.answer, explain: explain, source: "rewritten (calculation)", mid: true, hard: true };
     }
   },
   {
