@@ -3155,7 +3155,7 @@ var CALC_TEMPLATES = [
 
 
 
-/* NUR2018 Pathophysiology MC bank. English stems/options. Explanations: English, then Traditional Chinese. L1–8 + Seminar 1–5 (S5 official answers 2026-10-12; L8 added 2026-10-19). */
+/* NUR2018 Pathophysiology MC bank. English stems/options. Explanations: English, then Traditional Chinese. L1–9 + Seminar 1–6 (S5 Ans 2026-10-12; L8 2026-10-19; L9+S6 Ans 2026-10-26). Seminar 7 MC skipped (no official Ans). */
 const NUR2018_QUESTIONS = [
   {
     "id": "n18-l1-hypertrophy-athlete",
@@ -4867,6 +4867,247 @@ const NUR2018_QUESTIONS = [
     "mid": true,
     "lecture": "L8"
   }
+,
+  {
+    "id": "n18-l9-missense-sickle",
+    "stem": "According to Lecture 9, sickle cell disease is usually caused by which change in HBB?",
+    "options": [
+      "A whole-gene deletion that completely removes both HBB alleles from every chromosome 11",
+      "A single-nucleotide substitution (missense) changing one amino acid and producing HbS",
+      "An X-linked insertion that creates a premature stop codon only in males",
+      "Maternal mitochondrial DNA mutation that abolishes nuclear beta-globin transcription"
+    ],
+    "answer": 1,
+    "explain": "Lecture: sickle cell disease is usually a single-nucleotide substitution in HBB (missense: Glu→Val) producing HbS—not loss of the whole HBB gene. Beta-thalassemia more often involves nonsense/frameshift reducing beta-globin production.\n講義：鐮刀型多為 HBB 單核苷酸置換（missense，Glu→Val）產生 HbS，不是整段基因丟失；β-地中海貧血較常涉 nonsense／frameshift。",
+    "source": "rewritten (notes)",
+    "mid": true,
+    "lecture": "L9"
+  },
+  {
+    "id": "n18-l9-frameshift",
+    "stem": "A frameshift mutation is best described as:",
+    "options": [
+      "Exchange of one base for another that still codes for the identical amino acid (silent)",
+      "Insertion or deletion of bases in a number not divisible by three, shifting downstream codon grouping",
+      "Balanced reciprocal translocation with no net gain or loss of genetic material",
+      "Complete monosomy of an autosome that is always compatible with live birth"
+    ],
+    "answer": 1,
+    "explain": "Frameshift: insertion/deletion of bases not in multiples of three shifts how all subsequent bases are read as codons.\nFrameshift：插入／刪除鹼基數非 3 的倍數→之後 codon 閱讀框全錯。",
+    "source": "rewritten (notes)",
+    "mid": true,
+    "lecture": "L9"
+  },
+  {
+    "id": "n18-l9-ad-risk",
+    "stem": "If one parent has an autosomal dominant disease-associated variant and the other does not, each child typically has what chance of inheriting the variant?",
+    "options": [
+      "About 25%, but only if both parents are related by consanguinity",
+      "About 50% in each pregnancy, regardless of the child’s sex",
+      "100% for sons and 0% for daughters because of Y-linked transmission",
+      "0% if the affected parent is the father, because sperm never transmit nuclear DNA"
+    ],
+    "answer": 1,
+    "explain": "Autosomal dominant: one altered copy can cause disease; with one affected and one unaffected parent, each child has ~50% chance of inheriting the variant, same for any sex.\n體染色體顯性：一病一健父母→每胎約 50% 得變體，與性別無關。",
+    "source": "rewritten (notes)",
+    "mid": true,
+    "lecture": "L9"
+  },
+  {
+    "id": "n18-l9-ar-carriers",
+    "stem": "Two unaffected carriers of the same autosomal recessive disorder mate. For each pregnancy, the chance the child has the disorder is typically:",
+    "options": [
+      "50% affected and 50% non-carrier with no carrier offspring possible",
+      "25% affected, 50% carrier, 25% neither variant (non-carrier)",
+      "100% affected because carriers always transmit two mutated copies",
+      "0% affected because autosomal recessive traits never appear in childhood"
+    ],
+    "answer": 1,
+    "explain": "Both parents carriers: 25% affected (two variants), 50% carrier (one variant), 25% inherits neither.\n雙親皆攜帶：25% 患病、50% 攜帶、25% 非攜帶。",
+    "source": "rewritten (notes)",
+    "mid": true,
+    "lecture": "L9"
+  },
+  {
+    "id": "n18-l9-xr-no-father-son",
+    "stem": "Why is there typically no father-to-son transmission of an X-linked recessive disorder?",
+    "options": [
+      "Fathers pass their Y chromosome—not their X—to sons",
+      "Fathers pass both X chromosomes to every son at fertilization",
+      "Sons silence all paternal X genes by forming two Barr bodies",
+      "X-linked recessive mutations exist only on mitochondrial DNA"
+    ],
+    "answer": 0,
+    "explain": "An affected father does not pass his X to sons (he passes Y); he passes his X to all daughters.\n病父傳 Y 給兒子、不傳 X；X 傳給全部女兒。",
+    "source": "rewritten (notes)",
+    "mid": true,
+    "lecture": "L9"
+  },
+  {
+    "id": "n18-l9-mtdna",
+    "stem": "Which statement matches mitochondrial (mtDNA) inheritance in Lecture 9?",
+    "options": [
+      "An affected father transmits the mtDNA mutation to all children; mothers never transmit mtDNA",
+      "An affected mother passes the mutation to all children; an affected father passes it to none",
+      "Only sons inherit mtDNA mutations, and only through the Y chromosome",
+      "mtDNA mutations follow strict autosomal recessive 25% risks with Punnett squares"
+    ],
+    "answer": 1,
+    "explain": "mtDNA is maternally inherited (egg contributes mitochondria; sperm generally do not). Affected mother → all children; affected father → none.\nmtDNA 母系：病母→全部子女；病父→不傳。",
+    "source": "rewritten (notes)",
+    "mid": true,
+    "lecture": "L9"
+  },
+  {
+    "id": "n18-l9-imprinting-15",
+    "stem": "Loss of paternal expression in 15q11.2–q13 is associated with which condition in Lecture 9?",
+    "options": [
+      "Angelman syndrome from isolated loss of maternal UBE3A activity in that region",
+      "Prader–Willi syndrome when paternal expression of the imprinted region is lost",
+      "Klinefelter syndrome defined solely by karyotype 47,XXY without imprinting",
+      "Turner syndrome limited to a single 45,X line and unrelated to 15q imprinting"
+    ],
+    "answer": 1,
+    "explain": "Same region, different parent of origin: loss of paternal expression → Prader–Willi; loss of maternal UBE3A activity → Angelman.\n同一 15q：父源活性喪失→Prader–Willi；母源 UBE3A 喪失→Angelman。",
+    "source": "rewritten (notes)",
+    "mid": true,
+    "lecture": "L9"
+  },
+  {
+    "id": "n18-l9-down-karyotype",
+    "stem": "A typical male with trisomy 21 Down syndrome is designated in karyotype shorthand as:",
+    "options": [
+      "45,X",
+      "47,XY,+21",
+      "47,XXY",
+      "46,XX,rob(14;21)"
+    ],
+    "answer": 1,
+    "explain": "Lecture example: male with trisomy 21 = 47,XY,+21. About 95% of Down syndrome from meiotic nondisjunction; risk rises with maternal age.\n男性 21 三體＝47,XY,+21；約 95% 因減數分裂不分離；風險隨母齡↑。",
+    "source": "rewritten (notes)",
+    "mid": true,
+    "lecture": "L9"
+  },
+  {
+    "id": "n18-l9-turner-klinefelter",
+    "stem": "Which pairing of syndrome and typical karyotype is correct?",
+    "options": [
+      "Turner syndrome is 47,XXY; Klinefelter syndrome is 45,X in female development",
+      "Turner syndrome — 45,X (female); Klinefelter syndrome — 47,XXY (male)",
+      "Both syndromes are defined only as complete autosomal monosomy of chromosome 21",
+      "Down syndrome is 45,X; Turner syndrome is written 47,XY,+21 in all males"
+    ],
+    "answer": 1,
+    "explain": "Turner: commonly 45,X (female development; short stature; early oocyte loss; no menses/secondary sex characteristics). Klinefelter: commonly 47,XXY (male; taller; small testes; low testosterone; reduced fertility).\nTurner 常見 45,X；Klinefelter 常見 47,XXY。",
+    "source": "rewritten (notes)",
+    "mid": true,
+    "lecture": "L9"
+  },
+  {
+    "id": "n18-l9-aneuploidy",
+    "stem": "Aneuploidy of chromosomes most often arises when chromosomes fail to separate properly during formation of eggs or sperm. That failure is called:",
+    "options": [
+      "Genomic imprinting",
+      "Nondisjunction",
+      "Codominance",
+      "X-inactivation into a Barr body only"
+    ],
+    "answer": 1,
+    "explain": "Numerical disorders/aneuploidy commonly from nondisjunction during gamete formation.\n非整倍體常因配子形成時染色體不分離（nondisjunction）。",
+    "source": "rewritten (notes)",
+    "mid": true,
+    "lecture": "L9"
+  },
+  {
+    "id": "n18-l9-penetrance-expressivity",
+    "stem": "In autosomal dominant disorders, reduced penetrance means:",
+    "options": [
+      "Everyone with the variant shows identical severe features from birth",
+      "Some people who inherit the variant show no noticeable signs or symptoms",
+      "The variant can only be transmitted by mothers through mtDNA",
+      "Heterozygotes always have a phenotype exactly halfway between two homozygotes"
+    ],
+    "answer": 1,
+    "explain": "Reduced penetrance: inherit variant but no noticeable signs (e.g. some BRCA1/2 carriers never develop cancer). Variable expressivity: same variant but features/severity/age differ (e.g. Marfan).\nReduced penetrance＝有變體可無明顯症狀；variable expressivity＝有病但輕重不一。",
+    "source": "rewritten (notes)",
+    "mid": true,
+    "lecture": "L9"
+  },
+  {
+    "id": "n18-l9-folate",
+    "stem": "Lecture 9 recommends that women of childbearing age receive how much folic acid daily to reduce neural-tube defect risk?",
+    "options": [
+      "40 μg once weekly only after the second trimester begins",
+      "400 μg (0.4 mg) daily, continuing when pregnancy occurs",
+      "4 grams daily of vitamin B12 instead of any folate",
+      "No supplement is advised because organogenesis ends before day 15"
+    ],
+    "answer": 1,
+    "explain": "Low folate around conception/early pregnancy raises risk of neural tube defects (spina bifida, anencephaly). Recommendation: 400 μg (0.4 mg) folic acid daily for women of childbearing age, continue in pregnancy. Organogenesis ~days 15–60.\n建議育齡女性每日 400 μg（0.4 mg）葉酸；不足↑脊柱裂／無腦畸形風險。",
+    "source": "rewritten (notes)",
+    "mid": true,
+    "lecture": "L9"
+  },
+  {
+    "id": "n18-l9-multifactorial",
+    "stem": "Inherited multifactorial disorders differ from classic single-gene Mendelian disorders mainly because:",
+    "options": [
+      "They always follow a strict 50% autosomal-dominant risk with complete penetrance",
+      "Phenotype depends on many genes plus environment, so inheritance is not clear-cut Mendelian",
+      "They are caused only by Y-linked holandric mutations expressed exclusively in females",
+      "They never appear at birth, never recur in relatives, and ignore all lifestyle factors"
+    ],
+    "answer": 1,
+    "explain": "Multifactorial: many genes + environment/lifestyle; not clear-cut Mendelian patterns; recurrence risk can exceed population risk after one affected child; higher with more affected relatives.\n多因子＝多基因＋環境；無單基因般清晰模式；家族史可↑再發風險。",
+    "source": "rewritten (notes)",
+    "mid": true,
+    "lecture": "L9"
+  },
+  {
+    "id": "n18-s6-reject-ctl",
+    "stem": "Six months after heart transplant, biopsy shows lymphocytic infiltration and graft dysfunction. Seminar 6 official answer attributes rejection mainly to:",
+    "options": [
+      "Preformed donor-specific antibodies causing immediate hyperacute destruction only",
+      "Recipient cytotoxic T cells recognising foreign MHC on donor heart cells as non-self",
+      "Complete immune tolerance so lymphocytes ignore all donor antigens permanently",
+      "B cells making autoantibodies exclusively against the recipient’s own untransplanted tissues"
+    ],
+    "answer": 1,
+    "explain": "Seminar 6 Ans Q1 = B: activation of cytotoxic T cells recognising foreign MHC on donor cells. Timing/lymphocytic infiltrate fits cell-mediated rejection, not immediate antibody-only hyperacute injury.\nSeminar 6 官方 Q1＝B：細胞毒性 T 辨認供者外來 MHC。",
+    "source": "seminar 6 official ans",
+    "mid": true,
+    "lecture": "S6"
+  },
+  {
+    "id": "n18-s6-mimicry",
+    "stem": "After Streptococcus pyogenes pharyngitis, antibodies bind both streptococcal M protein and cardiac tissue. Seminar 6 identifies the autoimmune trigger as:",
+    "options": [
+      "Breakdown of T-cell anergy alone without any microbial resemblance",
+      "Release of a sequestered antigen from immune-privileged sites only",
+      "Molecular mimicry",
+      "Superantigen-mediated activation bridging MHC II and TCR nonspecifically"
+    ],
+    "answer": 2,
+    "explain": "Seminar 6 Ans Q2 = C: molecular mimicry (antibodies recognise shared epitopes on M protein and cardiac tissue).\nSeminar 6 官方 Q2＝C：molecular mimicry。",
+    "source": "seminar 6 official ans",
+    "mid": true,
+    "lecture": "S6"
+  },
+  {
+    "id": "n18-s6-aids-cd4",
+    "stem": "A man with longstanding HIV has oral thrush, Pneumocystis pneumonia, and CD4 180 cells/µL. Seminar 6 concludes he has:",
+    "options": [
+      "Only the acute/seroconversion phase of HIV with high CD4 recovery",
+      "Reached the AIDS stage",
+      "Proven excellent response to HAART with immune reconstitution",
+      "Laboratory confirmation that he is HIV-negative"
+    ],
+    "answer": 1,
+    "explain": "Seminar 6 Ans Q3 = B: AIDS stage (opportunistic infections + CD4 180 < 200 cells/µL threshold taught in L7).\nSeminar 6 官方 Q3＝B：已達 AIDS 階段。",
+    "source": "seminar 6 official ans",
+    "mid": true,
+    "lecture": "S6"
+  }
 ];
 
 const BANKS = { NUR2047: QUESTIONS, NUR2018: NUR2018_QUESTIONS };
@@ -4966,7 +5207,7 @@ const BANKS = { NUR2047: QUESTIONS, NUR2018: NUR2018_QUESTIONS };
     const calcOpt = scopeEl.querySelector('option[value="calc"]');
     const allOpt = scopeEl.querySelector('option[value="all"]');
     if (subjectEl.value === "NUR2018") {
-      midOpt.textContent = "All current bank (L1–7 + Seminar 1–4)";
+      midOpt.textContent = "All current bank (L1–9 + Seminar 1–6)";
       extraOpt.textContent = "Reserved (empty for NUR2018)";
       if (calcHardOpt) calcHardOpt.textContent = "Calculation only (harder) — NUR2047 only";
       if (calcOpt) calcOpt.textContent = "All calculations — NUR2047 only";
@@ -5027,7 +5268,7 @@ const BANKS = { NUR2047: QUESTIONS, NUR2018: NUR2018_QUESTIONS };
     box.className = "idle";
     const p = document.createElement("p");
     if (subjectEl.value === "NUR2018") {
-      p.textContent = "Start draws from the NUR2018 Pathophysiology bank (Lectures 1–8 and Seminar 1–5). A–D order reshuffles every question.";
+      p.textContent = "Start draws from the NUR2018 Pathophysiology bank (Lectures 1–9 and Seminar 1–6). A–D order reshuffles every question.";
     } else {
       p.textContent = "Start uses the midterm set: Lectures 1–4 through respiratory drugs, plus Revision Exercise 1, including random-number calculation items that refresh every draw. Change the practice set if you want CNS / psychiatric items only.";
     }
