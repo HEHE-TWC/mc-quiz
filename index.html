@@ -3489,7 +3489,7 @@ var CALC_TEMPLATES = [
 
 
 
-/* NUR2018 Pathophysiology MC bank. English stems/options. Explanations: English, then Traditional Chinese. L1–11 + Seminar 1–6 (S5 Ans 2026-10-12; L8 2026-10-19; L9+S6 Ans 2026-10-26; L10 2026-11-02; L11 2026-11-03). Seminar 7–8 MC skipped (no official Ans). */
+/* NUR2018 Pathophysiology MC bank. English stems/options. Explanations: English, then Traditional Chinese. L1–12 + Seminar 1–7 (S5 Ans 2026-10-12; L8 2026-10-19; L9+S6 Ans 2026-10-26; L10 2026-11-02; L11 2026-11-03; L12 + S7 Ans 2026-11-16). Seminar 8–9 MC skipped (no official Ans). */
 const NUR2018_QUESTIONS = [
   {
     "id": "n18-l1-hypertrophy-athlete",
@@ -5021,7 +5021,7 @@ const NUR2018_QUESTIONS = [
     "mid": true,
     "lecture": "S5"
   },
-{
+  {
     "id": "n18-l8-ldl-hdl",
     "stem": "In Lecture 8 lipoprotein teaching, which pairing is correct?",
     "options": [
@@ -5200,8 +5200,7 @@ const NUR2018_QUESTIONS = [
     "source": "rewritten (notes)",
     "mid": true,
     "lecture": "L8"
-  }
-,
+  },
   {
     "id": "n18-l9-missense-sickle",
     "stem": "According to Lecture 9, sickle cell disease is usually caused by which change in HBB?",
@@ -5442,7 +5441,7 @@ const NUR2018_QUESTIONS = [
     "mid": true,
     "lecture": "S6"
   },
-{
+  {
     "id": "n18-l10-kcal-density",
     "stem": "According to Lecture 10, which energy densities are correct for carbohydrate, fat and protein?",
     "options": [
@@ -5861,6 +5860,291 @@ const NUR2018_QUESTIONS = [
     "source": "rewritten (L11)",
     "mid": true,
     "lecture": "L11"
+  },
+  {
+    "id": "n18-l12-k-distribution",
+    "stem": "Which statement matches Lecture 12 on potassium distribution and the serum reference range?",
+    "options": [
+      "About 98% of K+ is in the ICF and 2% in the ECF; normal serum K+ is 3.5–5.0 mEq/L",
+      "About 98% of K+ is in the ECF and 2% in the ICF; normal serum K+ is 8.5–10.5 mg/dL",
+      "Potassium is the most abundant body cation, and almost all of it stays in plasma only",
+      "Dietary potassium cannot enter the body, so the kidney never regulates K+ excretion"
+    ],
+    "answer": 0,
+    "explain": "K+ is the second most abundant cation. 98% is intracellular and 2% extracellular. Normal serum K+ is 3.5–5.0 mEq/L. Intake is dietary; 80–90% is lost via the kidney and 10–20% in stools and sweat.\n鉀是體內第二豐富陽離子；98% 在 ICF、2% 在 ECF。血清正常值 3.5–5.0 mEq/L。攝入靠飲食，排出主要經腎（80–90%）。",
+    "source": "rewritten (L12)",
+    "mid": true,
+    "lecture": "L12"
+  },
+  {
+    "id": "n18-l12-hypok-rmp",
+    "stem": "How does hypokalemia change nerve excitability, according to Lecture 12?",
+    "options": [
+      "The resting membrane potential becomes more negative and further from threshold, so a greater stimulus is needed",
+      "The resting membrane potential becomes more positive and closer to threshold, so only a tiny stimulus is needed",
+      "Repolarization becomes faster, and nerve impulses are generated more easily than when potassium is high",
+      "Sodium channels lock open permanently, so every hypokalemic cell fires continuously without any stimulus"
+    ],
+    "answer": 0,
+    "explain": "Low serum K+ makes the resting membrane potential more negative (further from threshold). A greater stimulus is needed to open Na+ channels, and repolarization is slower. The lecture sums this as: it is more difficult to generate a nerve impulse when K+ is low.\n低鉀令靜息膜電位更負、離閾值更遠，需更大刺激才打開 Na⁺ 通道，復極較慢，更難產生神經衝動。",
+    "source": "rewritten (L12)",
+    "mid": true,
+    "lecture": "L12"
+  },
+  {
+    "id": "n18-l12-hyperk-ecg",
+    "stem": "Which ECG pattern does Lecture 12 list as an early change in hyperkalemia?",
+    "options": [
+      "Peaked, narrow T waves and widening of the QRS complex",
+      "T-wave flattening with a prominent U wave and ST-segment depression only",
+      "A shorter QT interval with no change in the T wave or QRS width at all",
+      "Isolated U waves without any later risk of ventricular fibrillation or arrest"
+    ],
+    "answer": 0,
+    "explain": "Early hyperkalemia: peaked, narrow T waves and QRS widening. Later: prolonged PR interval and disappearance of P waves. High K+ may lead to a low heart rate, ventricular fibrillation and cardiac arrest. The U-wave / flat-T / ST-depression pattern is taught for hypokalemia (often when K+ is below 3 mEq/L).\n高鉀早期：尖窄 T 波、QRS 增寬；其後 PR 延長、P 波消失，可致心率↓、室顫及心臟停頓。U wave／T 變平屬低鉀（常見於 K⁺＜3）。",
+    "source": "rewritten (L12)",
+    "mid": true,
+    "lecture": "L12"
+  },
+  {
+    "id": "n18-l12-hk-exchange",
+    "stem": "At the collecting tubule H+/K+ exchange, what does Lecture 12 say happens in hypokalemia?",
+    "options": [
+      "More K+ is reabsorbed and more H+ is excreted, which can raise pH and cause alkalosis",
+      "More K+ is excreted and more H+ is reabsorbed, which can lower pH and cause acidosis",
+      "Hydrogen and potassium move in the same direction, so pH cannot change at all",
+      "The pump stops completely, so neither potassium nor acid–base balance can be affected"
+    ],
+    "answer": 0,
+    "explain": "K+ and acid–base exert reciprocal effects via H+/K+ exchange. In hypokalemia, more K+ is reabsorbed and more H+ is lost in urine, so pH rises (alkalosis). In hyperkalemia, more K+ is excreted and more H+ is retained, so pH falls (acidosis). Acidosis can also shift K+ from ICF to ECF.\n低鉀時多吸回 K⁺、多排出 H⁺→pH↑（鹼中毒）。高鉀時多排 K⁺、多留 H⁺→pH↓（酸中毒）。酸中毒亦可令鉀由 ICF 移向 ECF。",
+    "source": "rewritten (L12)",
+    "mid": true,
+    "lecture": "L12"
+  },
+  {
+    "id": "n18-l12-hyperk-treatment",
+    "stem": "In urgent hyperkalemia, what is the lecture role of calcium versus insulin with glucose?",
+    "options": [
+      "Calcium restores conduction only briefly (15–30 min) and must be combined with insulin plus glucose to lower ECF K+",
+      "Calcium permanently removes potassium from the body, so insulin and glucose must never be given together with it",
+      "Insulin with glucose raises ECF potassium, whereas calcium is used only to treat hypokalemic U waves and flatten T waves",
+      "Both drugs work only by increasing gastrointestinal potassium loss and have no effect on cardiac conduction or the ICF"
+    ],
+    "answer": 0,
+    "explain": "Calcium temporarily restores nerve impulse generation and conduction for only 15–30 minutes, so it must be combined with therapies that lower ECF K+. β-agonists or insulin move K+ into cells; IV insulin with glucose is often used. Sodium bicarbonate may be added if there is significant metabolic acidosis.\n鈣只能暫時（約 15–30 分鐘）恢復衝動傳導，須併用降低 ECF 鉀的方法。Insulin（常加 glucose）或 β 促效劑把鉀移入 ICF。",
+    "source": "rewritten (L12)",
+    "mid": true,
+    "lecture": "L12"
+  },
+  {
+    "id": "n18-l12-hypok-insulin",
+    "stem": "Which lecture example can cause hypokalemia by shifting potassium between compartments?",
+    "options": [
+      "Excessive insulin injection, moving K+ from the ECF into the ICF",
+      "Chronic kidney disease that decreases renal potassium elimination",
+      "Acidosis that shifts potassium from the ICF out into the ECF",
+      "Rapid transfusion of many units of red cells raising serum K+ suddenly"
+    ],
+    "answer": 0,
+    "explain": "Hypokalemia causes include inadequate intake, renal loss (e.g. diuretics), GI loss (e.g. diarrhea), skin loss (e.g. severe burns), and ICF–ECF shifts such as excessive insulin injection. The other three are lecture associations of hyperkalemia (CKD, acidosis shift ICF→ECF, rapid RBC transfusion).\n低鉀病因包括過量注射 insulin（K⁺ 由 ECF 轉入 ICF）。CKD、酸中毒（K⁺ 出細胞）及快速大量輸 RBC 屬高鉀相關例子。",
+    "source": "rewritten (L12)",
+    "mid": true,
+    "lecture": "L12"
+  },
+  {
+    "id": "n18-l12-ca-forms",
+    "stem": "How is ECF calcium divided in Lecture 12, and what is the usual total serum range?",
+    "options": [
+      "About 40% protein-bound, 10% complexed and 50% ionized; total serum calcium is usually 8.5–10.5 mg/dL",
+      "About 98% ionized in plasma and 2% in bone; total serum calcium is usually 3.5–5.0 mEq/L",
+      "All ECF calcium is bound to albumin, so none of it can leave the vascular compartment",
+      "Ionized calcium is only 10% of ECF calcium and cannot take part in cellular functions"
+    ],
+    "answer": 0,
+    "explain": "About 99% of body calcium is in bone. In the ECF: ~40% is protein-bound (mostly albumin, cannot leave the vessel), ~10% is complexed/chelated (not ionized), and ~50% is ionized and free to leave and act in cells. Normal total serum calcium is 8.5–10.5 mg/dL. Total calcium fluctuates with albumin and pH.\n約 99% 鈣在骨。ECF：約 40% 蛋白結合、10% 螯合（非離子）、50% 離子型。血清總鈣正常 8.5–10.5 mg/dL；總鈣可隨白蛋白與 pH 波動。",
+    "source": "rewritten (L12)",
+    "mid": true,
+    "lecture": "L12"
+  },
+  {
+    "id": "n18-l12-ca-hormones",
+    "stem": "Which pairing of calcium-regulating hormone and effect matches Lecture 12?",
+    "options": [
+      "PTH raises calcium (osteoclasts, gut absorption, less renal excretion); calcitonin from thyroid C cells lowers it",
+      "Calcitonin from the parathyroid glands raises calcium by stimulating osteoclasts and renal calcium retention",
+      "PTH always lowers calcium, and vitamin D has no hormonal role after skin exposure to ultraviolet light",
+      "Active calcitriol is made only in the skin and then blocks all intestinal calcium absorption"
+    ],
+    "answer": 0,
+    "explain": "PTH (parathyroid glands) raises Ca2+ by stimulating osteoclasts, increasing intestinal absorption and decreasing renal excretion. Vitamin D is made in skin under UV light, activated to calcitriol in the kidney, and calcitriol stimulates small-intestinal Ca2+ absorption. Calcitonin from thyroid C (parafollicular) cells lowers Ca2+ by inhibiting osteoclasts and increasing renal excretion.\nPTH（副甲）升鈣：破骨、腸吸收、腎保鈣。Vit D 經紫外線合成，腎活化成 calcitriol，促小腸吸收。Calcitonin（甲狀腺 C cells）降鈣：抑破骨、增腎排。",
+    "source": "rewritten (L12)",
+    "mid": true,
+    "lecture": "L12"
+  },
+  {
+    "id": "n18-l12-hypoca-causes",
+    "stem": "Which set matches lecture major causes of hypocalcemia?",
+    "options": [
+      "Hypoparathyroidism, renal failure with less activated vitamin D, and alkalosis increasing non-ionized calcium",
+      "Excess vitamin D, excess dietary calcium, and prolonged immobilization that all raise bone resorption",
+      "Thiazide diuretics and lithium therapy that decrease calcium elimination from the body",
+      "Malignant neoplasms that increase parathyroid hormone activity and intestinal calcium absorption only"
+    ],
+    "answer": 0,
+    "explain": "Major hypocalcemia causes: (1) impaired mobilization from bone (e.g. hypoparathyroidism); (2) abnormal renal losses (e.g. renal failure → less activated vitamin D); (3) increased protein binding or chelation so more calcium is non-ionized (e.g. alkalosis, including respiratory alkalosis from hyperventilation). The other options are hypercalcemia causes.\n低鈣三大因：副甲減（骨動員差）、腎衰（活性 Vit D↓）、鹼中毒（非離子型比例↑）。其餘選項屬高鈣病因。",
+    "source": "rewritten (L12)",
+    "mid": true,
+    "lecture": "L12"
+  },
+  {
+    "id": "n18-l12-hypoca-signs",
+    "stem": "Which neuromuscular findings are listed for hypocalcemia in Lecture 12?",
+    "options": [
+      "Paresthesia, tetany, carpopedal spasm, and positive Chvostek and Trousseau signs",
+      "Decreased neuromuscular excitability with muscle atrophy and loss of muscle tone only",
+      "Shortening of the QT interval and atrioventricular block as the main muscle signs",
+      "Polyuria, polydipsia and kidney stones as the first neuromuscular features listed"
+    ],
+    "answer": 0,
+    "explain": "Hypocalcemia increases neuromuscular excitability: paresthesia (mouth, hands, feet), cramps, hyperactive reflexes, carpopedal spasm, tetany, laryngeal spasm, and positive Chvostek and Trousseau signs. Severe cases can cause seizures and death. Decreased excitability, short QT, AV block, polyuria and stones are hypercalcemia features.\n低鈣令神經肌肉興奮性↑：感覺異常、抽筋、反射亢進、手足痙攣、tetany、喉痙攣、Chvostek／Trousseau 陽性。興奮性↓、QT 縮短、腎石等屬高鈣。",
+    "source": "rewritten (L12)",
+    "mid": true,
+    "lecture": "L12"
+  },
+  {
+    "id": "n18-l12-ph-buffers",
+    "stem": "Lecture 12 describes three major mechanisms that regulate pH. Which order and roles are correct?",
+    "options": [
+      "Chemical buffers act immediately; the lungs eliminate CO2; the kidneys adjust H+ and HCO3- over hours to days",
+      "The kidneys act in seconds, then buffers work over days, and the lungs never change CO2 elimination",
+      "Only the lungs regulate pH, because chemical buffers and the kidneys cannot bind or excrete acid",
+      "Volatile acids are removed only by the kidney, and non-volatile acids are removed only by ventilation"
+    ],
+    "answer": 0,
+    "explain": "Three defences: (1) chemical buffers immediately combine with excess acid or base (important pair: H2CO3 ⇌ H+ + HCO3-); (2) lungs control CO2 elimination; (3) kidneys control H+ elimination and HCO3- reabsorption/generation. Renal adjustments begin in hours and may continue for days. Volatile acid (H2CO3/CO2) leaves via the lungs; non-volatile acids are handled metabolically/renally.\n三道機制：化學緩衝立即作用；肺排 CO₂；腎調 H⁺ 排出與 HCO₃⁻ 重吸收／新生（數小時至數日）。揮發酸經肺，非揮發酸經代謝／腎。",
+    "source": "rewritten (L12)",
+    "mid": true,
+    "lecture": "L12"
+  },
+  {
+    "id": "n18-l12-four-abg",
+    "stem": "A primary fall in plasma HCO3- with a low pH, and compensation by increased ventilation that lowers PCO2, is:",
+    "options": [
+      "Metabolic acidosis",
+      "Metabolic alkalosis",
+      "Respiratory acidosis",
+      "Respiratory alkalosis"
+    ],
+    "answer": 0,
+    "explain": "Metabolic acidosis: primary decrease in HCO3- and pH. The body raises respiratory rate to lower PCO2, and (if the kidneys are intact) increases H+ excretion and HCO3- reabsorption. Respiratory disorders have a primary PCO2 change (normal PCO2 35–45 mmHg). Metabolic alkalosis is a primary HCO3- excess with higher pH.\n代謝性酸中毒：原發 HCO₃⁻↓、pH↓；代償為通氣↑、PCO₂↓（腎完好時尚可多排 H⁺、多重吸收 HCO₃⁻）。呼吸性紊亂以 PCO₂ 為原發（正常 35–45 mmHg）。",
+    "source": "rewritten (L12)",
+    "mid": true,
+    "lecture": "L12"
+  },
+  {
+    "id": "n18-l12-resp-acidosis",
+    "stem": "Which statement about respiratory acidosis is taught in Lecture 12?",
+    "options": [
+      "It is the most common imbalance: impaired alveolar ventilation lets CO2 accumulate (PCO2 > 45 mmHg)",
+      "It is defined by a primary fall in PCO2 below 35 mmHg after a person breathes far too rapidly for his or her metabolic needs",
+      "It is the second most common imbalance and is caused first by a fall in plasma HCO3- from diarrhea or ketoacid excess",
+      "Renal compensation decreases HCO3- reabsorption so that pH falls even further during carbon dioxide retention"
+    ],
+    "answer": 0,
+    "explain": "Respiratory acidosis is the most common acid-base imbalance. Impaired alveolar ventilation (shallow/slow breathing, or disease/trauma impairing gas exchange) lets CO2 accumulate. PCO2 > 45 mmHg indicates respiratory acidosis; < 35 mmHg indicates respiratory alkalosis (normal 35–45). Renal compensation increases H+ excretion and HCO3- reabsorption. Metabolic acidosis is taught as the second most common cause.\n呼吸性酸中毒是最常見的酸鹼失衡，因肺泡通氣差致 CO₂ 積聚。PCO₂＞45 指示呼吸性酸中毒。腎代償增加 H⁺ 排出與 HCO₃⁻ 重吸收。代謝性酸中毒為第二常見。",
+    "source": "rewritten (L12)",
+    "mid": true,
+    "lecture": "L12"
+  },
+  {
+    "id": "n18-l12-kussmaul-dka",
+    "stem": "In metabolic acidosis (for example ketoacidosis in uncontrolled diabetes), which compensatory finding is listed?",
+    "options": [
+      "Increased rate and depth of respiration (Kussmaul breathing) and a compensatory fall in PCO2",
+      "Slower, shallower breathing that raises PCO2 as the primary disturbance of the disorder",
+      "A primary rise in PCO2 above 45 mmHg with no change in plasma bicarbonate concentration",
+      "Decreased H+ excretion and decreased HCO3- reabsorption as the first respiratory response"
+    ],
+    "answer": 0,
+    "explain": "In metabolic acidosis the body increases respiratory rate to lower PCO2. The signs table lists increased rate and depth of respiration (Kussmaul breathing), and also hyperkalemia, acid urine and increased urine ammonia. Uncontrolled diabetes mellitus with excess ketoacids is a lecture example. Slow shallow breathing that raises PCO2 is the picture of respiratory acidosis or of respiratory compensation for metabolic alkalosis, not the primary metabolic-acidosis response.\n代謝性酸中毒以加快加深呼吸（Kussmaul）降低 PCO₂ 作代償；表亦列高鉀、酸性尿、尿氨↑。控制不良 DM 酮酸是講義例子。",
+    "source": "rewritten (L12)",
+    "mid": true,
+    "lecture": "L12"
+  },
+  {
+    "id": "n18-s7-cf-carriers",
+    "stem": "In the official Seminar 7 answer, why can unaffected parents have a child with cystic fibrosis?",
+    "options": [
+      "CF is autosomal recessive; asymptomatic heterozygous carriers still have a 50% chance of passing the mutated allele",
+      "CF is autosomal dominant, so one affected parent is enough and carriers never occur in this disease",
+      "CF is Y-linked, so only fathers transmit the disease gene and mothers cannot be carriers",
+      "CF is mitochondrial, so only an affected father can pass the condition to every child"
+    ],
+    "answer": 0,
+    "explain": "Official S7 Q1(a): CF is autosomal recessive and the phenotype appears only if both alleles are mutated. Symptom-free parents can be heterozygous carriers. The remaining normal gene still makes enough protein for normal function, but each carrier has a 50% chance of passing the disease gene. If the child gets one mutated allele from each parent, she is homozygous affected.\n官方答案：CF 為體染色體隱性，要兩份突變才發病。無症狀父母可為雜合攜帶者；剩餘正常等位仍足夠維持功能，但各有 50% 機會傳致病基因。子女若各得一份即純合患病。",
+    "source": "seminar 7 official ans",
+    "mid": true,
+    "lecture": "S7"
+  },
+  {
+    "id": "n18-s7-cf-recurrence",
+    "stem": "If both parents are heterozygous carriers of CF, the official Seminar 7 interpretation of the cross is:",
+    "options": [
+      "25% AA (homozygous normal), 50% Aa (carrier, no disease phenotype) and 25% aa (affected)",
+      "50% AA, 25% Aa and 25% aa, because only one parent can transmit a mutated allele",
+      "100% aa, because two carrier parents always have an affected child in every pregnancy",
+      "75% affected and 25% carriers, which is the autosomal-dominant pattern used in the official key"
+    ],
+    "answer": 0,
+    "explain": "Official S7 Q1(c): let A = wild-type CFTR and a = mutated allele. Both parents are Aa. Offspring: AA, Aa, Aa, aa. Interpretation: 25% homozygous normal (AA), 50% heterozygous carriers without the disease phenotype (Aa), 25% affected with CF (aa).\n官方交配：A＝野生型、a＝突變；父母皆 Aa。子代 25% AA 正常、50% Aa 攜帶無病、25% aa 患 CF。",
+    "source": "seminar 7 official ans",
+    "mid": true,
+    "lecture": "S7"
+  },
+  {
+    "id": "n18-s7-cftr-mechanisms",
+    "stem": "Which mechanism is officially accepted in Seminar 7 as a way CFTR production can be lost?",
+    "options": [
+      "Epigenetic silencing of the CFTR promoter",
+      "A silent substitution that still codes for the same amino acid and leaves CFTR unchanged",
+      "Gain of an extra fully functional CFTR gene copy on every autosome",
+      "Y-linked inheritance of CFTR, which the official answer lists as the only allowed mechanism"
+    ],
+    "answer": 0,
+    "explain": "Official S7 Q1(b) accepts any three of: missense substitution (non-functional CFTR); nonsense (premature stop, incomplete protein); insertion/deletion causing frameshift; deletion of a chromosome containing CFTR; inversion or translocation that breaks CFTR at the junction; and epigenetic silencing of the CFTR promoter. A silent change that leaves the protein unchanged is not on that official list.\n官方任三：missense、nonsense、插入／缺失致 frameshift、含 CFTR 的染色體缺失、倒位／易位打斷基因、CFTR promoter 表觀沉默。同義（silent）且蛋白不變不在此給分列。",
+    "source": "seminar 7 official ans",
+    "mid": true,
+    "lecture": "S7"
+  },
+  {
+    "id": "n18-s7-ken-genotype",
+    "stem": "In Seminar 7, Hemophilia A is X-linked recessive and Ken's mother is affected. What is Ken's genotype in the official answer?",
+    "options": [
+      "XaY — he is affected, because a male's single X comes from his affected mother",
+      "XAY — he must be healthy, because sons never inherit an X chromosome from the mother",
+      "XaXa — he is a homozygous female carrier who cannot express an X-linked disease",
+      "His father is affected, so Ken's Y chromosome alone makes him a carrier but never affected"
+    ],
+    "answer": 0,
+    "explain": "Official S7 Q2: because Hemophilia A is X-linked recessive, an affected mother is homozygous affected. Ken is male, so his X must come from his mother; his sex-chromosome genotype is one affected X plus a Y, which means he himself has Hemophilia A.\n官方：母患病即女 XR 純合患病。Ken 為男，X 必來自母親，基因型為 XᵃY，即他本人患 Hemophilia A。",
+    "source": "seminar 7 official ans",
+    "mid": true,
+    "lecture": "S7"
+  },
+  {
+    "id": "n18-s7-hemophilia-offspring",
+    "stem": "Ken (officially XaY) and Barbie (homozygous normal, XAXA) plan a pregnancy. Official Seminar 7 risk of Hemophilia A in their offspring is:",
+    "options": [
+      "0% — daughters are XAXa carriers and sons are XAY; none of the offspring is affected",
+      "100% of sons are affected and all daughters are healthy non-carriers",
+      "50% of every child is affected, as in an autosomal-dominant cross of two heterozygotes",
+      "25% aa only, using the same autosomal-recessive Punnett square as the CF case"
+    ],
+    "answer": 0,
+    "explain": "Official cross: Ken XaY × Barbie XAXA. Offspring: XAXa, XAXa, XAY, XAY. Sons are XAY (normal) and daughters are XAXa (carriers). Both are free of Hemophilia A, so the chance that any offspring is affected is 0%.\n官方交配：Ken XᵃY × Barbie XᴬXᴬ。子代女 XᴬXᵃ（攜帶者）、男 XᴬY（正常），全部不患 Hemophilia A，機會為 0%。",
+    "source": "seminar 7 official ans",
+    "mid": true,
+    "lecture": "S7"
   }
 ];
 
@@ -5961,7 +6245,7 @@ const BANKS = { NUR2047: QUESTIONS, NUR2018: NUR2018_QUESTIONS };
     const calcOpt = scopeEl.querySelector('option[value="calc"]');
     const allOpt = scopeEl.querySelector('option[value="all"]');
     if (subjectEl.value === "NUR2018") {
-      midOpt.textContent = "All current bank (L1–11 + Seminar 1–6)";
+      midOpt.textContent = "All current bank (L1–12 + Seminar 1–7)";
       extraOpt.textContent = "Reserved (empty for NUR2018)";
       if (calcHardOpt) calcHardOpt.textContent = "Calculation only (harder) — NUR2047 only";
       if (calcOpt) calcOpt.textContent = "All calculations — NUR2047 only";
@@ -5984,7 +6268,7 @@ const BANKS = { NUR2047: QUESTIONS, NUR2018: NUR2018_QUESTIONS };
     bank().forEach(q => { counts[q.source] = (counts[q.source] || 0) + 1; });
     if (subjectEl.value === "NUR2018") {
       foot.textContent = "NUR2018 Pathophysiology bank: " + all
-        + " items (Lectures 1–8 + Seminar 1–5 with official answers where posted). Sources: seminar "
+        + " items (Lectures 1–12 + Seminar 1–7 with official answers where posted; S8–S9 not included). Sources: seminar "
         + (counts["seminar"] || 0) + " · rewritten (notes) " + (counts["rewritten (notes)"] || 0)
         + " · past paper " + (counts["past paper"] || 0)
         + ". Themes paraphrased from notes, seminars, and past-paper short/long patterns (MCQ stems were not in the extracts). A–D reshuffles each draw. Explanations: English, then Traditional Chinese. Not an official paper.";
@@ -6022,7 +6306,7 @@ const BANKS = { NUR2047: QUESTIONS, NUR2018: NUR2018_QUESTIONS };
     box.className = "idle";
     const p = document.createElement("p");
     if (subjectEl.value === "NUR2018") {
-      p.textContent = "Start draws from the NUR2018 Pathophysiology bank (Lectures 1–11 and Seminar 1–6). A–D order reshuffles every question.";
+      p.textContent = "Start draws from the NUR2018 Pathophysiology bank (Lectures 1–12 and Seminar 1–7). A–D order reshuffles every question.";
     } else {
       p.textContent = "Start uses the midterm set: Lectures 1–4 through respiratory drugs, plus Revision Exercise 1, including random-number calculation items that refresh every draw. Change the practice set if you want CNS / psychiatric items only.";
     }
